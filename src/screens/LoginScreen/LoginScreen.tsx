@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import styles from './LoginScreen.android.styles';
 import Logo from '../../components/Logo/Logo';
-import { Input, Button } from '@rneui/themed';
+import { Input, Button, Divider } from '@rneui/themed';
 import { AntDesign } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 
@@ -30,7 +30,12 @@ export default function LoginScreen() {
         color={'#00BB69'}
         containerStyle={{
           width: '100%',
-          marginTop: 20,
+          marginVertical: 20,
+        }}
+      />
+      <Divider
+        style={{
+          alignSelf: 'stretch',
         }}
       />
     </View>
