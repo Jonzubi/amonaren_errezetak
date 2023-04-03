@@ -29,34 +29,13 @@ export default function LoginScreen() {
       <Button
         title={t('forms.login_button')}
         color={'#00BB69'}
-        containerStyle={{
-          width: '100%',
-          marginVertical: 40,
-        }}
+        containerStyle={styles.button}
       />
-      <Divider
-        style={{
-          alignSelf: 'stretch',
-        }}
-      />
+      <Divider style={styles.divider} />
       <SignGoogle />
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          marginTop: 40,
-        }}
-      >
+      <View style={styles.registerView}>
         <Text>Berria zara?</Text>
-        <Text
-          style={{
-            color: '#00BB69',
-            marginLeft: 10,
-            fontWeight: 'bold',
-          }}
-        >
-          Erregistratu!
-        </Text>
+        <Text style={styles.registerText}>Erregistratu!</Text>
       </View>
     </View>
   );
