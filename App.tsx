@@ -1,2 +1,2 @@
-import App from './src/screens/SplashScreen/SplashScreen';
+import App from './src/router';
 export default App;
