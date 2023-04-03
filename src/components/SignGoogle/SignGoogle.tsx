@@ -18,7 +18,7 @@ export default function SignGoogle() {
     androidClientId:
       '430573762472-rm2c2krf6nih6ae57gnt8mqftv25bbvj.apps.googleusercontent.com',
     webClientId:
-      '430573762472-rm2c2krf6nih6ae57gnt8mqftv25bbvj.apps.googleusercontent.com',
+      '430573762472-qv7ar6kjfik8b44gkhfcqdmvchgc7ro3.apps.googleusercontent.com',
     expoClientId:
       '430573762472-rm2c2krf6nih6ae57gnt8mqftv25bbvj.apps.googleusercontent.com',
   });
@@ -40,6 +40,7 @@ export default function SignGoogle() {
       );
 
       const user = await response.json();
+      console.log(user);
       setUserInfo(user);
     } catch (error) {
       // Add your own error handler here
