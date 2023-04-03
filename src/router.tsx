@@ -15,6 +15,7 @@ declare module 'i18next' {
 }
 
 i18n.use(initReactI18next).init({
+  compatibilityJSON: 'v3',
   resources: {
     eus: {
       translation: eus_json,
