@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../constants/colors';
 
 export default StyleSheet.create({
   container: {
@@ -25,7 +26,7 @@ export default StyleSheet.create({
     marginTop: 40,
   },
   registerText: {
-    color: '#00BB69',
+    color: colors.MAIN_GREEN,
     marginLeft: 10,
     fontWeight: 'bold',
   },

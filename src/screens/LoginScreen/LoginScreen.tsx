@@ -5,6 +5,7 @@ import { Input, Button, Divider } from '@rneui/themed';
 import { AntDesign } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import SignGoogle from '../../components/SignGoogle/SignGoogle';
+import colors from '../../constants/colors';
 
 export default function LoginScreen() {
   const { t } = useTranslation();
@@ -28,7 +29,7 @@ export default function LoginScreen() {
       />
       <Button
         title={t('forms.login_button')}
-        color={'#00BB69'}
+        color={colors.MAIN_GREEN}
         containerStyle={styles.button}
       />
       <Divider style={styles.divider} />
