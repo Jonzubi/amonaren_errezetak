@@ -7,4 +7,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
+  logo: {
+    height: 300,
+    width: 300,
+  },
 });
