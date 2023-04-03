@@ -31,7 +31,7 @@ export default function LoginScreen() {
         color={'#00BB69'}
         containerStyle={{
           width: '100%',
-          marginVertical: 20,
+          marginVertical: 40,
         }}
       />
       <Divider
