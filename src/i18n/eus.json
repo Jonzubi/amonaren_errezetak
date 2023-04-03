@@ -2,7 +2,9 @@
   "forms": {
     "enter_email_placeholder": "Sartu zure emaila",
     "enter_pass_placeholder": "Sartu zure pasahitza",
+    "enter_pass_again_placeholder": "Sartu pasahitza berriro",
     "login_button": "Sartu",
+    "signup_button": "Izena eman",
     "google_sign": "Sartu Google bidez"
   }
 }
