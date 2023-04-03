@@ -6,6 +6,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+    padding: 15,
   },
   logo: {
     height: 300,
