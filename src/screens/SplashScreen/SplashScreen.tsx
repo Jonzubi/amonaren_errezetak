@@ -1,6 +1,7 @@
-import { Image, View } from 'react-native';
+import { View } from 'react-native';
 import styles from './SplashScreen.android.styles';
 import { useEffect } from 'react';
+import Logo from '../../components/Logo/Logo';
 
 export default function SplashScreen({ navigation }) {
   useEffect(() => {
@@ -16,11 +17,7 @@ export default function SplashScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../assets/logo.png')}
-        resizeMode="contain"
-        style={styles.logo}
-      />
+      <Logo />
     </View>
   );
 }
