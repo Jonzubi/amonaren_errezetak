@@ -6,6 +6,13 @@ import { StackParamList } from './types/StackParamList';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import eus_json from './i18n/eus.json';
+import 'i18next';
+
+declare module 'i18next' {
+  interface CustomTypeOptions {
+    returnNull: false;
+  }
+}
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -13,6 +20,7 @@ i18n.use(initReactI18next).init({
       translation: eus_json,
     },
   },
+  returnNull: false,
   fallbackLng: 'eus',
   interpolation: {
     escapeValue: false,
