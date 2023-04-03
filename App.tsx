@@ -1,2 +1,2 @@
-import App from './src/index';
+import App from './src/screens/SplashScreen/SplashScreen';
 export default App;
