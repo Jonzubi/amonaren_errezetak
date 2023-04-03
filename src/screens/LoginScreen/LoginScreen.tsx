@@ -40,6 +40,24 @@ export default function LoginScreen() {
         }}
       />
       <SignGoogle />
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          marginTop: 40,
+        }}
+      >
+        <Text>Berria zara?</Text>
+        <Text
+          style={{
+            color: '#00BB69',
+            marginLeft: 10,
+            fontWeight: 'bold',
+          }}
+        >
+          Erregistratu!
+        </Text>
+      </View>
     </View>
   );
 }
