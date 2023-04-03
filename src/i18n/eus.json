@@ -2,6 +2,7 @@
   "forms": {
     "enter_email_placeholder": "Sartu zure emaila",
     "enter_pass_placeholder": "Sartu zure pasahitza",
-    "login_button": "Sartu"
+    "login_button": "Sartu",
+    "google_sign": "Sartu Google bidez"
   }
 }

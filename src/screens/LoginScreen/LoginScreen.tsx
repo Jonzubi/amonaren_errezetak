@@ -4,6 +4,7 @@ import Logo from '../../components/Logo/Logo';
 import { Input, Button, Divider } from '@rneui/themed';
 import { AntDesign } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import SignGoogle from '../../components/SignGoogle/SignGoogle';
 
 export default function LoginScreen() {
   const { t } = useTranslation();
@@ -38,6 +39,7 @@ export default function LoginScreen() {
           alignSelf: 'stretch',
         }}
       />
+      <SignGoogle />
     </View>
   );
 }
