@@ -27,6 +27,9 @@ export default function RegisterScreen({ navigation }) {
 
   const validateForm = (): boolean => {
     let isValid = true;
+    setErrorEmail('');
+    setErrorPassword('');
+
     if (!isEmail(email)) {
       emailRef.current.shake();
       setErrorEmail(t('registerScreen.not_email'));
