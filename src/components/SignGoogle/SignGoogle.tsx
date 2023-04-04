@@ -30,25 +30,20 @@ export default function SignGoogle({ onUserData }: Props) {
   useEffect(() => {
     if (response?.type === 'success') {
       setToken(response.authentication.accessToken);
-      getUserInfo();
     }
-  }, [response, token]);
+  }, [response]);
+
+  useEffect(() => {
+    getUserInfo();
+  }, [token]);
 
   const getUserInfo = async () => {
-    try {
-      const response = await fetch(
-        'https://www.googleapis.com/userinfo/v2/me',
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
+    const response = await fetch('https://www.googleapis.com/userinfo/v2/me', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-      const user = await response.json();
-      console.log(user);
-      onUserData(user);
-    } catch (error) {
-      // Add your own error handler here
-    }
+    const user = await response.json();
+    onUserData(user);
   };
 
   return (
