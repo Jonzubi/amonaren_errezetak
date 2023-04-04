@@ -7,8 +7,11 @@ import { useTranslation } from 'react-i18next';
 import SignGoogle from '../../components/SignGoogle/SignGoogle';
 import colors from '../../constants/colors';
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
   const { t } = useTranslation();
+  const onGoLogin = () => {
+    navigation.navigate('Login');
+  };
   return (
     <View style={styles.container}>
       <Logo style={styles.logo} />
@@ -40,6 +43,12 @@ export default function RegisterScreen() {
       />
       <Divider style={styles.divider} />
       <SignGoogle />
+      <View style={styles.registerView}>
+        <Text>{t('registerScreen.got_account')}</Text>
+        <Text onPress={onGoLogin} style={styles.registerText}>
+          {t('registerScreen.go_login')}
+        </Text>
+      </View>
     </View>
   );
 }

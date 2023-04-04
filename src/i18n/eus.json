@@ -6,5 +6,13 @@
     "login_button": "Sartu",
     "signup_button": "Izena eman",
     "google_sign": "Sartu Google bidez"
+  },
+  "loginScreen": {
+    "you_new": "Berria zara?",
+    "go_register": "Erregistratu!"
+  },
+  "registerScreen": {
+    "got_account": "Kontua baduzu jada?",
+    "go_login": "Hasi saioa!"
   }
 }

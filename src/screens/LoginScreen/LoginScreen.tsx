@@ -38,9 +38,9 @@ export default function LoginScreen({ navigation }) {
       <Divider style={styles.divider} />
       <SignGoogle />
       <View style={styles.registerView}>
-        <Text>Berria zara?</Text>
+        <Text>{t('loginScreen.you_new')}</Text>
         <Text onPress={onSignUp} style={styles.registerText}>
-          Erregistratu!
+          {t('loginScreen.go_register')}
         </Text>
       </View>
     </View>
