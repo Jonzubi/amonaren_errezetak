@@ -13,6 +13,8 @@
   },
   "registerScreen": {
     "got_account": "Kontua baduzu jada?",
-    "go_login": "Hasi saioa!"
+    "go_login": "Hasi saioa!",
+    "same_password": "Pasahitzek berdinak izan behar dute",
+    "not_email": "Emailaren formatua oker dago"
   }
 }
