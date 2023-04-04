@@ -12,12 +12,14 @@ import {
 } from '../../constants/constants';
 
 WebBrowser.maybeCompleteAuthSession();
+interface Props {
+  onUserData: (user: any) => void;
+}
 
-export default function SignGoogle() {
+export default function SignGoogle({ onUserData }: Props) {
   const { t } = useTranslation();
 
   const [token, setToken] = useState('');
-  const [userInfo, setUserInfo] = useState(null);
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     androidClientId: GOOGLE_ANDROID_CLIENT_ID,
@@ -43,7 +45,7 @@ export default function SignGoogle() {
 
       const user = await response.json();
       console.log(user);
-      setUserInfo(user);
+      onUserData(user);
     } catch (error) {
       // Add your own error handler here
     }
