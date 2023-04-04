@@ -13,6 +13,11 @@ export default function LoginScreen({ navigation }) {
   const onSignUp = () => {
     navigation.navigate('SignUp');
   };
+
+  const handleOnUserData = (userData) => {
+    console.log(userData);
+  };
+
   return (
     <View style={styles.container}>
       <Logo style={styles.logo} />
@@ -36,7 +41,7 @@ export default function LoginScreen({ navigation }) {
         containerStyle={styles.button}
       />
       <Divider style={styles.divider} />
-      <SignGoogle />
+      <SignGoogle onUserData={handleOnUserData} />
       <View style={styles.registerView}>
         <Text>{t('loginScreen.you_new')}</Text>
         <Text onPress={onSignUp} style={styles.registerText}>
