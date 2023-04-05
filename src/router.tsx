@@ -8,6 +8,7 @@ import { initReactI18next } from 'react-i18next';
 import eus_json from './i18n/eus.json';
 import 'i18next';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
+import HomeScreen from './screens/HomeScreen/HomeScreen';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -52,6 +53,13 @@ export default function Router() {
         <Stack.Screen
           name="SignUp"
           component={RegisterScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
           options={{
             headerShown: false,
           }}
