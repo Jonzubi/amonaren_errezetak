@@ -12,6 +12,7 @@ import {
 } from '../../constants/constants';
 import { GoogleSignIn } from '../../types/GoogleSignIn';
 import { useNavigation } from '@react-navigation/native';
+import { loginGoogle } from '../../api/user/user';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -44,6 +45,12 @@ export default function SignGoogle() {
 
     const user: GoogleSignIn = await response.json();
     if (user.error !== undefined) return;
+    const loginData = await loginGoogle({
+      email: user.email,
+      password: '',
+      imageUrl: user.picture,
+    });
+    console.log(loginData);
   };
 
   return (
