@@ -10,7 +10,6 @@ import {
   GOOGLE_EXPO_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID,
 } from '../../constants/constants';
-import { GoogleSignIn } from '../../types/GoogleSignIn';
 import { useNavigation } from '@react-navigation/native';
 import { loginGoogle } from '../../api/user/user';
 
