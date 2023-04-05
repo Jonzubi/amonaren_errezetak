@@ -9,6 +9,7 @@ import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions';
 import { createUser } from '../../api/user/user';
+import { GoogleSignIn } from '../../types/GoogleSignIn';
 
 export default function RegisterScreen({ navigation }) {
   const { t } = useTranslation();
@@ -23,9 +24,9 @@ export default function RegisterScreen({ navigation }) {
   const [errorPassword, setErrorPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
+  const emailRef = useRef<any>(null);
+  const passwordRef = useRef<any>(null);
+  const confirmPasswordRef = useRef<any>(null);
 
   const validateForm = (): boolean => {
     let isValid = true;
@@ -33,13 +34,13 @@ export default function RegisterScreen({ navigation }) {
     setErrorPassword('');
 
     if (!isEmail(email)) {
-      emailRef.current.shake();
+      emailRef.current!.shake();
       setErrorEmail(t('registerScreen.not_email'));
       isValid = false;
     }
     if (password !== confirmPassword) {
-      passwordRef.current.shake();
-      confirmPasswordRef.current.shake();
+      passwordRef.current!.shake();
+      confirmPasswordRef.current!.shake();
       setErrorPassword(t('registerScreen.same_password'));
       isValid = false;
     }
@@ -54,7 +55,7 @@ export default function RegisterScreen({ navigation }) {
     setIsLoading(false);
   };
 
-  const handleOnUserData = (userData) => {
+  const handleOnUserData = (userData: GoogleSignIn) => {
     console.log(userData);
   };
   return (

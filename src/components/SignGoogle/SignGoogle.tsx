@@ -10,10 +10,11 @@ import {
   GOOGLE_EXPO_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID,
 } from '../../constants/constants';
+import { GoogleSignIn } from '../../types/GoogleSignIn';
 
 WebBrowser.maybeCompleteAuthSession();
 interface Props {
-  onUserData: (user: any) => void;
+  onUserData: (user: GoogleSignIn) => void;
 }
 
 export default function SignGoogle({ onUserData }: Props) {
@@ -29,7 +30,7 @@ export default function SignGoogle({ onUserData }: Props) {
 
   useEffect(() => {
     if (response?.type === 'success') {
-      setToken(response.authentication.accessToken);
+      setToken(response?.authentication!.accessToken);
     }
   }, [response]);
 
@@ -42,7 +43,7 @@ export default function SignGoogle({ onUserData }: Props) {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    const user = await response.json();
+    const user: GoogleSignIn = await response.json();
     onUserData(user);
   };
 

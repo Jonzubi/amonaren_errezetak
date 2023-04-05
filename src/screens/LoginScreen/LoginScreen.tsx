@@ -9,6 +9,7 @@ import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions';
 import { login } from '../../api/user/user';
+import { GoogleSignIn } from '../../types/GoogleSignIn';
 
 export default function LoginScreen({ navigation }) {
   const { t } = useTranslation();
@@ -17,14 +18,14 @@ export default function LoginScreen({ navigation }) {
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const emailRef = useRef();
+  const emailRef = useRef(null);
 
   const validateForm = (): boolean => {
     let isValid = true;
     setErrorEmail('');
 
     if (!isEmail(email)) {
-      emailRef.current.shake();
+      emailRef?.current?.shake();
       setErrorEmail(t('registerScreen.not_email'));
       isValid = false;
     }
@@ -35,7 +36,7 @@ export default function LoginScreen({ navigation }) {
     navigation.navigate('SignUp');
   };
 
-  const handleOnUserData = (userData) => {
+  const handleOnUserData = (userData: GoogleSignIn) => {
     console.log(userData);
   };
 
