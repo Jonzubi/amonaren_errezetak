@@ -108,7 +108,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
       )}
       <Divider style={styles.divider} />
       <SignGoogle onUserData={handleOnUserData} />
-      <View style={styles.registerView}>
+      <View style={styles.loginView}>
         <Text>{t('registerScreen.got_account')}</Text>
         <Text onPress={onGoLogin} style={styles.registerText}>
           {t('registerScreen.go_login')}

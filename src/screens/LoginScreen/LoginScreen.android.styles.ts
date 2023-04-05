@@ -21,7 +21,6 @@ export default StyleSheet.create({
     alignSelf: 'stretch',
   },
   registerView: {
-    flex: 1,
     flexDirection: 'row',
     marginTop: 40,
   },

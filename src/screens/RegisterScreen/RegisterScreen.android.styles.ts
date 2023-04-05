@@ -20,8 +20,7 @@ export default StyleSheet.create({
   divider: {
     alignSelf: 'stretch',
   },
-  registerView: {
-    flex: 1,
+  loginView: {
     flexDirection: 'row',
     marginTop: 40,
   },
