@@ -39,18 +39,7 @@ export default function SignGoogle() {
   }, [token]);
 
   const getUserInfo = async () => {
-    const response = await fetch('https://www.googleapis.com/userinfo/v2/me', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    const user: GoogleSignIn = await response.json();
-    if (user.error !== undefined) return;
-    const loginData = await loginGoogle({
-      email: user.email,
-      password: '',
-      imageUrl: user.picture,
-    });
-    console.log(loginData);
+    const loginData = await loginGoogle({ token });
   };
 
   return (
