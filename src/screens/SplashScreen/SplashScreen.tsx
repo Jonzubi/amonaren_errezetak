@@ -3,7 +3,7 @@ import styles from './SplashScreen.android.styles';
 import { useEffect } from 'react';
 import Logo from '../../components/Logo/Logo';
 
-export default function SplashScreen({ navigation }) {
+export default function SplashScreen({ navigation }: { navigation: any }) {
   useEffect(() => {
     performTimeConsumingTask().then(() => navigation.navigate('Login', {}));
   }, []);

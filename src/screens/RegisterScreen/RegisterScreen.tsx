@@ -11,7 +11,7 @@ import { isEmail } from '../../utils/functions';
 import { createUser } from '../../api/user/user';
 import { GoogleSignIn } from '../../types/GoogleSignIn';
 
-export default function RegisterScreen({ navigation }) {
+export default function RegisterScreen({ navigation }: { navigation: any }) {
   const { t } = useTranslation();
   const onGoLogin = () => {
     navigation.navigate('Login');

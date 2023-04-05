@@ -11,14 +11,14 @@ import { isEmail } from '../../utils/functions';
 import { login } from '../../api/user/user';
 import { GoogleSignIn } from '../../types/GoogleSignIn';
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({ navigation }: { navigation: any }) {
   const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const emailRef = useRef(null);
+  const emailRef = useRef<any>(null);
 
   const validateForm = (): boolean => {
     let isValid = true;
