@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import styles from './RegisterScreen.android.styles';
 import Logo from '../../components/Logo/Logo';
 import { Input, Button, Divider } from '@rneui/themed';
@@ -8,6 +8,7 @@ import SignGoogle from '../../components/SignGoogle/SignGoogle';
 import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions';
+import { createUser } from '../../api/user/user';
 
 export default function RegisterScreen({ navigation }) {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ export default function RegisterScreen({ navigation }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -43,8 +45,17 @@ export default function RegisterScreen({ navigation }) {
     }
     return isValid;
   };
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!validateForm()) return;
+    setIsLoading(true);
+    const data = await createUser({ email, password }).catch((error) =>
+      console.log(error),
+    );
+    setIsLoading(false);
+  };
+
+  const handleOnUserData = (userData) => {
+    console.log(userData);
   };
   return (
     <View style={styles.container}>
@@ -79,14 +90,23 @@ export default function RegisterScreen({ navigation }) {
         ref={confirmPasswordRef}
         errorMessage={errorPassword}
       />
-      <Button
-        onPress={handleRegister}
-        title={t('forms.signup_button')}
-        color={colors.MAIN_GREEN}
-        containerStyle={styles.button}
-      />
+      {isLoading && (
+        <ActivityIndicator
+          size={'large'}
+          color={colors.MAIN_GREEN}
+          style={styles.button}
+        />
+      )}
+      {!isLoading && (
+        <Button
+          onPress={handleRegister}
+          title={t('forms.signup_button')}
+          color={colors.MAIN_GREEN}
+          containerStyle={styles.button}
+        />
+      )}
       <Divider style={styles.divider} />
-      <SignGoogle />
+      <SignGoogle onUserData={handleOnUserData} />
       <View style={styles.registerView}>
         <Text>{t('registerScreen.got_account')}</Text>
         <Text onPress={onGoLogin} style={styles.registerText}>
