@@ -6,4 +6,5 @@ export interface GoogleSignIn {
   locale: string;
   name: string;
   picture: string;
+  error: any;
 }

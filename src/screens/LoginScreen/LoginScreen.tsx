@@ -36,10 +36,6 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
     navigation.navigate('SignUp');
   };
 
-  const handleOnUserData = (userData: GoogleSignIn) => {
-    console.log(userData);
-  };
-
   const handleLogin = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
@@ -49,6 +45,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
     setIsLoading(false);
     console.log(tokenData);
   };
+
   return (
     <View style={styles.container}>
       <Logo style={styles.logo} />
@@ -86,7 +83,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
         />
       )}
       <Divider style={styles.divider} />
-      <SignGoogle onUserData={handleOnUserData} />
+      <SignGoogle />
       <View style={styles.registerView}>
         <Text>{t('loginScreen.you_new')}</Text>
         <Text onPress={onSignUp} style={styles.registerText}>

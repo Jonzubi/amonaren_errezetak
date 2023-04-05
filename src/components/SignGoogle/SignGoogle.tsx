@@ -11,14 +11,13 @@ import {
   GOOGLE_WEB_CLIENT_ID,
 } from '../../constants/constants';
 import { GoogleSignIn } from '../../types/GoogleSignIn';
+import { useNavigation } from '@react-navigation/native';
 
 WebBrowser.maybeCompleteAuthSession();
-interface Props {
-  onUserData: (user: GoogleSignIn) => void;
-}
 
-export default function SignGoogle({ onUserData }: Props) {
+export default function SignGoogle() {
   const { t } = useTranslation();
+  const navigation = useNavigation();
 
   const [token, setToken] = useState('');
 
@@ -44,7 +43,7 @@ export default function SignGoogle({ onUserData }: Props) {
     });
 
     const user: GoogleSignIn = await response.json();
-    onUserData(user);
+    if (user.error !== undefined) return;
   };
 
   return (

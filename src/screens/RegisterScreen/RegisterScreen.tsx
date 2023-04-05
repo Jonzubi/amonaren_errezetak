@@ -46,6 +46,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
     }
     return isValid;
   };
+
   const handleRegister = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
@@ -55,9 +56,6 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
     setIsLoading(false);
   };
 
-  const handleOnUserData = (userData: GoogleSignIn) => {
-    console.log(userData);
-  };
   return (
     <View style={styles.container}>
       <Logo style={styles.logo} />
@@ -107,7 +105,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         />
       )}
       <Divider style={styles.divider} />
-      <SignGoogle onUserData={handleOnUserData} />
+      <SignGoogle />
       <View style={styles.loginView}>
         <Text>{t('registerScreen.got_account')}</Text>
         <Text onPress={onGoLogin} style={styles.registerText}>
