@@ -12,12 +12,15 @@ import {
 } from '../../constants/constants';
 import { useNavigation } from '@react-navigation/native';
 import { loginGoogle } from '../../api/user/user';
+import { useDispatch } from 'react-redux';
+import { setAccessToken } from '../../redux/user/userSlice';
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function SignGoogle() {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [token, setToken] = useState('');
 
@@ -39,6 +42,9 @@ export default function SignGoogle() {
 
   const getUserInfo = async () => {
     const loginData = await loginGoogle({ token });
+    const { access_token } = loginData.data;
+    dispatch(setAccessToken(access_token));
+    navigation.navigate('Home');
   };
 
   return (
