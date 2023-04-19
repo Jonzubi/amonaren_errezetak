@@ -1,14 +1,28 @@
-import { View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { Text } from 'react-native-elements';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useRecipes } from '../../hooks/useRecipes';
+import Recipe from '../../components/Recipe/Recipe';
+import styles from './HomeScreen.android.styles';
 
 export default function HomeScreen() {
-  const token = useSelector((state: RootState) => state.user.access_token);
+  const { recipes, loading } = useRecipes();
+
+  const handleRenderItem = ({ item }) => (
+    <Recipe title={item.title} description={item.description} />
+  );
+
+  const keyExtractor = (item, index) => index.toString();
+
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Esto es HomeScreen</Text>
-      <Text>Access token es {token}</Text>
+      {!loading && (
+        <FlatList
+          style={styles.flatList}
+          data={recipes}
+          renderItem={handleRenderItem}
+        />
+      )}
     </View>
   );
 }
