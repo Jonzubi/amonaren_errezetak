@@ -9,7 +9,6 @@ import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions';
 import { login } from '../../api/user/user';
-import { GoogleSignIn } from '../../types/GoogleSignIn';
 
 export default function LoginScreen({ navigation }: { navigation: any }) {
   const { t } = useTranslation();
