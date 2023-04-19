@@ -3,4 +3,5 @@ export type StackParamList = {
   Splash: {} | undefined;
   SignUp: {} | undefined;
   Home: {} | undefined;
+  AddRecipe: {} | undefined;
 };

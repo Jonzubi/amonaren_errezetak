@@ -9,6 +9,7 @@ import eus_json from './i18n/eus.json';
 import 'i18next';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
+import AddRecipeScreen from './screens/AddRecipeScreen/AddRecipeScreen';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -60,6 +61,13 @@ export default function Router() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="AddRecipe"
+          component={AddRecipeScreen}
           options={{
             headerShown: false,
           }}
