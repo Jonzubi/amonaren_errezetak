@@ -16,5 +16,8 @@
     "go_login": "Hasi saioa!",
     "same_password": "Pasahitzek berdinak izan behar dute",
     "not_email": "Emailaren formatua oker dago"
+  },
+  "addRecipeScreen": {
+    "title": "Sortu errezeta"
   }
 }
