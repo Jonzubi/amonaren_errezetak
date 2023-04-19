@@ -2,9 +2,16 @@ import { useEffect, useState } from 'react';
 import { API_URL } from '../constants/constants';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import { Recipe } from '../types/Recipe';
 
-export async function useRecipes() {
-  const [recipes, setRecipes] = useState([]);
+export interface RecipeHook {
+  recipes: Recipe[];
+  loading: boolean;
+}
+
+export function useRecipes() {
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState(true);
   const token = useSelector((state: RootState) => state.user.access_token);
 
   useEffect(() => {
@@ -14,8 +21,16 @@ export async function useRecipes() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setRecipes(data));
+      .then((data) => {
+        setRecipes(
+          data.map((d: any) => ({
+            title: d.recipeTitle,
+            description: d.recipeDesc,
+          })),
+        );
+        setLoading(false);
+      });
   }, []);
 
-  return recipes;
+  return { recipes, loading };
 }
