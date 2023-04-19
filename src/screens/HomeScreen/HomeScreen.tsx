@@ -15,7 +15,6 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>Esto es HomeScreen</Text>
       {!loading && (
         <FlatList
           style={styles.flatList}
