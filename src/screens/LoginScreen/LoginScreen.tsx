@@ -9,9 +9,12 @@ import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions';
 import { login } from '../../api/user/user';
+import { useDispatch } from 'react-redux';
+import { setAccessToken } from '../../redux/user/userSlice';
 
 export default function LoginScreen({ navigation }: { navigation: any }) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,8 +41,13 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
   const handleLogin = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
-    const tokenData = await login({ email, password }).catch((error) => {});
+    const tokenData = await login({ email, password }).catch((error) => {
+      throw new Error(error);
+    });
+    const { access_token } = tokenData.data;
+    dispatch(setAccessToken(access_token));
     setIsLoading(false);
+    navigation.navigate('Home');
   };
 
   return (
