@@ -38,11 +38,8 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
   const handleLogin = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
-    const tokenData = await login({ email, password }).catch((error) =>
-      console.log(error),
-    );
+    const tokenData = await login({ email, password }).catch((error) => {});
     setIsLoading(false);
-    console.log(tokenData);
   };
 
   return (
