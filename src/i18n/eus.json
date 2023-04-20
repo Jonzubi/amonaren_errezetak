@@ -18,6 +18,8 @@
     "not_email": "Emailaren formatua oker dago"
   },
   "addRecipeScreen": {
-    "title": "Sortu errezeta"
+    "title": "Sortu errezeta",
+    "inputTitle": "Errezetaren izenburua",
+    "inputDescription": "Errezetaren deskripzioa"
   }
 }
