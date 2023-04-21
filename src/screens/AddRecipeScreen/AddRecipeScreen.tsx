@@ -6,11 +6,16 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import ChooseImages from '../../components/ChooseImages/ChooseImages';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Asset } from 'react-native-image-picker';
 
 export default function AddRecipeScreen() {
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  const onImageChosen = (images: Asset[]) => {
+    console.log(images);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,7 +27,7 @@ export default function AddRecipeScreen() {
         }
         onChangeText={(value) => setTitle(value)}
       />
-      <ChooseImages />
+      <ChooseImages onImageChosen={onImageChosen} />
       <Input
         placeholder={t('addRecipeScreen.inputDescription')}
         leftIcon={
