@@ -23,13 +23,11 @@ export default function ChooseImages(props: ChooseImagesProps) {
     onImageChosen(source);
   };
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        onPress={handleChooseImage}
-        style={styles.addButtonContainer}
-      >
-        <Ionicons name="add" size={50} />
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      onPress={handleChooseImage}
+      style={styles.addButtonContainer}
+    >
+      <Ionicons name="add" size={50} />
+    </TouchableOpacity>
   );
 }
