@@ -6,15 +6,19 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import ChooseImages from '../../components/ChooseImages/ChooseImages';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Asset } from 'react-native-image-picker';
+import * as ImagePicker from 'expo-image-picker';
 
 export default function AddRecipeScreen() {
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [recipeImages, setRecipeImages] = useState<
+    ImagePicker.ImagePickerAsset[]
+  >([]);
 
-  const onImageChosen = (images: Asset[]) => {
+  const onImageChosen = (images: ImagePicker.ImagePickerAsset[]) => {
     console.log(images);
+    setRecipeImages(images);
   };
 
   return (
