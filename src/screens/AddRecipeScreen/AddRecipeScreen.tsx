@@ -23,7 +23,7 @@ export default function AddRecipeScreen() {
 
   const renderImage = ({ item }) => (
     <Image
-      source={item.uri}
+      source={{ uri: item.uri }}
       style={{ height: 200, width: 200, marginHorizontal: 8, borderRadius: 40 }}
     />
   );
