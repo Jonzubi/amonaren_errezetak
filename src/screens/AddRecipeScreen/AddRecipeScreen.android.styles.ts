@@ -3,7 +3,6 @@ import colors from '../../constants/colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     padding: 15,
   },
   addImage: {
@@ -15,5 +14,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     padding: 15,
     borderRadius: 20,
+  },
+  verticalDivider: {
+    marginVertical: 25,
   },
 });
