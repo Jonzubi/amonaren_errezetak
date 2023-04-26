@@ -16,6 +16,6 @@ export default StyleSheet.create({
     borderRadius: 20,
   },
   verticalDivider: {
-    marginVertical: 25,
+    marginVertical: 50,
   },
 });
