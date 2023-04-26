@@ -28,24 +28,14 @@ export default function AddRecipeScreen() {
       />
       <Input
         placeholder={t('addRecipeScreen.inputTitle')}
-        leftIcon={
-          <MaterialIcons name={'title'} size={24} style={{ marginRight: 5 }} />
-        }
         onChangeText={(value) => setTitle(value)}
       />
       <Input
         placeholder={t('addRecipeScreen.inputDescription')}
-        leftIcon={
-          <MaterialIcons
-            name={'description'}
-            size={24}
-            style={{ marginRight: 5 }}
-          />
-        }
         onChangeText={(value) => setDescription(value)}
         multiline
         inputStyle={{
-          height: 300,
+          height: 150,
         }}
       />
     </SafeAreaView>
