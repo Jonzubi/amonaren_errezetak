@@ -1,4 +1,4 @@
-import { FlatList, View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import styles from './AddRecipeScreen.android.styles';
 import { Text, Input } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
@@ -21,23 +21,29 @@ export default function AddRecipeScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ChooseImages
-        containerStyle={styles.addImage}
-        onImageChosen={onImageChosen}
-      />
-      <Input
-        placeholder={t('addRecipeScreen.inputTitle')}
-        onChangeText={(value) => setTitle(value)}
-      />
-      <Input
-        placeholder={t('addRecipeScreen.inputDescription')}
-        onChangeText={(value) => setDescription(value)}
-        multiline
-        inputStyle={{
-          height: 150,
-        }}
-      />
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView style={styles.container}>
+        <ChooseImages
+          containerStyle={styles.addImage}
+          onImageChosen={onImageChosen}
+        />
+        <View style={styles.verticalDivider} />
+        <Input
+          placeholder={t('addRecipeScreen.inputTitle')}
+          onChangeText={(value) => setTitle(value)}
+        />
+        <View style={styles.verticalDivider} />
+        <Input
+          placeholder={t('addRecipeScreen.inputDescription')}
+          onChangeText={(value) => setDescription(value)}
+          multiline
+          inputStyle={{
+            height: 150,
+          }}
+        />
+        <View style={styles.verticalDivider} />
+        <Text>Ingredientes</Text>
+      </ScrollView>
     </SafeAreaView>
   );
 }
