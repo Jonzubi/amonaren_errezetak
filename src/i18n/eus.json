@@ -19,7 +19,7 @@
   },
   "addRecipeScreen": {
     "title": "Sortu errezeta",
-    "inputTitle": "Errezetaren izenburua",
+    "inputTitle": "Nire amonaren errezeta sekretua",
     "inputDescription": "Errezetaren deskripzioa"
   }
 }
