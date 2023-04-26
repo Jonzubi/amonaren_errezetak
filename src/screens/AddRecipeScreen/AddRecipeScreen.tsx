@@ -29,6 +29,7 @@ export default function AddRecipeScreen() {
         />
         <Divider style={styles.verticalDivider} />
         <Input
+          style={styles.titleInput}
           placeholder={t('addRecipeScreen.inputTitle')}
           onChangeText={(value) => setTitle(value)}
         />
