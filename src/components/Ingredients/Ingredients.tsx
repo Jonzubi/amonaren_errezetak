@@ -22,7 +22,7 @@ export default function Ingredients() {
           setIngredients(ingredients.filter((i) => i !== ingredient))
         }
       >
-        <MaterialIcons name="delete" color={colors.RED} size={50} />
+        <MaterialIcons name="delete" color={colors.RED} size={40} />
       </TouchableOpacity>
     </View>
   );
