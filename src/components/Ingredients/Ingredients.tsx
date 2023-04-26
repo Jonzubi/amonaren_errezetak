@@ -15,7 +15,7 @@ export default function Ingredients() {
       <Input
         placeholder={t('addRecipeScreen.add_ingredient_placeholder')}
         value={ingredient}
-        containerStyle={{ width: '95%' }}
+        containerStyle={{ width: '75%' }}
       />
       <TouchableOpacity
         onPress={() =>
@@ -36,7 +36,14 @@ export default function Ingredients() {
           style={{ flexDirection: 'row', justifyContent: 'center' }}
         >
           <Ionicons name="add" size={20} />
-          <Text style={{ fontWeight: '500', fontSize: 15, marginLeft: 10 }}>
+          <Text
+            style={{
+              fontWeight: '600',
+              fontSize: 15,
+              marginLeft: 10,
+              marginBottom: 50,
+            }}
+          >
             {t('addRecipeScreen.ingredient')}
           </Text>
         </TouchableOpacity>
