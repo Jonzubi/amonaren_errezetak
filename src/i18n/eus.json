@@ -20,6 +20,8 @@
   "addRecipeScreen": {
     "title": "Sortu errezeta",
     "inputTitle": "Nire amonaren errezeta sekretua",
-    "inputDescription": "Errezetaren deskripzioa"
+    "inputDescription": "Errezetaren deskripzioa",
+    "ingredients": "Osagaiak",
+    "ingredient": "Osagaia"
   }
 }
