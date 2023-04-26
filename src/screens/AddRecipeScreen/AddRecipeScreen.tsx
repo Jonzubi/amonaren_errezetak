@@ -13,23 +13,19 @@ export default function AddRecipeScreen() {
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [recipeImages, setRecipeImages] = useState<
-    ImagePicker.ImagePickerAsset[]
-  >([]);
+  const [recipeImages, setRecipeImages] =
+    useState<ImagePicker.ImagePickerAsset>();
 
-  const onImageChosen = (images: ImagePicker.ImagePickerAsset[]) => {
-    setRecipeImages([...recipeImages, ...images]);
+  const onImageChosen = (image: ImagePicker.ImagePickerAsset) => {
+    setRecipeImages(image);
   };
-
-  const renderImage = ({ item }) => (
-    <Image
-      source={{ uri: item.uri }}
-      style={{ height: 200, width: 200, marginHorizontal: 8, borderRadius: 40 }}
-    />
-  );
 
   return (
     <SafeAreaView style={styles.container}>
+      <ChooseImages
+        containerStyle={styles.addImage}
+        onImageChosen={onImageChosen}
+      />
       <Input
         placeholder={t('addRecipeScreen.inputTitle')}
         leftIcon={
@@ -37,29 +33,6 @@ export default function AddRecipeScreen() {
         }
         onChangeText={(value) => setTitle(value)}
       />
-      <View
-        style={{
-          width: '100%',
-          flex: 1,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-        }}
-      >
-        <ChooseImages onImageChosen={onImageChosen} />
-        <FlatList
-          horizontal
-          data={recipeImages}
-          contentInsetAdjustmentBehavior="never"
-          snapToAlignment="center"
-          decelerationRate="fast"
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          scrollEventThrottle={1}
-          renderItem={renderImage}
-        />
-      </View>
       <Input
         placeholder={t('addRecipeScreen.inputDescription')}
         leftIcon={
