@@ -30,7 +30,6 @@ export default function AddRecipeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text h3>{t('addRecipeScreen.title')}</Text>
       <Input
         placeholder={t('addRecipeScreen.inputTitle')}
         leftIcon={
