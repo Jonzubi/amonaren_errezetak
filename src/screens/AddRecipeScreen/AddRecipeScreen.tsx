@@ -1,13 +1,13 @@
-import { View, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
 import styles from './AddRecipeScreen.android.styles';
-import { Text, Input } from '@rneui/themed';
+import { Input } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
-import { MaterialIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import ChooseImages from '../../components/ChooseImages/ChooseImages';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import { Divider } from 'react-native-elements';
+import Ingredients from '../../components/Ingredients/Ingredients';
 
 export default function AddRecipeScreen() {
   const { t } = useTranslation();
@@ -43,7 +43,7 @@ export default function AddRecipeScreen() {
           }}
         />
         <Divider style={styles.verticalDivider} />
-        <Text h4>Ingredientes</Text>
+        <Ingredients />
       </ScrollView>
     </SafeAreaView>
   );
