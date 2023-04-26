@@ -18,4 +18,5 @@ export default StyleSheet.create({
   verticalDivider: {
     marginVertical: 50,
   },
+  titleInput: { fontSize: 20, fontWeight: '600' },
 });
