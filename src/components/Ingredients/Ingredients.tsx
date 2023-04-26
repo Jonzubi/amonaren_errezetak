@@ -10,7 +10,7 @@ export default function Ingredients() {
   const [ingredients, setIngredients] = useState(['']);
   const { t } = useTranslation();
 
-  const renderInput = (ingredient: string) => (
+  const renderInput = (ingredient: string, index: number) => (
     <View style={styles.inputsView}>
       <Input
         placeholder={t('addRecipeScreen.add_ingredient_placeholder')}
@@ -19,7 +19,7 @@ export default function Ingredients() {
       />
       <TouchableOpacity
         onPress={() =>
-          setIngredients(ingredients.filter((i) => i !== ingredient))
+          setIngredients(ingredients.filter((ingr, i) => i !== index))
         }
       >
         <MaterialIcons name="delete" color={colors.RED} size={40} />
@@ -30,7 +30,7 @@ export default function Ingredients() {
     <View style={{ flex: 1, flexDirection: 'column' }}>
       <Text h4>{t('addRecipeScreen.ingredients')}</Text>
       <View style={{ flex: 1, flexDirection: 'column' }}>
-        {ingredients.map((ingredient) => renderInput(ingredient))}
+        {ingredients.map((ingredient, index) => renderInput(ingredient, index))}
         <TouchableOpacity
           onPress={() => setIngredients([...ingredients, ''])}
           style={{ flexDirection: 'row', justifyContent: 'center' }}
