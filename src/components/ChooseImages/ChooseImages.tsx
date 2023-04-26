@@ -25,6 +25,7 @@ export default function ChooseImages(props: ChooseImagesProps) {
     onImageChosen(source[0]);
     setImage(source[0]);
   };
+  console.log(image);
   return (
     <TouchableOpacity
       onPress={handleChooseImage}
@@ -35,7 +36,12 @@ export default function ChooseImages(props: ChooseImagesProps) {
       ]}
     >
       {!image && <FontAwesome name="photo" size={50} />}
-      {image && <Image source={{ uri: image.uri }} style={styles.image} />}
+      {image && (
+        <Image
+          source={{ uri: image.uri }}
+          style={{ height: image.height, width: image.width, ...styles.image }}
+        />
+      )}
     </TouchableOpacity>
   );
 }

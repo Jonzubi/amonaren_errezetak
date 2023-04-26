@@ -12,11 +12,11 @@ export default StyleSheet.create({
   containerWithImage: {
     flex: 1,
     width: '100%',
+    alignItems: 'center',
   },
   image: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain',
+    maxHeight: 500,
+    maxWidth: 500,
+    borderRadius: 25,
   },
 });
