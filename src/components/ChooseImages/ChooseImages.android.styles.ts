@@ -9,4 +9,14 @@ export default StyleSheet.create({
     backgroundColor: colors.GREY,
     borderRadius: 25,
   },
+  containerWithImage: {
+    flex: 1,
+    width: '100%',
+  },
+  image: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+  },
 });
