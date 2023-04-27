@@ -15,6 +15,7 @@ export default function AddRecipeScreen() {
   const [description, setDescription] = useState('');
   const [recipeImages, setRecipeImages] =
     useState<ImagePicker.ImagePickerAsset>();
+  let ingredients: string[] = [];
 
   const onImageChosen = (image: ImagePicker.ImagePickerAsset) => {
     setRecipeImages(image);
@@ -43,7 +44,11 @@ export default function AddRecipeScreen() {
           }}
         />
         <Divider style={styles.verticalDivider} />
-        <Ingredients />
+        <Ingredients
+          onIngredientsChange={(ingr) => {
+            ingredients = ingr;
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );

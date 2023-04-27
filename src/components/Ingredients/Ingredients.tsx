@@ -6,7 +6,12 @@ import { useTranslation } from 'react-i18next';
 import styles from './Ingredients.android.styles';
 import colors from '../../constants/colors';
 
-export default function Ingredients() {
+export interface ChooseImagesProps {
+  onIngredientsChange?(ingredients: string[]): void;
+}
+
+export default function Ingredients(props: ChooseImagesProps) {
+  const { onIngredientsChange } = props;
   const [ingredients, setIngredients] = useState(['']);
   const { t } = useTranslation();
 
@@ -18,9 +23,11 @@ export default function Ingredients() {
         containerStyle={{ width: '75%' }}
       />
       <TouchableOpacity
-        onPress={() =>
-          setIngredients(ingredients.filter((ingr, i) => i !== index))
-        }
+        onPress={() => {
+          const newIngr = ingredients.filter((ingr, i) => i !== index);
+          setIngredients(newIngr);
+          if (onIngredientsChange) onIngredientsChange(newIngr);
+        }}
       >
         <MaterialIcons name="delete" color={colors.RED} size={40} />
       </TouchableOpacity>
@@ -32,7 +39,11 @@ export default function Ingredients() {
       <View style={{ flex: 1, flexDirection: 'column' }}>
         {ingredients.map((ingredient, index) => renderInput(ingredient, index))}
         <TouchableOpacity
-          onPress={() => setIngredients([...ingredients, ''])}
+          onPress={() => {
+            const newIngr = [...ingredients, ''];
+            setIngredients(newIngr);
+            if (onIngredientsChange) onIngredientsChange(newIngr);
+          }}
           style={{ flexDirection: 'row', justifyContent: 'center' }}
         >
           <Ionicons name="add" size={20} />
