@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import ChooseImages from '../../components/ChooseImages/ChooseImages';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import * as ImagePicker from 'expo-image-picker';
+import { ImagePickerAsset } from 'expo-image-picker';
 import { Divider } from 'react-native-elements';
 import Ingredients from '../../components/Ingredients/Ingredients';
 import Steps from '../../components/Steps/Steps';
@@ -14,11 +14,10 @@ export default function AddRecipeScreen() {
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [recipeImages, setRecipeImages] =
-    useState<ImagePicker.ImagePickerAsset>();
+  const [recipeImages, setRecipeImages] = useState<ImagePickerAsset>();
   let ingredients: string[] = [];
 
-  const onImageChosen = (image: ImagePicker.ImagePickerAsset) => {
+  const onImageChosen = (image: ImagePickerAsset) => {
     setRecipeImages(image);
   };
 
