@@ -23,6 +23,7 @@
     "inputDescription": "Errezetaren deskripzioa",
     "ingredients": "Osagaiak",
     "ingredient": "Osagaia",
-    "add_ingredient_placeholder": "100ml ur"
+    "add_ingredient_placeholder": "100ml ur",
+    "steps": "Pausoak"
   }
 }

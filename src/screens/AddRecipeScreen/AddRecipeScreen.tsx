@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import { Divider } from 'react-native-elements';
 import Ingredients from '../../components/Ingredients/Ingredients';
+import Steps from '../../components/Steps/Steps';
 
 export default function AddRecipeScreen() {
   const { t } = useTranslation();
@@ -49,6 +50,8 @@ export default function AddRecipeScreen() {
             ingredients = ingr;
           }}
         />
+        <Divider style={styles.verticalDivider} />
+        <Steps />
       </ScrollView>
     </SafeAreaView>
   );
