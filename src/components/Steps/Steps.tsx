@@ -10,7 +10,7 @@ import styles from './Steps.android.styles';
 import DeleteStepIngredient from '../DeleteStepIngredient/DeleteStepIngredient';
 import AddStepIngredient from '../AddStepIngredient/AddStepIngredient';
 
-interface Step {
+export interface Step {
   description: string;
   image?: ImagePickerAsset;
 }
