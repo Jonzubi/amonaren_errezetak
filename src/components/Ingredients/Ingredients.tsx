@@ -36,29 +36,27 @@ export default function Ingredients(props: ChooseImagesProps) {
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
       <Text h4>{t('addRecipeScreen.ingredients')}</Text>
-      <View style={{ flex: 1, flexDirection: 'column' }}>
-        {ingredients.map((ingredient, index) => renderInput(ingredient, index))}
-        <TouchableOpacity
-          onPress={() => {
-            const newIngr = [...ingredients, ''];
-            setIngredients(newIngr);
-            if (onIngredientsChange) onIngredientsChange(newIngr);
+      {ingredients.map((ingredient, index) => renderInput(ingredient, index))}
+      <TouchableOpacity
+        onPress={() => {
+          const newIngr = [...ingredients, ''];
+          setIngredients(newIngr);
+          if (onIngredientsChange) onIngredientsChange(newIngr);
+        }}
+        style={{ flexDirection: 'row', justifyContent: 'center' }}
+      >
+        <Ionicons name="add" size={20} />
+        <Text
+          style={{
+            fontWeight: '600',
+            fontSize: 15,
+            marginLeft: 10,
+            marginBottom: 50,
           }}
-          style={{ flexDirection: 'row', justifyContent: 'center' }}
         >
-          <Ionicons name="add" size={20} />
-          <Text
-            style={{
-              fontWeight: '600',
-              fontSize: 15,
-              marginLeft: 10,
-              marginBottom: 50,
-            }}
-          >
-            {t('addRecipeScreen.ingredient')}
-          </Text>
-        </TouchableOpacity>
-      </View>
+          {t('addRecipeScreen.ingredient')}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
