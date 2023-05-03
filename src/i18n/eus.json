@@ -24,6 +24,7 @@
     "ingredients": "Osagaiak",
     "ingredient": "Osagaia",
     "add_ingredient_placeholder": "100ml ur",
-    "steps": "Pausoak"
+    "steps": "Pausoak",
+    "add_step_placeholder": "Ura berotu"
   }
 }
