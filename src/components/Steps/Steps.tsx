@@ -29,6 +29,7 @@ export default function Steps(props: StepsProps) {
           flexDirection: 'row',
           justifyContent: 'space-between',
         }}
+        key={`step${index}`}
       >
         <View
           style={{
