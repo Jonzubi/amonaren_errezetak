@@ -16,7 +16,7 @@ export default function Ingredients(props: ChooseImagesProps) {
   const { t } = useTranslation();
 
   const renderInput = (ingredient: string, index: number) => (
-    <View style={styles.inputsView}>
+    <View style={styles.inputsView} key={`ingredient${index}`}>
       <Input
         placeholder={t('addRecipeScreen.add_ingredient_placeholder')}
         value={ingredient}
