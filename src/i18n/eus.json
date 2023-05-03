@@ -18,7 +18,8 @@
     "not_email": "Emailaren formatua oker dago"
   },
   "addRecipeScreen": {
-    "title": "Sortu errezeta",
+    "title": "Izenburua",
+    "description": "Deskripzioa",
     "inputTitle": "Nire amonaren errezeta sekretua",
     "inputDescription": "Errezetaren deskripzioa",
     "ingredients": "Osagaiak",

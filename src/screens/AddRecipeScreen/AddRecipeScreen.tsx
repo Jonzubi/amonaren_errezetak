@@ -6,7 +6,7 @@ import { useState } from 'react';
 import ChooseImages from '../../components/ChooseImages/ChooseImages';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ImagePickerAsset } from 'expo-image-picker';
-import { Divider } from 'react-native-elements';
+import { Divider, Text } from 'react-native-elements';
 import Ingredients from '../../components/Ingredients/Ingredients';
 import Steps, { Step } from '../../components/Steps/Steps';
 
@@ -32,12 +32,18 @@ export default function AddRecipeScreen() {
           onImageChosen={onImageChosen}
         />
         <Divider style={styles.verticalDivider} />
+        <Text h4 style={{ marginBottom: 25 }}>
+          {t('addRecipeScreen.title')}
+        </Text>
         <Input
           style={styles.titleInput}
           placeholder={t('addRecipeScreen.inputTitle')}
           onChangeText={(value) => setTitle(value)}
         />
         <Divider style={styles.verticalDivider} />
+        <Text h4 style={{ marginBottom: 25 }}>
+          {t('addRecipeScreen.description')}
+        </Text>
         <Input
           placeholder={t('addRecipeScreen.inputDescription')}
           onChangeText={(value) => setDescription(value)}
