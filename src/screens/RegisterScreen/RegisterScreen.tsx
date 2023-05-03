@@ -50,9 +50,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
   const handleRegister = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
-    const data = await createUser({ email, password }).catch((error) =>
-      console.log(error),
-    );
+    const data = await createUser({ email, password });
     setIsLoading(false);
   };
 
