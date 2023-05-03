@@ -26,6 +26,7 @@ export default function AddRecipeScreen() {
       <ScrollView style={styles.container}>
         <ChooseImages
           containerStyle={styles.addImage}
+          containerStyleWithImage={styles.addImageWithImage}
           onImageChosen={onImageChosen}
         />
         <Divider style={styles.verticalDivider} />
