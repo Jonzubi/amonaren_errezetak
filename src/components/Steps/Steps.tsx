@@ -7,6 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import ChooseImages from '../ChooseImages/ChooseImages';
 import styles from './Steps.android.styles';
+import DeleteStepIngredient from '../DeleteStepIngredient/DeleteStepIngredient';
 
 interface Step {
   description: string;
@@ -21,6 +22,11 @@ export default function Steps(props: StepsProps) {
   const { t } = useTranslation();
   const [steps, setSteps] = useState<Step[]>([{ description: '' }]);
 
+  const onDeleteStep = (index: number) => {
+    const newSteps = steps.filter((ingr, i) => i !== index);
+    setSteps(newSteps);
+    if (onStepsChange) onStepsChange(newSteps);
+  };
   const renderStep = (step: Step, index: number) => {
     const { description } = step;
     return (
@@ -42,16 +48,7 @@ export default function Steps(props: StepsProps) {
             imageStyleWithImage={styles.stepImage}
           />
         </View>
-        <TouchableOpacity
-          style={styles.deleteStepButton}
-          onPress={() => {
-            const newSteps = steps.filter((ingr, i) => i !== index);
-            setSteps(newSteps);
-            if (onStepsChange) onStepsChange(newSteps);
-          }}
-        >
-          <MaterialIcons name="delete" color={colors.RED} size={40} />
-        </TouchableOpacity>
+        <DeleteStepIngredient onClick={() => onDeleteStep(index)} />
       </View>
     );
   };
