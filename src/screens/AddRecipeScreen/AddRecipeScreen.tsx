@@ -8,14 +8,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ImagePickerAsset } from 'expo-image-picker';
 import { Divider } from 'react-native-elements';
 import Ingredients from '../../components/Ingredients/Ingredients';
-import Steps from '../../components/Steps/Steps';
+import Steps, { Step } from '../../components/Steps/Steps';
 
 export default function AddRecipeScreen() {
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [recipeImages, setRecipeImages] = useState<ImagePickerAsset>();
+
   let ingredients: string[] = [];
+  let steps: Step[] = [];
 
   const onImageChosen = (image: ImagePickerAsset) => {
     setRecipeImages(image);
@@ -51,7 +53,11 @@ export default function AddRecipeScreen() {
           }}
         />
         <Divider style={styles.verticalDivider} />
-        <Steps />
+        <Steps
+          onStepsChange={(stps) => {
+            steps = stps;
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );
