@@ -9,12 +9,7 @@ export default StyleSheet.create({
     backgroundColor: colors.GREY,
     borderRadius: 25,
   },
-  containerWithImage: {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center',
-    maxHeight: 500,
-  },
+  containerWithImage: {},
   image: {
     maxHeight: 500,
     maxWidth: 500,
