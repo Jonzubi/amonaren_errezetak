@@ -5,6 +5,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import styles from './Ingredients.android.styles';
 import colors from '../../constants/colors';
+import AddStepIngredient from '../AddStepIngredient/AddStepIngredient';
 
 export interface ChooseImagesProps {
   onIngredientsChange?(ingredients: string[]): void;
@@ -15,14 +16,22 @@ export default function Ingredients(props: ChooseImagesProps) {
   const [ingredients, setIngredients] = useState(['']);
   const { t } = useTranslation();
 
+  const onAddIngredient = () => {
+    const newIngr = [...ingredients, ''];
+    setIngredients(newIngr);
+    if (onIngredientsChange) onIngredientsChange(newIngr);
+  };
+
   const renderInput = (ingredient: string, index: number) => (
-    <View style={styles.inputsView} key={`ingredient${index}`}>
-      <Input
-        placeholder={t('addRecipeScreen.add_ingredient_placeholder')}
-        value={ingredient}
-        containerStyle={{ width: '75%' }}
-      />
+    <View style={styles.ingredientContainer} key={`ingredient${index}`}>
+      <View style={styles.inputContainer}>
+        <Input
+          placeholder={t('addRecipeScreen.add_ingredient_placeholder')}
+          value={ingredient}
+        />
+      </View>
       <TouchableOpacity
+        style={styles.deleteIngredientButton}
         onPress={() => {
           const newIngr = ingredients.filter((ingr, i) => i !== index);
           setIngredients(newIngr);
@@ -34,29 +43,13 @@ export default function Ingredients(props: ChooseImagesProps) {
     </View>
   );
   return (
-    <View style={{ flex: 1, flexDirection: 'column' }}>
+    <View style={styles.container}>
       <Text h4>{t('addRecipeScreen.ingredients')}</Text>
       {ingredients.map((ingredient, index) => renderInput(ingredient, index))}
-      <TouchableOpacity
-        onPress={() => {
-          const newIngr = [...ingredients, ''];
-          setIngredients(newIngr);
-          if (onIngredientsChange) onIngredientsChange(newIngr);
-        }}
-        style={{ flexDirection: 'row', justifyContent: 'center' }}
-      >
-        <Ionicons name="add" size={20} />
-        <Text
-          style={{
-            fontWeight: '600',
-            fontSize: 15,
-            marginLeft: 10,
-            marginBottom: 50,
-          }}
-        >
-          {t('addRecipeScreen.ingredient')}
-        </Text>
-      </TouchableOpacity>
+      <AddStepIngredient
+        onClick={onAddIngredient}
+        buttonText={t('addRecipeScreen.ingredient')}
+      />
     </View>
   );
 }
