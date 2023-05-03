@@ -8,6 +8,7 @@ import colors from '../../constants/colors';
 import ChooseImages from '../ChooseImages/ChooseImages';
 import styles from './Steps.android.styles';
 import DeleteStepIngredient from '../DeleteStepIngredient/DeleteStepIngredient';
+import AddStepIngredient from '../AddStepIngredient/AddStepIngredient';
 
 interface Step {
   description: string;
@@ -22,11 +23,17 @@ export default function Steps(props: StepsProps) {
   const { t } = useTranslation();
   const [steps, setSteps] = useState<Step[]>([{ description: '' }]);
 
+  const onAddStep = () => {
+    const newSteps: Step[] = [...steps, { description: '' }];
+    setSteps(newSteps);
+    if (onStepsChange) onStepsChange(newSteps);
+  };
   const onDeleteStep = (index: number) => {
     const newSteps = steps.filter((ingr, i) => i !== index);
     setSteps(newSteps);
     if (onStepsChange) onStepsChange(newSteps);
   };
+
   const renderStep = (step: Step, index: number) => {
     const { description } = step;
     return (
@@ -56,6 +63,10 @@ export default function Steps(props: StepsProps) {
     <View style={styles.container}>
       <Text h4>{t('addRecipeScreen.steps')}</Text>
       {steps.map((step, index) => renderStep(step, index))}
+      <AddStepIngredient
+        onClick={onAddStep}
+        buttonText={t('addRecipeScreen.step')}
+      />
     </View>
   );
 }
