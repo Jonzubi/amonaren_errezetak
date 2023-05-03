@@ -25,7 +25,6 @@ export default function ChooseImages(props: ChooseImagesProps) {
     onImageChosen(source[0]);
     setImage(source[0]);
   };
-  console.log(image);
   return (
     <TouchableOpacity
       onPress={handleChooseImage}
