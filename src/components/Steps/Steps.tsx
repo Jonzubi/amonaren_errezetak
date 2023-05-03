@@ -6,6 +6,7 @@ import { Text, Input } from 'react-native-elements';
 import { MaterialIcons } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import ChooseImages from '../ChooseImages/ChooseImages';
+import styles from './Steps.android.styles';
 
 interface Step {
   description: string;
@@ -21,22 +22,10 @@ export default function Steps(props: StepsProps) {
   const [steps, setSteps] = useState<Step[]>([{ description: '' }]);
 
   const renderStep = (step: Step, index: number) => {
-    const { description, image } = step;
+    const { description } = step;
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-        key={`step${index}`}
-      >
-        <View
-          style={{
-            flex: 3,
-            flexDirection: 'column',
-          }}
-        >
+      <View style={styles.stepContainer} key={`step${index}`}>
+        <View style={styles.stepInputView}>
           <Input
             placeholder={t('addRecipeScreen.add_step_placeholder')}
             value={description}
@@ -50,18 +39,11 @@ export default function Steps(props: StepsProps) {
                 }),
               );
             }}
-            imageStyleWithImage={{
-              maxHeight: 100,
-              maxWidth: 100,
-            }}
+            imageStyleWithImage={styles.stepImage}
           />
         </View>
         <TouchableOpacity
-          style={{
-            flex: 1,
-            justifyContent: 'flex-end',
-            flexDirection: 'row',
-          }}
+          style={styles.deleteStepButton}
           onPress={() => {
             const newSteps = steps.filter((ingr, i) => i !== index);
             setSteps(newSteps);
@@ -74,7 +56,7 @@ export default function Steps(props: StepsProps) {
     );
   };
   return (
-    <View style={{ flex: 1, flexDirection: 'column' }}>
+    <View style={styles.container}>
       <Text h4>{t('addRecipeScreen.steps')}</Text>
       {steps.map((step, index) => renderStep(step, index))}
     </View>
