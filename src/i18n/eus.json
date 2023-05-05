@@ -9,7 +9,8 @@
   },
   "loginScreen": {
     "you_new": "Berria zara?",
-    "go_register": "Erregistratu!"
+    "go_register": "Erregistratu!",
+    "incorrectLogin": "Email edo pasahitzak ez dira zuzenak"
   },
   "registerScreen": {
     "got_account": "Kontua baduzu jada?",
