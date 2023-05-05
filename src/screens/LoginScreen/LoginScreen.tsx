@@ -12,6 +12,7 @@ import { login } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
+import CustomToast from '../../components/CustomToast/CustomToast';
 
 export default function LoginScreen({ navigation }: { navigation: any }) {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showLoginErrorModal, setShowLoginErrorModal] = useState(false);
   const emailRef = useRef<any>(null);
 
   const validateForm = (): boolean => {
@@ -50,6 +52,8 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
       navigation.navigate('Home');
     } catch (error) {
       if ((error as AxiosError)?.response?.status === 401) {
+        setShowLoginErrorModal(true);
+        setIsLoading(false);
       }
     }
   };
@@ -98,6 +102,11 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
           {t('loginScreen.go_register')}
         </Text>
       </View>
+      <CustomToast
+        closeModal={() => setShowLoginErrorModal(false)}
+        visible={showLoginErrorModal}
+        text={t('loginScreen.incorrectLogin')}
+      />
     </View>
   );
 }
