@@ -28,6 +28,7 @@
     "add_ingredient_placeholder": "100ml ur",
     "steps": "Pausoak",
     "step": "Pausoa",
-    "add_step_placeholder": "Ura berotu"
+    "add_step_placeholder": "Ura berotu",
+    "postRecipe": "Igo errezeta"
   }
 }
