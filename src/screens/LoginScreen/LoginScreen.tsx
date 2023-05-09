@@ -14,7 +14,7 @@ import { setAccessToken } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
 import CustomToast from '../../components/CustomToast/CustomToast';
 
-export default function LoginScreen({ navigation }: { navigation: any }) {
+export default function LoginScreen({ navigation }: { navigation?: any }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
