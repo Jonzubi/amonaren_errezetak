@@ -12,6 +12,7 @@ import Ingredients from '../../components/Ingredients/Ingredients';
 import Steps, { Step } from '../../components/Steps/Steps';
 import colors from '../../constants/colors';
 import { createRecipe } from '../../api/recipe/recipe';
+import { useIngredients } from '../../hooks/useIngredients';
 
 export default function AddRecipeScreen() {
   const { t } = useTranslation();
@@ -26,7 +27,8 @@ export default function AddRecipeScreen() {
   const titleRef = useRef<any>(null);
   const descRef = useRef<any>(null);
 
-  let ingredients: string[] = [];
+  const { ingredients, addIngredient, deleteIngredient, editIngredient } =
+    useIngredients();
   let steps: Step[] = [];
 
   const onImageChosen = (image: ImagePickerAsset) => {
@@ -35,7 +37,7 @@ export default function AddRecipeScreen() {
 
   const validateForm = (): boolean => {
     let isValid = true;
-    console.log({ title, description });
+    console.log({ title, description, ingredients });
     if (title.length === 0) {
       titleRef?.current?.shake();
       setErrorTitle(t('addRecipeScreen.errorTitle'));
@@ -108,9 +110,10 @@ export default function AddRecipeScreen() {
         />
         <Divider style={styles.verticalDivider} />
         <Ingredients
-          onIngredientsChange={(ingr) => {
-            ingredients = ingr;
-          }}
+          ingredients={ingredients}
+          addIngredient={addIngredient}
+          deleteIngredient={deleteIngredient}
+          editIngredient={editIngredient}
         />
         <Divider style={styles.verticalDivider} />
         <Steps
