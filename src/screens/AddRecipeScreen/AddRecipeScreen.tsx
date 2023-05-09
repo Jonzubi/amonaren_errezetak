@@ -9,10 +9,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ImagePickerAsset } from 'expo-image-picker';
 import { Divider, Text } from 'react-native-elements';
 import Ingredients from '../../components/Ingredients/Ingredients';
-import Steps, { Step } from '../../components/Steps/Steps';
+import Steps from '../../components/Steps/Steps';
 import colors from '../../constants/colors';
 import { createRecipe } from '../../api/recipe/recipe';
 import { useIngredients } from '../../hooks/useIngredients';
+import { useSteps } from '../../hooks/useSteps';
 
 export default function AddRecipeScreen() {
   const { t } = useTranslation();
@@ -29,7 +30,8 @@ export default function AddRecipeScreen() {
 
   const { ingredients, addIngredient, deleteIngredient, editIngredient } =
     useIngredients();
-  let steps: Step[] = [];
+
+  const { steps, addStep, editStep, deleteStep } = useSteps();
 
   const onImageChosen = (image: ImagePickerAsset) => {
     setRecipeImage(image);
@@ -37,7 +39,7 @@ export default function AddRecipeScreen() {
 
   const validateForm = (): boolean => {
     let isValid = true;
-    console.log({ title, description, ingredients });
+    console.log({ title, description, ingredients, steps });
     if (title.length === 0) {
       titleRef?.current?.shake();
       setErrorTitle(t('addRecipeScreen.errorTitle'));
@@ -117,9 +119,10 @@ export default function AddRecipeScreen() {
         />
         <Divider style={styles.verticalDivider} />
         <Steps
-          onStepsChange={(stps) => {
-            steps = stps;
-          }}
+          steps={steps}
+          addStep={addStep}
+          editStep={editStep}
+          deleteStep={deleteStep}
         />
         <Button
           title={t('addRecipeScreen.postRecipe')}
