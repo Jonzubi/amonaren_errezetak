@@ -20,7 +20,9 @@
   },
   "addRecipeScreen": {
     "title": "Izenburua",
+    "errorTitle": "Izenburua falta da",
     "description": "Deskripzioa",
+    "errorDescription": "Deskripzioa falta da",
     "inputTitle": "Nire amonaren errezeta sekretua",
     "inputDescription": "Errezetaren deskripzioa",
     "ingredients": "Osagaiak",
