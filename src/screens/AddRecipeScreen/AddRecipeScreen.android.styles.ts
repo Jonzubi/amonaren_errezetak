@@ -25,4 +25,7 @@ export default StyleSheet.create({
     marginVertical: 50,
   },
   titleInput: { fontSize: 20, fontWeight: '600' },
+  postButton: {
+    marginBottom: 50,
+  },
 });
