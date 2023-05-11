@@ -28,6 +28,7 @@ export default function SignGoogle() {
     androidClientId: GOOGLE_ANDROID_CLIENT_ID,
     webClientId: GOOGLE_WEB_CLIENT_ID,
     expoClientId: GOOGLE_EXPO_CLIENT_ID,
+    iosClientId: GOOGLE_ANDROID_CLIENT_ID,
   });
 
   useEffect(() => {
