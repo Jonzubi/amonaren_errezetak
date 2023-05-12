@@ -65,7 +65,7 @@ export default function SignGoogle() {
         marginTop: 40,
       }}
       disabled={!request}
-      onPress={promptAsync}
+      onPress={() => promptAsync()}
       icon={<AntDesign name={'google'} size={24} style={{ marginRight: 20 }} />}
       title={t('forms.google_sign')}
     />
