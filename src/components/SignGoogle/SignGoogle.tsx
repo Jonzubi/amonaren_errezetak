@@ -3,7 +3,6 @@ import * as Google from 'expo-auth-session/providers/google';
 import { Button } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import { View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import {
   GOOGLE_ANDROID_CLIENT_ID,
