@@ -7,14 +7,17 @@ import { useTranslation } from 'react-i18next';
 import SignGoogle from '../../components/SignGoogle/SignGoogle';
 import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
-import { isEmail } from '../../utils/functions';
+import { isEmail } from '../../utils/functions/email';
 import { login } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
 import CustomToast from '../../components/CustomToast/CustomToast';
 
-export default function LoginScreen({ navigation }: { navigation?: any }) {
+interface LoginScreenProps {
+  navigation?: any;
+}
+export default function LoginScreen({ navigation }: LoginScreenProps) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
