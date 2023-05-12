@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import SignGoogle from '../../components/SignGoogle/SignGoogle';
 import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
-import { isEmail } from '../../utils/functions';
+import { isEmail } from '../../utils/functions/email';
 import { createUser } from '../../api/user/user';
 
 export default function RegisterScreen({ navigation }: { navigation: any }) {

@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { loginGoogle } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/user/userSlice';
-import { getRedirectUri } from '../../utils/functions';
+import { getRedirectUri } from '../../utils/functions/jest';
 
 WebBrowser.maybeCompleteAuthSession();
 

@@ -1,4 +1,4 @@
-import { isEmail } from '../../src/utils/functions';
+import { isEmail } from '../../src/utils/functions/email';
 
 test('isEmail', () => {
   expect(isEmail('j@j.com')).toBe(true);
