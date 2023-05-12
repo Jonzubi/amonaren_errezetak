@@ -29,7 +29,6 @@ export default function SignGoogle() {
     webClientId: GOOGLE_WEB_CLIENT_ID,
     expoClientId: GOOGLE_EXPO_CLIENT_ID,
     iosClientId: GOOGLE_ANDROID_CLIENT_ID,
-    redirectUri: 'com.amonaren_errezetak.amonaren_errezetak:/oauthredirect',
   });
 
   useEffect(() => {
