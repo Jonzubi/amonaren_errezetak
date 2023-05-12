@@ -22,3 +22,10 @@ jest.mock('react-i18next', () => ({
     init: () => {},
   },
 }));
+
+jest.mock('expo-auth-session', () => ({
+  // Aquí debes reemplazar las funciones o variables que utiliza tu archivo con el módulo falso
+  startAsync: jest.fn(),
+  makeRedirectUri: jest.fn(() => 'mocked-redirect-uri'),
+  DiscoveryDocument: jest.fn(),
+}));
