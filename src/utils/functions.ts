@@ -3,4 +3,11 @@ const isEmail = (text: string): boolean => {
   return reg.test(text);
 };
 
-export { isEmail };
+const getRedirectUri = (): { redirectUri?: string } =>
+  typeof jest !== 'undefined'
+    ? {
+        redirectUri: 'com.amonaren_errezetak.amonaren_errezetak:/oauthredirect',
+      }
+    : {};
+
+export { isEmail, getRedirectUri };

@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { loginGoogle } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/user/userSlice';
+import { getRedirectUri } from '../../utils/functions';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -28,6 +29,7 @@ export default function SignGoogle() {
     webClientId: GOOGLE_WEB_CLIENT_ID,
     expoClientId: GOOGLE_EXPO_CLIENT_ID,
     iosClientId: GOOGLE_ANDROID_CLIENT_ID,
+    ...getRedirectUri(),
   });
 
   useEffect(() => {
