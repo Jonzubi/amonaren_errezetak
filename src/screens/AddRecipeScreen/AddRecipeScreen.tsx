@@ -1,4 +1,4 @@
-import { ScrollView, Platform } from 'react-native';
+import { ScrollView } from 'react-native';
 import { createRef } from 'react';
 import styles from './AddRecipeScreen.android.styles';
 import { Input, Button } from '@rneui/themed';
