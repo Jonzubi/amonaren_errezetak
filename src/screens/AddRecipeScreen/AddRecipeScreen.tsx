@@ -16,6 +16,7 @@ import { useIngredients } from '../../hooks/useIngredients';
 import { useSteps } from '../../hooks/useSteps';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { getFileUri } from '../../utils/functions/file';
 
 export default function AddRecipeScreen() {
   const token = useSelector((state: RootState) => state.user.access_token);
@@ -71,10 +72,7 @@ export default function AddRecipeScreen() {
         {
           title,
           description,
-          image:
-            Platform.OS === 'ios'
-              ? recipeImage?.uri.replace('file://', '')
-              : recipeImage?.uri,
+          image: getFileUri(recipeImage?.uri),
           ingredients,
           steps,
         },
