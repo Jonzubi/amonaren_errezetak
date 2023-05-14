@@ -14,8 +14,11 @@ import colors from '../../constants/colors';
 import { createRecipe } from '../../api/recipe/recipe';
 import { useIngredients } from '../../hooks/useIngredients';
 import { useSteps } from '../../hooks/useSteps';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 export default function AddRecipeScreen() {
+  const token = useSelector((state: RootState) => state.user.access_token);
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [errorTitle, setErrorTitle] = useState('');
@@ -64,16 +67,23 @@ export default function AddRecipeScreen() {
     }
     try {
       setPostingRecipe(false);
-      const response = await createRecipe({
-        title,
-        description,
-        image:
-          Platform.OS === 'ios'
-            ? recipeImage?.uri.replace('file://', '')
-            : recipeImage?.uri,
-        ingredients,
-        steps,
-      });
+      const response = await createRecipe(
+        {
+          title,
+          description,
+          image:
+            Platform.OS === 'ios'
+              ? recipeImage?.uri.replace('file://', '')
+              : recipeImage?.uri,
+          ingredients,
+          steps,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
     } catch (error) {}
   };
 
