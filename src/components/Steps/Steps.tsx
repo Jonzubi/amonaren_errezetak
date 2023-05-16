@@ -9,7 +9,7 @@ import AddStepIngredient from '../AddStepIngredient/AddStepIngredient';
 
 export interface Step {
   description: string;
-  image?: ImagePickerAsset;
+  image?: string;
 }
 export interface StepsProps {
   steps: Step[];
@@ -43,7 +43,7 @@ export default function Steps({
           <ChooseImages
             onImageChosen={(image) => {
               let newStep = steps[index];
-              newStep.image = image;
+              newStep.image = image.uri;
               editStep(index, newStep);
             }}
             imageStyleWithImage={styles.stepImage}
