@@ -10,9 +10,11 @@ interface Props {
 export default function Recipe({ title, description, ...props }: Props) {
   return (
     <Card containerStyle={styles.container}>
-      <Card.Title>{title}</Card.Title>
+      <Card.Title>
+        <Text h4>{title}</Text>
+      </Card.Title>
       <Card.Divider />
-      <Text h4>{description}</Text>
+      <Text>{description}</Text>
     </Card>
   );
 }
