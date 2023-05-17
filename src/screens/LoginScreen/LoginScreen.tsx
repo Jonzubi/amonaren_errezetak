@@ -26,6 +26,9 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   const [errorEmail, setErrorEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showLoginErrorModal, setShowLoginErrorModal] = useState(false);
+  const [loginErrorModalText, setLoginErrorModalText] = useState(
+    t('loginScreen.incorrectLogin'),
+  );
   const emailRef = useRef<any>(null);
 
   const validateForm = (): boolean => {
@@ -54,10 +57,12 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       setIsLoading(false);
       navigation.navigate('Home');
     } catch (error) {
-      if ((error as AxiosError)?.response?.status === 401) {
-        setShowLoginErrorModal(true);
-        setIsLoading(false);
-      }
+      if ((error as AxiosError)?.response?.status === 401)
+        setLoginErrorModalText(t('loginScreen.incorrectLogin'));
+      else setLoginErrorModalText(t('errors.generic'));
+
+      setShowLoginErrorModal(true);
+      setIsLoading(false);
     }
   };
 
@@ -108,7 +113,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       <CustomToast
         closeModal={() => setShowLoginErrorModal(false)}
         visible={showLoginErrorModal}
-        text={t('loginScreen.incorrectLogin')}
+        text={loginErrorModalText}
       />
     </View>
   );

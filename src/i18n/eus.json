@@ -32,5 +32,8 @@
     "step": "Pausoa",
     "add_step_placeholder": "Ura berotu",
     "postRecipe": "Igo errezeta"
+  },
+  "errors": {
+    "generic": "Arazo bat gertatu da"
   }
 }
