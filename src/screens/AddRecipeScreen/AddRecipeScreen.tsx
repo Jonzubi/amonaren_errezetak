@@ -107,7 +107,6 @@ export default function AddRecipeScreen() {
           inputStyle={{
             height: 150,
           }}
-          ref={descRef}
         />
         <Divider style={styles.verticalDivider} />
         <Ingredients
