@@ -30,7 +30,6 @@ export default function AddRecipeScreen() {
   const [postingRecipe, setPostingRecipe] = useState(false);
   let scrollRef = createRef<ScrollView>();
   const titleRef = useRef<any>(null);
-  const descRef = useRef<any>(null);
 
   const { ingredients, addIngredient, deleteIngredient, editIngredient } =
     useIngredients();
@@ -43,17 +42,9 @@ export default function AddRecipeScreen() {
 
   const validateForm = (): boolean => {
     let isValid = true;
-    console.log({ title, description, ingredients, steps });
     if (title.length === 0) {
       titleRef?.current?.shake();
       setErrorTitle(t('addRecipeScreen.errorTitle'));
-      isValid = false;
-      scrollRef.current?.scrollTo({ y: 0, animated: true });
-    }
-
-    if (description.length === 0) {
-      descRef?.current?.shake();
-      setErrorDescription(t('addRecipeScreen.errorDescription'));
       isValid = false;
       scrollRef.current?.scrollTo({ y: 0, animated: true });
     }
