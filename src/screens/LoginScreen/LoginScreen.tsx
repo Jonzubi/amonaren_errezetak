@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
 import CustomToast from '../../components/CustomToast/CustomToast';
+import { useErrorModal } from '../../hooks/useErrorModal';
 
 interface LoginScreenProps {
   navigation?: any;
@@ -25,8 +26,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showLoginErrorModal, setShowLoginErrorModal] = useState(false);
-  const [loginErrorModalText, setLoginErrorModalText] = useState(
+  const { modalText, setModalText, setShowModal, showModal } = useErrorModal(
     t('loginScreen.incorrectLogin'),
   );
   const emailRef = useRef<any>(null);
@@ -58,10 +58,10 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       navigation.navigate('Home');
     } catch (error) {
       if ((error as AxiosError)?.response?.status === 401)
-        setLoginErrorModalText(t('loginScreen.incorrectLogin'));
-      else setLoginErrorModalText(t('errors.generic'));
+        setModalText(t('loginScreen.incorrectLogin'));
+      else setModalText(t('errors.generic'));
 
-      setShowLoginErrorModal(true);
+      setShowModal(true);
       setIsLoading(false);
     }
   };
@@ -111,9 +111,9 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         </Text>
       </View>
       <CustomToast
-        closeModal={() => setShowLoginErrorModal(false)}
-        visible={showLoginErrorModal}
-        text={loginErrorModalText}
+        closeModal={() => setShowModal(false)}
+        visible={showModal}
+        text={modalText}
       />
     </View>
   );
