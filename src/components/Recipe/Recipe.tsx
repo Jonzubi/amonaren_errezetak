@@ -14,6 +14,8 @@ export default function Recipe({ title, description, ...props }: Props) {
         <Text h4>{title}</Text>
       </Card.Title>
       <Card.Divider />
+      <Card.Image />
+      <Card.Divider />
       <Text>{description}</Text>
     </Card>
   );
