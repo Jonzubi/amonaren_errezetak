@@ -1,10 +1,10 @@
-import { FlatList, View, ListRenderItem } from 'react-native';
-import { Text } from 'react-native-elements';
+import { FlatList, ListRenderItem } from 'react-native';
 import { useRecipes } from '../../hooks/useRecipes';
 import Recipe from '../../components/Recipe/Recipe';
 import styles from './HomeScreen.android.styles';
 import GoToAddRecipe from '../../components/GoToAddRecipe/GoToAddRecipe';
 import { Recipe as TRecipe } from '../../types/Recipe';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   const { recipes, loading } = useRecipes();
@@ -14,7 +14,7 @@ export default function HomeScreen() {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {!loading && (
         <FlatList
           style={styles.flatList}
@@ -24,6 +24,6 @@ export default function HomeScreen() {
         />
       )}
       <GoToAddRecipe />
-    </View>
+    </SafeAreaView>
   );
 }
