@@ -17,6 +17,9 @@ import { useSteps } from '../../hooks/useSteps';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { getFileUri } from '../../utils/functions/file';
+import CustomToast from '../../components/CustomToast/CustomToast';
+import { useErrorModal } from '../../hooks/useErrorModal';
+import { AxiosError } from 'axios';
 
 export default function AddRecipeScreen() {
   const token = useSelector((state: RootState) => state.user.access_token);
@@ -24,7 +27,9 @@ export default function AddRecipeScreen() {
   const [title, setTitle] = useState('');
   const [errorTitle, setErrorTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [errorDescription, setErrorDescription] = useState('');
+  const { modalText, setModalText, setShowModal, showModal } = useErrorModal(
+    t('errors.generic'),
+  );
 
   const [recipeImage, setRecipeImage] = useState<ImagePickerAsset>();
   const [postingRecipe, setPostingRecipe] = useState(false);
@@ -59,7 +64,7 @@ export default function AddRecipeScreen() {
     }
     try {
       setPostingRecipe(false);
-      const response = await createRecipe(
+      await createRecipe(
         {
           title,
           description,
@@ -73,7 +78,10 @@ export default function AddRecipeScreen() {
           },
         },
       );
-    } catch (error) {}
+    } catch (error) {
+      setModalText(t('errors.generic'));
+      setShowModal(true);
+    }
   };
 
   return (
@@ -100,7 +108,6 @@ export default function AddRecipeScreen() {
           {t('addRecipeScreen.description')}
         </Text>
         <Input
-          errorMessage={errorDescription}
           placeholder={t('addRecipeScreen.inputDescription')}
           onChangeText={(value) => setDescription(value)}
           multiline
@@ -128,6 +135,11 @@ export default function AddRecipeScreen() {
           buttonStyle={styles.postButton}
           onPress={postRecipe}
           loading={postingRecipe}
+        />
+        <CustomToast
+          closeModal={() => setShowModal(false)}
+          visible={showModal}
+          text={modalText}
         />
       </ScrollView>
     </SafeAreaView>
