@@ -10,7 +10,11 @@ export default function HomeScreen() {
   const { recipes, loading } = useRecipes();
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
-    <Recipe title={item.title} description={item.description} />
+    <Recipe
+      title={item.title}
+      description={item.description}
+      image={item.image}
+    />
   );
 
   return (

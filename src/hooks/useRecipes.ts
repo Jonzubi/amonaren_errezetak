@@ -26,6 +26,7 @@ export function useRecipes() {
           data.map((d: any) => ({
             title: d.recipeTitle,
             description: d.recipeDesc,
+            image: d.recipeImageUrl,
           })),
         );
         setLoading(false);
