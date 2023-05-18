@@ -19,11 +19,12 @@ import { RootState } from '../../redux/store';
 import { getFileUri } from '../../utils/functions/file';
 import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
-import { AxiosError } from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
 export default function AddRecipeScreen() {
   const token = useSelector((state: RootState) => state.user.access_token);
   const { t } = useTranslation();
+  const navigation = useNavigation();
   const [title, setTitle] = useState('');
   const [errorTitle, setErrorTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -63,7 +64,6 @@ export default function AddRecipeScreen() {
       return;
     }
     try {
-      setPostingRecipe(false);
       await createRecipe(
         {
           title,
@@ -78,6 +78,7 @@ export default function AddRecipeScreen() {
           },
         },
       );
+      navigation.navigate('Home');
     } catch (error) {
       setModalText(t('errors.generic'));
       setShowModal(true);
