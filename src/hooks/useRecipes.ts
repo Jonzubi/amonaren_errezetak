@@ -14,7 +14,7 @@ export function useRecipes() {
   const [loading, setLoading] = useState(true);
   const token = useSelector((state: RootState) => state.user.access_token);
 
-  useEffect(() => {
+  const fetchData = () => {
     fetch(`${API_URL}/recipe`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -31,7 +31,13 @@ export function useRecipes() {
         );
         setLoading(false);
       });
+  };
+
+  const refreshRecipes = () => fetchData();
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
-  return { recipes, loading };
+  return { recipes, loading, refreshRecipes };
 }
