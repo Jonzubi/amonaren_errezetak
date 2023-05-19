@@ -19,7 +19,6 @@ import { RootState } from '../../redux/store';
 import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
 import { useNavigation } from '@react-navigation/native';
-import { convertToBase64 } from '../../utils/functions/file';
 
 export default function AddRecipeScreen() {
   const token = useSelector((state: RootState) => state.user.access_token);
@@ -42,15 +41,8 @@ export default function AddRecipeScreen() {
 
   const { steps, addStep, editStep, deleteStep } = useSteps();
 
-  const onImageChosen = async (image: ImagePickerAsset) => {
-    let { uri } = image;
-    if (!uri.includes(';base64,')) {
-      try {
-        const fileContent = await convertToBase64(uri);
-        uri = `data:image/png;base64,${fileContent}`;
-      } catch (error) {}
-    }
-    setRecipeImage(uri);
+  const onImageChosen = async (base64: string) => {
+    setRecipeImage(base64);
   };
 
   const validateForm = (): boolean => {

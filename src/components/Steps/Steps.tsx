@@ -43,7 +43,7 @@ export default function Steps({
           <ChooseImages
             onImageChosen={(image) => {
               let newStep = steps[index];
-              newStep.image = image.uri;
+              newStep.image = image;
               editStep(index, newStep);
             }}
             imageStyleWithImage={styles.stepImage}
