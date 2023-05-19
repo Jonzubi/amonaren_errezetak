@@ -13,7 +13,7 @@ import { Recipe as TRecipe } from '../../types/Recipe';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
-  const { recipes, loading } = useRecipes();
+  const { recipes, loading, refreshRecipes } = useRecipes();
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
@@ -36,17 +36,15 @@ export default function HomeScreen() {
       <ScrollView
         contentContainerStyle={styles.container}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={() => {}} />
+          <RefreshControl refreshing={refreshing} onRefresh={refreshRecipes} />
         }
       >
-        {!loading && (
-          <FlatList
-            style={styles.flatList}
-            data={recipes}
-            renderItem={handleRenderItem}
-            keyExtractor={(item, index) => index.toString()}
-          />
-        )}
+        <FlatList
+          style={styles.flatList}
+          data={recipes}
+          renderItem={handleRenderItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
         <GoToAddRecipe />
       </ScrollView>
     </SafeAreaView>
