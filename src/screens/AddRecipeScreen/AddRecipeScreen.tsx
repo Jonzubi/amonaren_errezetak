@@ -16,10 +16,10 @@ import { useIngredients } from '../../hooks/useIngredients';
 import { useSteps } from '../../hooks/useSteps';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { getFileUri } from '../../utils/functions/file';
 import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
 import { useNavigation } from '@react-navigation/native';
+import { convertToBase64 } from '../../utils/functions/file';
 
 export default function AddRecipeScreen() {
   const token = useSelector((state: RootState) => state.user.access_token);
@@ -32,7 +32,7 @@ export default function AddRecipeScreen() {
     t('errors.generic'),
   );
 
-  const [recipeImage, setRecipeImage] = useState<ImagePickerAsset>();
+  const [recipeImage, setRecipeImage] = useState<string>();
   const [postingRecipe, setPostingRecipe] = useState(false);
   let scrollRef = createRef<ScrollView>();
   const titleRef = useRef<any>(null);
@@ -42,8 +42,15 @@ export default function AddRecipeScreen() {
 
   const { steps, addStep, editStep, deleteStep } = useSteps();
 
-  const onImageChosen = (image: ImagePickerAsset) => {
-    setRecipeImage(image);
+  const onImageChosen = async (image: ImagePickerAsset) => {
+    let { uri } = image;
+    if (!uri.includes(';base64,')) {
+      try {
+        const fileContent = await convertToBase64(uri);
+        uri = `data:image/png;base64,${fileContent}`;
+      } catch (error) {}
+    }
+    setRecipeImage(uri);
   };
 
   const validateForm = (): boolean => {
@@ -68,7 +75,7 @@ export default function AddRecipeScreen() {
         {
           title,
           description,
-          image: getFileUri(recipeImage?.uri),
+          image: recipeImage,
           ingredients,
           steps,
         },
@@ -82,6 +89,8 @@ export default function AddRecipeScreen() {
     } catch (error) {
       setModalText(t('errors.generic'));
       setShowModal(true);
+    } finally {
+      setPostingRecipe(false);
     }
   };
 
