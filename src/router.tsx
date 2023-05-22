@@ -2,7 +2,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from './screens/SplashScreen/SplashScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
-import { StackParamList } from './types/StackParamList';
+import {
+  AuthStackParamList,
+  MainStackParamList,
+  SplashStackParamList,
+} from './types/StackParamList';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import eus_json from './i18n/eus.json';
@@ -31,48 +35,65 @@ i18n.use(initReactI18next).init({
   },
 });
 
-const Stack = createStackNavigator<StackParamList>();
+const RootStack = createStackNavigator();
+const MainStack = createStackNavigator<MainStackParamList>();
+const AuthStack = createStackNavigator<AuthStackParamList>();
+const SplashStack = createStackNavigator<SplashStackParamList>();
+
+const MainNav = () => (
+  <MainStack.Navigator>
+    <MainStack.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <MainStack.Screen
+      name="AddRecipe"
+      component={AddRecipeScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
+  </MainStack.Navigator>
+);
+
+const AuthNav = () => (
+  <AuthStack.Navigator>
+    <AuthStack.Screen
+      name="Login"
+      component={LoginScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <AuthStack.Screen
+      name="SignUp"
+      component={RegisterScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
+  </AuthStack.Navigator>
+);
 
 export default function Router() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
-        <Stack.Screen
+      <RootStack.Navigator>
+        <SplashStack.Screen
           name="Splash"
           component={SplashScreen}
-          options={{
-            headerShown: false,
-          }}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{
-            headerShown: false,
-          }}
+        <MainStack.Screen name="Home" component={MainNav} />
+        <AuthStack.Screen
+          name="Auth"
+          component={AuthNav}
+          options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="SignUp"
-          component={RegisterScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="AddRecipe"
-          component={AddRecipeScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 }
