@@ -9,7 +9,7 @@ import {
   GOOGLE_EXPO_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID,
 } from '../../constants/constants';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { loginGoogle } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../redux/user/userSlice';
@@ -47,7 +47,16 @@ export default function SignGoogle() {
     const loginData = await loginGoogle({ token });
     const { access_token } = loginData.data;
     dispatch(setAccessToken(access_token));
-    navigation.navigate('Home');
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 1,
+        routes: [
+          {
+            name: 'Home',
+          },
+        ],
+      }),
+    );
   };
 
   return (
