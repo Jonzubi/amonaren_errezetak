@@ -17,6 +17,7 @@ import HomeScreen from './screens/HomeScreen/HomeScreen';
 import AddRecipeScreen from './screens/AddRecipeScreen/AddRecipeScreen';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { Avatar } from 'react-native-elements';
+import UserAvatar from './components/UserAvatar/UserAvatar';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -69,15 +70,7 @@ const MainNav = () => (
       options={{
         tabBarLabel: () => null,
         headerShown: false,
-        tabBarIcon: () => (
-          <Avatar
-            size={25}
-            rounded
-            source={{
-              uri: 'https://phantom-marca.unidadeditorial.es/398a931cd2cfabea69c75746e9785c87/resize/1320/f/jpg/assets/multimedia/imagenes/2022/12/22/16717250934792.jpg',
-            }}
-          />
-        ),
+        tabBarIcon: () => <UserAvatar />,
       }}
     />
   </MainStack.Navigator>
