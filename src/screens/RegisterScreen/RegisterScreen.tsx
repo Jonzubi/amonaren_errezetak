@@ -55,7 +55,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
 
   return (
     <View style={styles.container}>
-      <Logo style={styles.logo} />
+      <Logo imageStyle={styles.logo} />
 
       <Input
         placeholder={t('forms.enter_email_placeholder')}
