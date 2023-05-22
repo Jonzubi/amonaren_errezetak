@@ -87,7 +87,11 @@ export default function Router() {
           component={SplashScreen}
           options={{ headerShown: false }}
         />
-        <MainStack.Screen name="Home" component={MainNav} />
+        <MainStack.Screen
+          name="Home"
+          component={MainNav}
+          options={{ headerShown: false }}
+        />
         <AuthStack.Screen
           name="Auth"
           component={AuthNav}
