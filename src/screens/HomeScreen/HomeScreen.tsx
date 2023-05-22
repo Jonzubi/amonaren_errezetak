@@ -45,7 +45,6 @@ export default function HomeScreen() {
           renderItem={handleRenderItem}
           keyExtractor={(item, index) => index.toString()}
         />
-        <GoToAddRecipe />
       </ScrollView>
     </SafeAreaView>
   );
