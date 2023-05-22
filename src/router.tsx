@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SplashScreen from './screens/SplashScreen/SplashScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import {
@@ -14,6 +15,8 @@ import 'i18next';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import AddRecipeScreen from './screens/AddRecipeScreen/AddRecipeScreen';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { Avatar } from 'react-native-elements';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -36,7 +39,7 @@ i18n.use(initReactI18next).init({
 });
 
 const RootStack = createStackNavigator();
-const MainStack = createStackNavigator<MainStackParamList>();
+const MainStack = createBottomTabNavigator<MainStackParamList>();
 const AuthStack = createStackNavigator<AuthStackParamList>();
 const SplashStack = createStackNavigator<SplashStackParamList>();
 
@@ -46,14 +49,35 @@ const MainNav = () => (
       name="Home"
       component={HomeScreen}
       options={{
+        tabBarLabel: () => null,
         headerShown: false,
+        tabBarIcon: () => <AntDesign name="home" size={25} />,
       }}
     />
     <MainStack.Screen
       name="AddRecipe"
       component={AddRecipeScreen}
       options={{
+        tabBarLabel: () => null,
         headerShown: false,
+        tabBarIcon: () => <Ionicons name="add-circle-outline" size={40} />,
+      }}
+    />
+    <MainStack.Screen
+      name="User"
+      component={HomeScreen}
+      options={{
+        tabBarLabel: () => null,
+        headerShown: false,
+        tabBarIcon: () => (
+          <Avatar
+            size={25}
+            rounded
+            source={{
+              uri: 'https://phantom-marca.unidadeditorial.es/398a931cd2cfabea69c75746e9785c87/resize/1320/f/jpg/assets/multimedia/imagenes/2022/12/22/16717250934792.jpg',
+            }}
+          />
+        ),
       }}
     />
   </MainStack.Navigator>

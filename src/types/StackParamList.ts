@@ -11,4 +11,5 @@ export type AuthStackParamList = {
 export type MainStackParamList = {
   Home: {} | undefined;
   AddRecipe: {} | undefined;
+  User: {} | undefined;
 };
