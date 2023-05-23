@@ -12,7 +12,7 @@ import {
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { loginGoogle } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
-import { setAccessToken } from '../../redux/user/userSlice';
+import { setUserData } from '../../redux/user/userSlice';
 import { getRedirectUri } from '../../utils/functions/jest';
 
 WebBrowser.maybeCompleteAuthSession();
@@ -45,8 +45,15 @@ export default function SignGoogle() {
 
   const getUserInfo = async () => {
     const loginData = await loginGoogle({ token });
-    const { access_token } = loginData.data;
-    dispatch(setAccessToken(access_token));
+    const { access_token, email, username, imageUrl } = loginData.data;
+    dispatch(
+      setUserData({
+        access_token,
+        email,
+        username,
+        imageUrl,
+      }),
+    );
     navigation.dispatch(
       CommonActions.reset({
         index: 1,
