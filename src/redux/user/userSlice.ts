@@ -22,7 +22,7 @@ export const userSlice = createSlice({
       state.access_token = action.payload;
     },
     setUserData: (state: UserState, action: PayloadAction<UserState>) => {
-      state = { ...state, ...action.payload };
+      state = Object.assign(state, action.payload);
     },
   },
 });
