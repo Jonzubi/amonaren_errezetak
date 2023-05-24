@@ -3,12 +3,15 @@ import { RootState } from '../../redux/store';
 import styles from './UserAvatar.android.styles';
 import { useSelector } from 'react-redux';
 
-export default function UserAvatar() {
+interface UserAvatarProps {
+  size?: number;
+}
+export default function UserAvatar({ size }: UserAvatarProps) {
   const imageUrl = useSelector((state: RootState) => state.user.imageUrl);
 
   return (
     <Avatar
-      size={25}
+      size={size || 25}
       rounded
       icon={{ name: 'user', type: 'antdesign' }}
       source={
