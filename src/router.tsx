@@ -18,6 +18,7 @@ import AddRecipeScreen from './screens/AddRecipeScreen/AddRecipeScreen';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { Avatar } from 'react-native-elements';
 import UserAvatar from './components/UserAvatar/UserAvatar';
+import UserScreen from './screens/UserScreen/UserScreen';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -66,7 +67,7 @@ const MainNav = () => (
     />
     <MainStack.Screen
       name="User"
-      component={HomeScreen}
+      component={UserScreen}
       options={{
         tabBarLabel: () => null,
         headerShown: false,
