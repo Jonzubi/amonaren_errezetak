@@ -5,15 +5,21 @@ import { useSelector } from 'react-redux';
 
 export default function UserAvatar() {
   const imageUrl = useSelector((state: RootState) => state.user.imageUrl);
-  const username = useSelector((state: RootState) => state.user.username);
 
   return (
     <Avatar
-      title={username}
       size={25}
       rounded
-      source={{
-        uri: imageUrl,
+      icon={{ name: 'user', type: 'antdesign' }}
+      source={
+        imageUrl
+          ? {
+              uri: imageUrl,
+            }
+          : undefined
+      }
+      containerStyle={{
+        backgroundColor: 'silver',
       }}
     />
   );
