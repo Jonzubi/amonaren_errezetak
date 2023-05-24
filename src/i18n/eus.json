@@ -33,6 +33,9 @@
     "add_step_placeholder": "Ura berotu",
     "postRecipe": "Igo errezeta"
   },
+  "logOut": {
+    "logout": "Itxi Saioa"
+  },
   "errors": {
     "generic": "Arazo bat gertatu da"
   }
