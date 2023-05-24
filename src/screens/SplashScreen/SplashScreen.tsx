@@ -5,14 +5,37 @@ import Logo from '../../components/Logo/Logo';
 import { CommonActions } from '@react-navigation/native';
 import { getProfile } from '../../api/user/user';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../redux/user/userSlice';
 
 export default function SplashScreen({ navigation }: { navigation: any }) {
+  const dispatch = useDispatch();
   useEffect(() => {
     performTimeConsumingTask().then(async () => {
       try {
-        const accessToken = await AsyncStorage.getItem('access_token');
-        const data = await getProfile(accessToken || '');
-        console.log(data);
+        const access_token = await AsyncStorage.getItem('access_token');
+        if (access_token === null) throw new Error();
+        const data = await getProfile(access_token);
+
+        const { email, username, imageUrl } = data.data;
+        dispatch(
+          setUserData({
+            access_token,
+            email,
+            username,
+            imageUrl,
+          }),
+        );
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 1,
+            routes: [
+              {
+                name: 'Home',
+              },
+            ],
+          }),
+        );
       } catch (error) {
         navigation.dispatch(
           CommonActions.reset({

@@ -14,6 +14,7 @@ import { loginGoogle } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../redux/user/userSlice';
 import { getRedirectUri } from '../../utils/functions/jest';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -46,6 +47,7 @@ export default function SignGoogle() {
   const getUserInfo = async () => {
     const loginData = await loginGoogle({ token });
     const { access_token, email, username, imageUrl } = loginData.data;
+    AsyncStorage.setItem('access_token', access_token);
     dispatch(
       setUserData({
         access_token,
