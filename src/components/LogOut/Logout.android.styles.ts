@@ -6,7 +6,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     gap: 5,
     border: 1,
-    borderColor: colors.GREY,
-    borderRadius: 5,
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 5,
   },
 });
