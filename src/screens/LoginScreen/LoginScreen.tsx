@@ -14,6 +14,7 @@ import { setAccessToken } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
 import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface LoginScreenProps {
   navigation?: any;
@@ -54,6 +55,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       const tokenData = await login({ email, password });
       const { access_token } = tokenData.data;
       dispatch(setAccessToken(access_token));
+      AsyncStorage.setItem('access_token', access_token);
       setIsLoading(false);
       navigation.navigate('Home');
     } catch (error) {
