@@ -55,7 +55,13 @@ const UserNav = () => (
         headerShown: false,
       }}
     />
-    <UserStack.Screen name="Profile" component={ProfileScreen} />
+    <UserStack.Screen
+      name="Profile"
+      component={ProfileScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
   </UserStack.Navigator>
 );
 
