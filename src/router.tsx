@@ -18,6 +18,7 @@ import AddRecipeScreen from './screens/AddRecipeScreen/AddRecipeScreen';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import UserAvatar from './components/UserAvatar/UserAvatar';
 import UserScreen from './screens/UserScreen/UserScreen';
+import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -40,9 +41,29 @@ i18n.use(initReactI18next).init({
 });
 
 const RootStack = createStackNavigator();
+const UserStack = createStackNavigator();
 const MainStack = createBottomTabNavigator<MainStackParamList>();
 const AuthStack = createStackNavigator<AuthStackParamList>();
 const SplashStack = createStackNavigator<SplashStackParamList>();
+
+const UserNav = () => (
+  <UserStack.Navigator>
+    <UserStack.Screen
+      name="User"
+      component={UserScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <UserStack.Screen
+      name="Profile"
+      component={ProfileScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
+  </UserStack.Navigator>
+);
 
 const MainNav = () => (
   <MainStack.Navigator>
@@ -66,7 +87,7 @@ const MainNav = () => (
     />
     <MainStack.Screen
       name="User"
-      component={UserScreen}
+      component={UserNav}
       options={{
         tabBarLabel: () => null,
         headerShown: false,
