@@ -2,7 +2,7 @@ import { View } from 'react-native';
 import styles from './ProfileScreen.android.styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import UserAvatar from '../../components/UserAvatar/UserAvatar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Divider, Text } from 'react-native-elements';
 import { Input } from '@rneui/themed';
@@ -18,6 +18,7 @@ export default function ProfileScreen() {
     (state: RootState) => state.user.access_token,
   );
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const [newUsername, setNewUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +30,7 @@ export default function ProfileScreen() {
     await patchUsername(access_token, newUsername).catch(() => {
       // TODO handle error
     });
-    setUserName(newUsername);
+    dispatch(setUserName(newUsername));
     setIsLoading(false);
   };
   return (
