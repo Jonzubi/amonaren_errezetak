@@ -8,13 +8,16 @@ import { Divider, Text } from 'react-native-elements';
 import { Input } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import SubmitButton from '../../components/SubmitButton/SubmitButton';
 
 export default function ProfileScreen() {
   const username = useSelector((state: RootState) => state.user.username);
   const { t } = useTranslation();
 
   const [newUsername, setNewUsername] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
+  const handleSave = () => {};
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userMainContainer}>
@@ -27,6 +30,7 @@ export default function ProfileScreen() {
           placeholder={t('forms.username_placeholder')}
           onChangeText={(value) => setNewUsername(value)}
         />
+        <SubmitButton isLoading={isLoading} handleLogin={handleSave} />
       </View>
     </SafeAreaView>
   );
