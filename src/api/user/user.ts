@@ -12,3 +12,17 @@ export const getProfile = (token: string) =>
       Authorization: `Bearer ${token}`,
     },
   });
+
+export const patchUsername = (token: string, newUsername: string) =>
+  axios.patch(
+    `${API_URL}/user/username`,
+    {
+      username: newUsername,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    },
+  );

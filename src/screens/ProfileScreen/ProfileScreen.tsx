@@ -9,15 +9,29 @@ import { Input } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
+import { patchUsername } from '../../api/user/user';
+import { setUserName } from '../../redux/user/userSlice';
 
 export default function ProfileScreen() {
   const username = useSelector((state: RootState) => state.user.username);
+  const access_token = useSelector(
+    (state: RootState) => state.user.access_token,
+  );
   const { t } = useTranslation();
 
   const [newUsername, setNewUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSave = () => {};
+  const handleSave = async () => {
+    if (newUsername === '') return; // TODO handle error
+
+    setIsLoading(true);
+    await patchUsername(access_token, newUsername).catch(() => {
+      // TODO handle error
+    });
+    setUserName(newUsername);
+    setIsLoading(false);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userMainContainer}>
