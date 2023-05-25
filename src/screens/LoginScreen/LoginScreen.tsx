@@ -1,11 +1,10 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text } from 'react-native';
 import styles from './LoginScreen.android.styles';
 import Logo from '../../components/Logo/Logo';
 import { Input, Button, Divider } from '@rneui/themed';
 import { AntDesign } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import SignGoogle from '../../components/SignGoogle/SignGoogle';
-import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions/email';
 import { login } from '../../api/user/user';
@@ -15,6 +14,7 @@ import { AxiosError } from 'axios';
 import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SubmitButton from '../../components/SubmitButton/SubmitButton';
 
 interface LoginScreenProps {
   navigation?: any;
@@ -89,21 +89,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         }
         onChangeText={(value) => setPassword(value)}
       />
-      {isLoading && (
-        <ActivityIndicator
-          size={'large'}
-          color={colors.MAIN_GREEN}
-          style={styles.button}
-        />
-      )}
-      {!isLoading && (
-        <Button
-          title={t('forms.login_button')}
-          color={colors.MAIN_GREEN}
-          containerStyle={styles.button}
-          onPress={handleLogin}
-        />
-      )}
+      <SubmitButton isLoading={isLoading} handleLogin={handleLogin} />
       <Divider style={styles.divider} />
       <SignGoogle />
       <View style={styles.registerView}>
