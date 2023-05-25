@@ -6,7 +6,8 @@
     "login_button": "Sartu",
     "signup_button": "Izena eman",
     "google_sign": "Sartu Google bidez",
-    "username_placeholder": "Sartu zure erabiltzaile izena"
+    "username_placeholder": "Sartu zure erabiltzaile izena",
+    "save": "Gorde"
   },
   "loginScreen": {
     "you_new": "Berria zara?",

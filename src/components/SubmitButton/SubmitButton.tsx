@@ -6,11 +6,13 @@ import styles from './SubmitButton.android.styles';
 
 interface SubmitButtonProps {
   isLoading: boolean;
-  handleLogin(): void;
+  handlePress(): void;
+  title: string;
 }
 export default function SubmitButton({
   isLoading,
-  handleLogin,
+  handlePress,
+  title,
 }: SubmitButtonProps) {
   const { t } = useTranslation();
   return (
@@ -24,10 +26,10 @@ export default function SubmitButton({
       )}
       {!isLoading && (
         <Button
-          title={t('forms.login_button')}
+          title={title}
           color={colors.MAIN_GREEN}
           containerStyle={styles.button}
-          onPress={handleLogin}
+          onPress={handlePress}
         />
       )}
     </>

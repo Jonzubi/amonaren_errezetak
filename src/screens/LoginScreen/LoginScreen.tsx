@@ -89,7 +89,11 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         }
         onChangeText={(value) => setPassword(value)}
       />
-      <SubmitButton isLoading={isLoading} handleLogin={handleLogin} />
+      <SubmitButton
+        title={t('forms.login_button')}
+        isLoading={isLoading}
+        handlePress={handleLogin}
+      />
       <Divider style={styles.divider} />
       <SignGoogle />
       <View style={styles.registerView}>

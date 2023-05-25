@@ -30,7 +30,11 @@ export default function ProfileScreen() {
           placeholder={t('forms.username_placeholder')}
           onChangeText={(value) => setNewUsername(value)}
         />
-        <SubmitButton isLoading={isLoading} handleLogin={handleSave} />
+        <SubmitButton
+          title={t('forms.save')}
+          isLoading={isLoading}
+          handlePress={handleSave}
+        />
       </View>
     </SafeAreaView>
   );
