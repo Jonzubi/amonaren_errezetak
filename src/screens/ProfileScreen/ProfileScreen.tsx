@@ -14,20 +14,25 @@ import { setUserName } from '../../redux/user/userSlice';
 
 export default function ProfileScreen() {
   const username = useSelector((state: RootState) => state.user.username);
+  const nameSurname = useSelector((state: RootState) => state.user.nameSurname);
   const access_token = useSelector(
     (state: RootState) => state.user.access_token,
   );
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const [newUsername, setNewUsername] = useState('');
+  const [newUsername, setNewUsername] = useState(username || '');
+  const [newNameSurname, setNewNameSurname] = useState(nameSurname || '');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSave = async () => {
     if (newUsername === '') return; // TODO handle error
 
     setIsLoading(true);
-    await patchUsername(access_token, newUsername).catch(() => {
+    await patchUsername(access_token, {
+      username: newUsername,
+      nameSurname: newNameSurname,
+    }).catch(() => {
       // TODO handle error
     });
     dispatch(setUserName(newUsername));
@@ -41,6 +46,10 @@ export default function ProfileScreen() {
       </View>
       <Divider style={{ marginVertical: 15 }} />
       <View>
+        <Input
+          placeholder={t('forms.nameSurname_placeholder')}
+          onChangeText={(value) => setNewNameSurname(value)}
+        />
         <Input
           placeholder={t('forms.username_placeholder')}
           onChangeText={(value) => setNewUsername(value)}

@@ -13,11 +13,15 @@ export const getProfile = (token: string) =>
     },
   });
 
-export const patchUsername = (token: string, newUsername: string) =>
+export const patchUsername = (
+  token: string,
+  { username, nameSurname }: { username: string; nameSurname: string },
+) =>
   axios.patch(
     `${API_URL}/user/username`,
     {
-      username: newUsername,
+      username,
+      nameSurname,
     },
     {
       headers: {
