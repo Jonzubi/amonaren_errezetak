@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function UserScreen() {
   const navigation = useNavigation();
   const username = useSelector((state: RootState) => state.user.username);
+  const nameSurname = useSelector((state: RootState) => state.user.nameSurname);
 
   const handleGoProfile = () => {
     navigation.navigate('Profile');
@@ -24,7 +25,10 @@ export default function UserScreen() {
           onPress={handleGoProfile}
         >
           <UserAvatar size={40} />
-          <Text style={styles.usernameText}>{username}</Text>
+          <View>
+            <Text style={styles.nameSurnameText}>{nameSurname}</Text>
+            <Text style={styles.usernameText}>{username}</Text>
+          </View>
         </TouchableOpacity>
         <LogOut />
       </View>

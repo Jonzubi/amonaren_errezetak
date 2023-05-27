@@ -5,4 +5,5 @@ export default {
   LIGHTGREY: '#DDD',
   RED: '#F44336',
   BLACK: '#000',
+  DARKGREY: '#AAA',
 };

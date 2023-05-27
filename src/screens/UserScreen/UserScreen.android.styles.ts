@@ -13,7 +13,13 @@ export default StyleSheet.create({
     gap: 5,
   },
   usernameText: {
-    color: colors.BLACK,
+    color: colors.DARKGREY,
     fontStyle: 'italic',
+    fontSize: 10,
+  },
+  nameSurnameText: {
+    flex: 1,
+    textAlignVertical: 'center',
+    fontWeight: 'bold',
   },
 });

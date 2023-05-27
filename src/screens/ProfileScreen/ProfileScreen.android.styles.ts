@@ -10,7 +10,7 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
   },
   usernameText: {
-    color: colors.BLACK,
+    color: colors.DARKGREY,
     fontStyle: 'italic',
   },
   formContainer: {},
