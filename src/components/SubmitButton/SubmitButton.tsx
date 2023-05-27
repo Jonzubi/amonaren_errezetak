@@ -1,4 +1,4 @@
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View, ViewStyle } from 'react-native';
 import colors from '../../constants/colors';
 import { Button } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
@@ -8,15 +8,17 @@ interface SubmitButtonProps {
   isLoading: boolean;
   handlePress(): void;
   title: string;
+  containerStyle?: ViewStyle;
 }
 export default function SubmitButton({
   isLoading,
   handlePress,
   title,
+  containerStyle,
 }: SubmitButtonProps) {
   const { t } = useTranslation();
   return (
-    <>
+    <View style={containerStyle}>
       {isLoading && (
         <ActivityIndicator
           size={'large'}
@@ -32,6 +34,6 @@ export default function SubmitButton({
           onPress={handlePress}
         />
       )}
-    </>
+    </View>
   );
 }
