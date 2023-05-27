@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import { patchUsername } from '../../api/user/user';
-import { setUserName } from '../../redux/user/userSlice';
+import { setUserData, setUserName } from '../../redux/user/userSlice';
 
 export default function ProfileScreen() {
   const username = useSelector((state: RootState) => state.user.username);
@@ -34,7 +34,9 @@ export default function ProfileScreen() {
         username: newUsername,
         nameSurname: newNameSurname,
       });
-      dispatch(setUserName(newUsername));
+      dispatch(
+        setUserData({ username: newUsername, nameSurname: newNameSurname }),
+      );
     } catch (error) {
     } finally {
       setIsLoading(false);
