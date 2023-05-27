@@ -10,7 +10,7 @@ export default StyleSheet.create({
   headerUserAvatarContainer: {
     flexDirection: 'row',
     alignItems: 'flex-end',
-    gap: 5,
+    gap: 10,
   },
   usernameText: {
     color: colors.DARKGREY,
