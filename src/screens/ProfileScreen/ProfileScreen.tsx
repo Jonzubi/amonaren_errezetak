@@ -52,7 +52,7 @@ export default function ProfileScreen() {
         </View>
       </View>
       <Divider style={{ marginVertical: 15 }} />
-      <View>
+      <View style={{ flex: 1 }}>
         <Input
           value={newNameSurname}
           placeholder={t('forms.nameSurname_placeholder')}
@@ -63,11 +63,13 @@ export default function ProfileScreen() {
           placeholder={t('forms.username_placeholder')}
           onChangeText={(value) => setNewUsername(value)}
         />
-        <SubmitButton
-          title={t('forms.save')}
-          isLoading={isLoading}
-          handlePress={handleSave}
-        />
+        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+          <SubmitButton
+            title={t('forms.save')}
+            isLoading={isLoading}
+            handlePress={handleSave}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
