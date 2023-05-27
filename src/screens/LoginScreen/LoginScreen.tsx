@@ -90,6 +90,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         onChangeText={(value) => setPassword(value)}
       />
       <SubmitButton
+        containerStyle={{ width: '100%' }}
         title={t('forms.login_button')}
         isLoading={isLoading}
         handlePress={handleLogin}
