@@ -36,6 +36,10 @@
     "add_step_placeholder": "Ura berotu",
     "postRecipe": "Igo errezeta"
   },
+  "userScreen": {
+    "favRecipes": "Nire errezeta gogokoenak",
+    "myRecipes": "Nire errezetak"
+  },
   "logOut": {
     "logout": "Itxi Saioa"
   },

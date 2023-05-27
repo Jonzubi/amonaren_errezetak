@@ -7,9 +7,14 @@ import { Divider } from '@rneui/base';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigation } from '@react-navigation/native';
+import { ListItem } from '@rneui/themed';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
+import colors from '../../constants/colors';
 
 export default function UserScreen() {
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const username = useSelector((state: RootState) => state.user.username);
   const nameSurname = useSelector((state: RootState) => state.user.nameSurname);
 
@@ -32,7 +37,25 @@ export default function UserScreen() {
         </TouchableOpacity>
         <LogOut />
       </View>
-      <Divider />
+      <Divider style={{ marginBottom: 15 }} />
+      <ListItem bottomDivider>
+        <MaterialCommunityIcons
+          name="chef-hat"
+          color={colors.BLACK}
+          size={30}
+        />
+        <ListItem.Content>
+          <ListItem.Title>{t('userScreen.myRecipes')}</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
+      <ListItem>
+        <Ionicons name="star" color={colors.BLACK} size={30} />
+        <ListItem.Content>
+          <ListItem.Title>{t('userScreen.favRecipes')}</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
     </SafeAreaView>
   );
 }
