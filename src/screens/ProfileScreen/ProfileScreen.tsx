@@ -29,14 +29,16 @@ export default function ProfileScreen() {
     if (newUsername === '') return; // TODO handle error
 
     setIsLoading(true);
-    await patchUsername(access_token, {
-      username: newUsername,
-      nameSurname: newNameSurname,
-    }).catch(() => {
-      // TODO handle error
-    });
-    dispatch(setUserName(newUsername));
-    setIsLoading(false);
+    try {
+      await patchUsername(access_token, {
+        username: newUsername,
+        nameSurname: newNameSurname,
+      });
+      dispatch(setUserName(newUsername));
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -47,10 +49,12 @@ export default function ProfileScreen() {
       <Divider style={{ marginVertical: 15 }} />
       <View>
         <Input
+          value={newNameSurname}
           placeholder={t('forms.nameSurname_placeholder')}
           onChangeText={(value) => setNewNameSurname(value)}
         />
         <Input
+          value={newUsername}
           placeholder={t('forms.username_placeholder')}
           onChangeText={(value) => setNewUsername(value)}
         />
