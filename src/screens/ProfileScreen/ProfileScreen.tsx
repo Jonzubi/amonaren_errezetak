@@ -46,7 +46,10 @@ export default function ProfileScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.userMainContainer}>
         <UserAvatar size={100} />
-        <Text style={styles.usernameText}>{username}</Text>
+        <View>
+          <Text style={styles.nameSurnameText}>{nameSurname}</Text>
+          <Text style={styles.usernameText}>{username}</Text>
+        </View>
       </View>
       <Divider style={{ marginVertical: 15 }} />
       <View>

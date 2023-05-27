@@ -6,7 +6,7 @@ export default StyleSheet.create({
   },
   userMainContainer: {
     flexDirection: 'row',
-    gap: 10,
+    gap: 20,
     alignItems: 'flex-end',
   },
   usernameText: {
@@ -14,4 +14,10 @@ export default StyleSheet.create({
     fontStyle: 'italic',
   },
   formContainer: {},
+  nameSurnameText: {
+    flex: 1,
+    textAlignVertical: 'center',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
 });
