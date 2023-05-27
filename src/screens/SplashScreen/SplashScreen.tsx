@@ -17,13 +17,14 @@ export default function SplashScreen({ navigation }: { navigation: any }) {
         if (access_token === null) throw new Error();
         const data = await getProfile(access_token);
 
-        const { email, username, imageUrl } = data.data;
+        const { email, username, imageUrl, nameSurname } = data.data;
         dispatch(
           setUserData({
             access_token,
             email,
             username,
             imageUrl,
+            nameSurname,
           }),
         );
         navigation.dispatch(
