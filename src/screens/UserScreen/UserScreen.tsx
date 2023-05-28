@@ -39,18 +39,14 @@ export default function UserScreen() {
       </View>
       <Divider style={{ marginBottom: 15 }} />
       <ListItem bottomDivider>
-        <MaterialCommunityIcons
-          name="chef-hat"
-          color={colors.BLACK}
-          size={30}
-        />
+        <MaterialCommunityIcons name="chef-hat" size={30} />
         <ListItem.Content>
           <ListItem.Title>{t('userScreen.myRecipes')}</ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>
       <ListItem>
-        <AntDesign name="star" color={colors.BLACK} size={30} />
+        <AntDesign name="star" size={30} />
         <ListItem.Content>
           <ListItem.Title>{t('userScreen.favRecipes')}</ListItem.Title>
         </ListItem.Content>
