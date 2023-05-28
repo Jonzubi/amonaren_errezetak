@@ -37,7 +37,6 @@ export default function UserScreen() {
         </TouchableOpacity>
         <LogOut />
       </View>
-      <Divider style={{ marginBottom: 15 }} />
       <ListItem bottomDivider>
         <MaterialCommunityIcons name="chef-hat" size={30} />
         <ListItem.Content>
