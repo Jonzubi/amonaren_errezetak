@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useNavigation } from '@react-navigation/native';
 import { ListItem } from '@rneui/themed';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import colors from '../../constants/colors';
 
@@ -50,7 +50,7 @@ export default function UserScreen() {
         <ListItem.Chevron />
       </ListItem>
       <ListItem>
-        <Ionicons name="star" color={colors.BLACK} size={30} />
+        <AntDesign name="star" color={colors.BLACK} size={30} />
         <ListItem.Content>
           <ListItem.Title>{t('userScreen.favRecipes')}</ListItem.Title>
         </ListItem.Content>
