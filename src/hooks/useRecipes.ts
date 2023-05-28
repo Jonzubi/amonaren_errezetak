@@ -27,6 +27,7 @@ export function useRecipes() {
             title: d.recipeTitle,
             description: d.recipeDesc,
             image: d.recipeImageUrl,
+            createdBy: d.createdBy,
           })),
         );
         setLoading(false);
