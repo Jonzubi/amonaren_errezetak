@@ -23,6 +23,7 @@ export default StyleSheet.create({
   cardFooterRate: {
     flexDirection: 'row',
     gap: 5,
+    alignItems: 'center',
   },
   cardFooterUsernameText: {},
 });
