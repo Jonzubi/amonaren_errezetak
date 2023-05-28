@@ -14,10 +14,8 @@ export default function Recipe({ title, description, image }: Props) {
       <Card.Title>
         <Text h4>{title}</Text>
       </Card.Title>
-      <Card.Divider />
       <Card.Image source={{ uri: `${API_URL}/images/${image}` }} />
       <Card.Divider />
-      <Text>{description}</Text>
     </Card>
   );
 }
