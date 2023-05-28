@@ -8,7 +8,6 @@ import {
 import { useRecipes } from '../../hooks/useRecipes';
 import Recipe from '../../components/Recipe/Recipe';
 import styles from './HomeScreen.android.styles';
-import GoToAddRecipe from '../../components/GoToAddRecipe/GoToAddRecipe';
 import { Recipe as TRecipe } from '../../types/Recipe';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
