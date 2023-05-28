@@ -7,4 +7,5 @@ export interface Recipe {
   image?: string;
   ingredients: string[];
   steps: Step[];
+  createdBy: any;
 }
