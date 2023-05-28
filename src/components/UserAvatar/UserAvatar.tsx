@@ -5,13 +5,23 @@ import { useSelector } from 'react-redux';
 
 interface UserAvatarProps {
   size?: number;
-  hardCodeUrl?: string;
+  hardCodeUrl?: boolean;
+  hardCodedImageUrl?: string;
 }
-export default function UserAvatar({ size, hardCodeUrl }: UserAvatarProps) {
+export default function UserAvatar({
+  size,
+  hardCodeUrl,
+  hardCodedImageUrl,
+}: UserAvatarProps) {
   const imageUrl = useSelector((state: RootState) => state.user.imageUrl);
 
-  const getUrl = () => {
-    if (hardCodeUrl) return { uri: hardCodeUrl };
+  const getUrl = (): { uri: string } | undefined => {
+    if (hardCodeUrl)
+      return hardCodedImageUrl
+        ? {
+            uri: hardCodedImageUrl,
+          }
+        : undefined;
     return imageUrl
       ? {
           uri: imageUrl,
