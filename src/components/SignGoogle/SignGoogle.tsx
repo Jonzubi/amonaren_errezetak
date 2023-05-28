@@ -46,12 +46,14 @@ export default function SignGoogle() {
 
   const getUserInfo = async () => {
     const loginData = await loginGoogle({ token });
-    const { access_token, email, username, imageUrl } = loginData.data;
+    const { access_token, email, username, imageUrl, nameSurname } =
+      loginData.data;
     AsyncStorage.setItem('access_token', access_token);
     dispatch(
       setUserData({
         access_token,
         email,
+        nameSurname,
         username,
         imageUrl,
       }),
