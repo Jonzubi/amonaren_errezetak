@@ -28,6 +28,7 @@ export default function HomeScreen() {
       title={item.title}
       description={item.description}
       image={item.image}
+      createdBy={item.createdBy}
     />
   );
 
