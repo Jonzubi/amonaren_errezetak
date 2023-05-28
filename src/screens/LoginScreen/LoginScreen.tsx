@@ -9,7 +9,7 @@ import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions/email';
 import { login } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
-import { setAccessToken } from '../../redux/user/userSlice';
+import { setAccessToken, setUserData } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
 import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
@@ -52,9 +52,17 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
     if (!validateForm()) return;
     setIsLoading(true);
     try {
-      const tokenData = await login({ email, password });
-      const { access_token } = tokenData.data;
-      dispatch(setAccessToken(access_token));
+      const userData = await login({ email, password });
+      const { access_token, username, nameSurname, imageUrl } = userData.data;
+      dispatch(
+        setUserData({
+          access_token,
+          username,
+          nameSurname,
+          imageUrl,
+          email: userData.data.email,
+        }),
+      );
       AsyncStorage.setItem('access_token', access_token);
       setIsLoading(false);
       navigation.navigate('Home');
