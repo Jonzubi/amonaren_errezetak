@@ -4,18 +4,17 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Recipe } from '../types/Recipe';
 
-export interface RecipeHook {
-  recipes: Recipe[];
-  loading: boolean;
-}
-
-export function useRecipes() {
+export function useRecipes(useMyRecipes?: boolean) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);
   const token = useSelector((state: RootState) => state.user.access_token);
 
+  const fetchUrl = !useMyRecipes
+    ? `${API_URL}/recipe`
+    : `${API_URL}/recipe/myrecipes`;
+
   const fetchData = () => {
-    fetch(`${API_URL}/recipe`, {
+    fetch(fetchUrl, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
