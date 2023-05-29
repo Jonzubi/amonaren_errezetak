@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../constants/colors';
 export default StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
   myRecipeContainer: {
     flexDirection: 'row',
     gap: 20,

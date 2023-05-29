@@ -47,7 +47,7 @@ export default function MyRecipes() {
   );
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <FlatList
         contentContainerStyle={styles.container}
         refreshControl={
