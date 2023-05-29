@@ -37,7 +37,7 @@ export default function UserScreen() {
         </TouchableOpacity>
         <LogOut />
       </View>
-      <ListItem bottomDivider>
+      <ListItem bottomDivider onPress={() => navigation.navigate('MyRecipes')}>
         <MaterialCommunityIcons name="chef-hat" size={30} />
         <ListItem.Content>
           <ListItem.Title>{t('userScreen.myRecipes')}</ListItem.Title>
