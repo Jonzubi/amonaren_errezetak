@@ -5,6 +5,7 @@ import { API_URL } from '../../constants/constants';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import { AntDesign } from '@expo/vector-icons';
 import colors from '../../constants/colors';
+import { getImageUrlWithName } from '../../utils/functions/image';
 
 interface Props {
   title: string;
@@ -24,7 +25,7 @@ export default function Recipe({ title, image, createdBy }: Props) {
       <Card.Title>
         <Text h4>{title}</Text>
       </Card.Title>
-      <Card.Image source={{ uri: `${API_URL}/images/${image}` }} />
+      <Card.Image source={{ uri: getImageUrlWithName(image) }} />
       <View style={styles.cardFooter}>
         <View style={styles.cardFooterUser}>
           <UserAvatar hardCodedImageUrl={createdBy?.imageUrl} hardCodeUrl />
