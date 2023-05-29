@@ -33,19 +33,15 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView
-        contentContainerStyle={styles.container}
+      <FlatList
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={refreshRecipes} />
         }
-      >
-        <FlatList
-          style={styles.flatList}
-          data={recipes}
-          renderItem={handleRenderItem}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </ScrollView>
+        style={styles.flatList}
+        data={recipes}
+        renderItem={handleRenderItem}
+        keyExtractor={(item, index) => index.toString()}
+      />
     </SafeAreaView>
   );
 }
