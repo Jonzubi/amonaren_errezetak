@@ -16,6 +16,7 @@ import { getImageUrlWithName } from '../../utils/functions/image';
 import { Card } from '@rneui/themed';
 import { AntDesign } from '@expo/vector-icons';
 import colors from '../../constants/colors';
+import { getFromNowFromDate } from '../../utils/functions/date';
 
 export default function MyRecipes() {
   const { recipes, loading, refreshRecipes } = useRecipes(true);
@@ -40,7 +41,9 @@ export default function MyRecipes() {
               <Text>10</Text>
             </View>
           </View>
-          <Text style={styles.myRecipesDate}>Hace 5 días</Text>
+          <Text style={styles.myRecipesDate}>
+            {getFromNowFromDate(item.creationDate)}
+          </Text>
         </View>
       </View>
     </Card>

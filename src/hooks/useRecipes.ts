@@ -27,6 +27,7 @@ export function useRecipes(useMyRecipes?: boolean) {
             description: d.recipeDesc,
             image: d.recipeImageUrl,
             createdBy: d.createdBy,
+            creationDate: d.creationDate,
           })),
         );
         setLoading(false);

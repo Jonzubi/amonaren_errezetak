@@ -8,4 +8,5 @@ export interface Recipe {
   ingredients: string[];
   steps: Step[];
   createdBy: any;
+  creationDate: Date;
 }
