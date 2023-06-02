@@ -28,6 +28,10 @@ export function useRecipes(useMyRecipes?: boolean) {
             image: d.recipeImageUrl,
             createdBy: d.createdBy,
             creationDate: d.creationDate,
+            likeCount: d.likeCount,
+            favCount: d.favCount,
+            hasLiked: d.hasLiked,
+            hasFaved: d.hasFaved,
           })),
         );
         setLoading(false);

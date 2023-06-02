@@ -12,6 +12,10 @@ interface Props {
   description: string;
   image?: string;
   createdBy: createdByProp;
+  likeCount: number;
+  favCount: number;
+  hasLiked: boolean;
+  hasFaved: boolean;
 }
 
 interface createdByProp {
@@ -19,7 +23,15 @@ interface createdByProp {
   imageUrl?: string;
 }
 
-export default function Recipe({ title, image, createdBy }: Props) {
+export default function Recipe({
+  title,
+  image,
+  createdBy,
+  likeCount,
+  favCount,
+  hasLiked,
+  hasFaved,
+}: Props) {
   return (
     <Card containerStyle={styles.container}>
       <Card.Title>
@@ -35,12 +47,20 @@ export default function Recipe({ title, image, createdBy }: Props) {
         </View>
         <View style={styles.cardFooterRating}>
           <View style={styles.cardFooterRate}>
-            <AntDesign name="hearto" size={20} color={colors.RED} />
-            <Text>25</Text>
+            <AntDesign
+              name={hasLiked ? 'heart' : 'hearto'}
+              size={20}
+              color={colors.RED}
+            />
+            <Text>{likeCount}</Text>
           </View>
           <View style={styles.cardFooterRate}>
-            <AntDesign name="staro" size={20} color={colors.BLACK} />
-            <Text>10</Text>
+            <AntDesign
+              name={hasFaved ? 'star' : 'staro'}
+              size={20}
+              color={colors.BLACK}
+            />
+            <Text>{favCount}</Text>
           </View>
         </View>
       </View>

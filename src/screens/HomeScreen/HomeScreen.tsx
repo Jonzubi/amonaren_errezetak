@@ -28,6 +28,10 @@ export default function HomeScreen() {
       description={item.description}
       image={item.image}
       createdBy={item.createdBy}
+      likeCount={item.likeCount}
+      favCount={item.favCount}
+      hasLiked={item.hasLiked}
+      hasFaved={item.hasFaved}
     />
   );
 

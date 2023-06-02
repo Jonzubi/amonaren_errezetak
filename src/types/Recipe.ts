@@ -1,4 +1,3 @@
-import { ImagePickerAsset } from 'expo-image-picker';
 import { Step } from '../components/Steps/Steps';
 
 export interface Recipe {
@@ -9,4 +8,8 @@ export interface Recipe {
   steps: Step[];
   createdBy: any;
   creationDate: Date;
+  likeCount: number;
+  favCount: number;
+  hasLiked: boolean;
+  hasFaved: boolean;
 }
