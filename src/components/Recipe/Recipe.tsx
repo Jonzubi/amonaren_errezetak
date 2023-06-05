@@ -6,6 +6,7 @@ import UserAvatar from '../UserAvatar/UserAvatar';
 import { AntDesign } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import { getImageUrlWithName } from '../../utils/functions/image';
+import RateRecipeIcon from '../RateRecipeIcon/RateRecipeIcon';
 
 interface Props {
   title: string;
@@ -46,22 +47,18 @@ export default function Recipe({
           </Text>
         </View>
         <View style={styles.cardFooterRating}>
-          <View style={styles.cardFooterRate}>
-            <AntDesign
-              name={hasLiked ? 'heart' : 'hearto'}
-              size={20}
-              color={colors.RED}
-            />
-            <Text>{likeCount}</Text>
-          </View>
-          <View style={styles.cardFooterRate}>
-            <AntDesign
-              name={hasFaved ? 'star' : 'staro'}
-              size={20}
-              color={colors.BLACK}
-            />
-            <Text>{favCount}</Text>
-          </View>
+          <RateRecipeIcon
+            containerStyle={styles.cardFooterRate}
+            isRated={hasLiked}
+            rateCount={likeCount}
+            type="Like"
+          />
+          <RateRecipeIcon
+            containerStyle={styles.cardFooterRate}
+            isRated={hasFaved}
+            rateCount={favCount}
+            type="Fav"
+          />
         </View>
       </View>
     </Card>
