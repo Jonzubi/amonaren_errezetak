@@ -5,3 +5,15 @@ import axios from '../axios';
 
 export const createRecipe = (recipe: Recipe, options?: AxiosRequestConfig) =>
   axios.post(`${API_URL}/recipe`, recipe, options);
+
+export const likeRecipe = (recipeId: string, options?: AxiosRequestConfig) =>
+  axios.post(`${API_URL}/recipe/like`, { recipeId }, options);
+
+export const unlikeRecipe = (recipeId: string, options?: AxiosRequestConfig) =>
+  axios.post(`${API_URL}/recipe/unlike`, { recipeId }, options);
+
+export const favRecipe = (recipeId: string, options?: AxiosRequestConfig) =>
+  axios.post(`${API_URL}/recipe/fav`, { recipeId }, options);
+
+export const unfavRecipe = (recipeId: string, options?: AxiosRequestConfig) =>
+  axios.post(`${API_URL}/recipe/unfav`, { recipeId }, options);
