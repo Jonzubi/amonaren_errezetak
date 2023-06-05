@@ -18,9 +18,10 @@ export default function RateRecipeIcon({
     if (type === 'Like') return isRated ? 'heart' : 'hearto';
     return isRated ? 'star' : 'staro';
   };
+  const getColor = () => (type === 'Like' ? colors.RED : colors.BLACK);
   return (
     <View style={containerStyle}>
-      <AntDesign name={getIconName()} size={20} color={colors.RED} />
+      <AntDesign name={getIconName()} size={20} color={getColor()} />
       <Text>{rateCount}</Text>
     </View>
   );
