@@ -24,6 +24,7 @@ export default function HomeScreen() {
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
     <Recipe
+      recipeId={item.recipeId}
       title={item.title}
       description={item.description}
       image={item.image}

@@ -9,6 +9,7 @@ import { getImageUrlWithName } from '../../utils/functions/image';
 import RateRecipeIcon from '../RateRecipeIcon/RateRecipeIcon';
 
 interface Props {
+  recipeId: string;
   title: string;
   description: string;
   image?: string;
@@ -25,6 +26,7 @@ interface createdByProp {
 }
 
 export default function Recipe({
+  recipeId,
   title,
   image,
   createdBy,
@@ -48,12 +50,14 @@ export default function Recipe({
         </View>
         <View style={styles.cardFooterRating}>
           <RateRecipeIcon
+            recipeId={recipeId}
             containerStyle={styles.cardFooterRate}
             isRated={hasLiked}
             rateCount={likeCount}
             type="Like"
           />
           <RateRecipeIcon
+            recipeId={recipeId}
             containerStyle={styles.cardFooterRate}
             isRated={hasFaved}
             rateCount={favCount}

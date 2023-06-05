@@ -23,6 +23,7 @@ export function useRecipes(useMyRecipes?: boolean) {
       .then((data) => {
         setRecipes(
           data.map((d: any) => ({
+            recipeId: d._id,
             title: d.recipeTitle,
             description: d.recipeDesc,
             image: d.recipeImageUrl,

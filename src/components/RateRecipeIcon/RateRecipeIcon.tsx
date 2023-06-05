@@ -7,12 +7,14 @@ interface RateRecipeIconProps {
   isRated: boolean;
   type: 'Like' | 'Fav';
   rateCount: number;
+  recipeId: string;
 }
 export default function RateRecipeIcon({
   containerStyle,
   isRated,
   type,
   rateCount,
+  recipeId,
 }: RateRecipeIconProps) {
   const getIconName = () => {
     if (type === 'Like') return isRated ? 'heart' : 'hearto';
