@@ -1,6 +1,7 @@
-import { View, ViewStyle, Text } from 'react-native';
+import { ViewStyle, Text, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import colors from '../../constants/colors';
+import { likeRecipe } from '../../api/recipe/recipe';
 
 interface RateRecipeIconProps {
   containerStyle?: ViewStyle;
@@ -21,10 +22,15 @@ export default function RateRecipeIcon({
     return isRated ? 'star' : 'staro';
   };
   const getColor = () => (type === 'Like' ? colors.RED : colors.BLACK);
+
+  const handlePress = () => {
+    likeRecipe(recipeId);
+  };
+
   return (
-    <View style={containerStyle}>
+    <TouchableOpacity onPress={handlePress} style={containerStyle}>
       <AntDesign name={getIconName()} size={20} color={getColor()} />
       <Text>{rateCount}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }

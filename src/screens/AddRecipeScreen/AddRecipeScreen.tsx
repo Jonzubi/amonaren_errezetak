@@ -19,6 +19,7 @@ import { RootState } from '../../redux/store';
 import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
 import { useNavigation } from '@react-navigation/native';
+import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
 
 export default function AddRecipeScreen() {
   const token = useSelector((state: RootState) => state.user.access_token);
@@ -71,11 +72,7 @@ export default function AddRecipeScreen() {
           ingredients,
           steps,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
+        getHeaderWithAccessToken(token),
       );
       navigation.navigate('Home');
     } catch (error) {
