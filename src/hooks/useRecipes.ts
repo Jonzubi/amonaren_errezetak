@@ -14,6 +14,7 @@ export function useRecipes(useMyRecipes?: boolean) {
   const fetchUrl = !useMyRecipes ? getRecipes : getMyRecipes;
 
   const fetchData = () => {
+    setRecipes([]);
     fetchUrl(getHeaderWithAccessToken(token)).then((data) => {
       setRecipes(
         data.data.map((d: any) => ({
