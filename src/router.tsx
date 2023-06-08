@@ -20,6 +20,7 @@ import UserAvatar from './components/UserAvatar/UserAvatar';
 import UserScreen from './screens/UserScreen/UserScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import ListRecipes from './screens/ListRecipes/ListRecipes';
+import { UseRecipesType } from './hooks/useRecipes';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -65,7 +66,14 @@ const UserNav = () => (
     />
     <UserStack.Screen
       name="MyRecipes"
-      component={ListRecipes}
+      component={() => <ListRecipes type={UseRecipesType.MINE} />}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <UserStack.Screen
+      name="FavRecipes"
+      component={() => <ListRecipes type={UseRecipesType.FAVS} />}
       options={{
         headerShown: false,
       }}

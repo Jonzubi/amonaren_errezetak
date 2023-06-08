@@ -44,7 +44,7 @@ export default function UserScreen() {
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>
-      <ListItem>
+      <ListItem bottomDivider onPress={() => navigation.navigate('FavRecipes')}>
         <AntDesign name="star" size={30} />
         <ListItem.Content>
           <ListItem.Title>{t('userScreen.favRecipes')}</ListItem.Title>

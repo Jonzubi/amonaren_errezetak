@@ -18,8 +18,11 @@ import { AntDesign } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import { getFromNowFromDate } from '../../utils/functions/date';
 
-export default function ListRecipes() {
-  const { recipes, loading, refreshRecipes } = useRecipes(UseRecipesType.MINE);
+interface ListRecipesProps {
+  type: UseRecipesType;
+}
+export default function ListRecipes({ type }: ListRecipesProps) {
+  const { recipes, loading, refreshRecipes } = useRecipes(type);
   const [refreshing, setRefreshing] = useState(false);
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
