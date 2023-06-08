@@ -6,7 +6,7 @@ import {
   FlatList,
   ListRenderItem,
 } from 'react-native';
-import { useRecipes } from '../../hooks/useRecipes';
+import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Recipe as TRecipe } from '../../types/Recipe';
 import { useState } from 'react';
@@ -19,7 +19,7 @@ import colors from '../../constants/colors';
 import { getFromNowFromDate } from '../../utils/functions/date';
 
 export default function MyRecipes() {
-  const { recipes, loading, refreshRecipes } = useRecipes(true);
+  const { recipes, loading, refreshRecipes } = useRecipes(UseRecipesType.MINE);
   const [refreshing, setRefreshing] = useState(false);
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (

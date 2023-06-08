@@ -6,12 +6,19 @@ import { Recipe } from '../types/Recipe';
 import { getHeaderWithAccessToken } from '../utils/functions/axiosOptions';
 import { getMyRecipes, getRecipes } from '../api/recipe/recipe';
 
-export function useRecipes(useMyRecipes?: boolean) {
+export enum UseRecipesType {
+  ALL,
+  MINE,
+  FAVS,
+}
+
+export function useRecipes(type: UseRecipesType) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);
   const token = useSelector((state: RootState) => state.user.access_token);
 
-  const fetchUrl = !useMyRecipes ? getRecipes : getMyRecipes;
+  const typeToFetch = [getRecipes, getMyRecipes];
+  const fetchUrl = typeToFetch[type];
 
   const fetchData = () => {
     setRecipes([]);

@@ -5,14 +5,14 @@ import {
   ScrollView,
   RefreshControl,
 } from 'react-native';
-import { useRecipes } from '../../hooks/useRecipes';
+import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import Recipe from '../../components/Recipe/Recipe';
 import styles from './HomeScreen.android.styles';
 import { Recipe as TRecipe } from '../../types/Recipe';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
-  const { recipes, loading, refreshRecipes } = useRecipes();
+  const { recipes, loading, refreshRecipes } = useRecipes(UseRecipesType.ALL);
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
