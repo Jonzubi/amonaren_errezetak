@@ -10,7 +10,7 @@ import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Recipe as TRecipe } from '../../types/Recipe';
 import { useState } from 'react';
-import styles from './MyRecipes.android.styles';
+import styles from './ListRecipes.android.styles';
 import { Image } from 'react-native-elements';
 import { getImageUrlWithName } from '../../utils/functions/image';
 import { Card } from '@rneui/themed';
@@ -18,7 +18,7 @@ import { AntDesign } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import { getFromNowFromDate } from '../../utils/functions/date';
 
-export default function MyRecipes() {
+export default function ListRecipes() {
   const { recipes, loading, refreshRecipes } = useRecipes(UseRecipesType.MINE);
   const [refreshing, setRefreshing] = useState(false);
 

@@ -19,7 +19,7 @@ import { AntDesign, Ionicons } from '@expo/vector-icons';
 import UserAvatar from './components/UserAvatar/UserAvatar';
 import UserScreen from './screens/UserScreen/UserScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
-import MyRecipes from './screens/MyRecipes/MyRecipes';
+import ListRecipes from './screens/ListRecipes/ListRecipes';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -65,7 +65,7 @@ const UserNav = () => (
     />
     <UserStack.Screen
       name="MyRecipes"
-      component={MyRecipes}
+      component={ListRecipes}
       options={{
         headerShown: false,
       }}
