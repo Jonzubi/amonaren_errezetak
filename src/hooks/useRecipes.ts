@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Recipe } from '../types/Recipe';
 import { getHeaderWithAccessToken } from '../utils/functions/axiosOptions';
-import { getMyRecipes, getRecipes } from '../api/recipe/recipe';
+import { getFavRecipes, getMyRecipes, getRecipes } from '../api/recipe/recipe';
 
 export enum UseRecipesType {
   ALL,
@@ -17,7 +17,7 @@ export function useRecipes(type: UseRecipesType) {
   const [loading, setLoading] = useState(true);
   const token = useSelector((state: RootState) => state.user.access_token);
 
-  const typeToFetch = [getRecipes, getMyRecipes];
+  const typeToFetch = [getRecipes, getMyRecipes, getFavRecipes];
   const fetchUrl = typeToFetch[type];
 
   const fetchData = () => {
