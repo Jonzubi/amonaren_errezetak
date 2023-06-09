@@ -17,6 +17,7 @@ import { Card } from '@rneui/themed';
 import { AntDesign } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import { getFromNowFromDate } from '../../utils/functions/date';
+import RateRecipeIcon from '../../components/RateRecipeIcon/RateRecipeIcon';
 
 interface ListRecipesProps {
   type: UseRecipesType;
@@ -35,14 +36,20 @@ export default function ListRecipes({ type }: ListRecipesProps) {
         <Text style={styles.myRecipeTitle}>{item.title}</Text>
         <View style={styles.myRecipeSubInfoContainer}>
           <View style={styles.myRecipesRatingContainer}>
-            <View style={styles.myRecipesRatingSubContainer}>
-              <AntDesign name="hearto" size={20} color={colors.RED} />
-              <Text>25</Text>
-            </View>
-            <View style={styles.myRecipesRatingSubContainer}>
-              <AntDesign name="staro" size={20} color={colors.BLACK} />
-              <Text>10</Text>
-            </View>
+            <RateRecipeIcon
+              recipeId={item.recipeId}
+              containerStyle={styles.myRecipesRatingSubContainer}
+              isRated={item.hasLiked}
+              rateCount={item.likeCount}
+              type="Like"
+            />
+            <RateRecipeIcon
+              recipeId={item.recipeId}
+              containerStyle={styles.myRecipesRatingSubContainer}
+              isRated={item.hasFaved}
+              rateCount={item.favCount}
+              type="Fav"
+            />
           </View>
           <Text style={styles.myRecipesDate}>
             {getFromNowFromDate(item.creationDate)}
