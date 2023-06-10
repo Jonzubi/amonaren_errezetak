@@ -37,8 +37,15 @@ export default function Recipe({
   hasFaved,
 }: Props) {
   const navigation = useNavigation();
+
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('Recipe')}>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('Recipe', {
+          recipeId,
+        })
+      }
+    >
       <Card containerStyle={styles.container}>
         <Card.Title>
           <Text h4>{title}</Text>
