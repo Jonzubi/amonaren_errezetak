@@ -21,6 +21,7 @@ import UserScreen from './screens/UserScreen/UserScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import ListRecipes from './screens/ListRecipes/ListRecipes';
 import { UseRecipesType } from './hooks/useRecipes';
+import RecipeScreen from './screens/RecipeScreen/RecipeScreen';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -44,10 +45,25 @@ i18n.use(initReactI18next).init({
 
 const RootStack = createStackNavigator();
 const UserStack = createStackNavigator();
+const HomeStack = createStackNavigator();
 const MainStack = createBottomTabNavigator<MainStackParamList>();
 const AuthStack = createStackNavigator<AuthStackParamList>();
 const SplashStack = createStackNavigator<SplashStackParamList>();
 
+const HomeNav = () => (
+  <HomeStack.Navigator>
+    <HomeStack.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{ headerShown: false }}
+    />
+    <HomeStack.Screen
+      name="Recipe"
+      component={RecipeScreen}
+      options={{ headerShown: false }}
+    />
+  </HomeStack.Navigator>
+);
 const UserNav = () => (
   <UserStack.Navigator>
     <UserStack.Screen
@@ -85,7 +101,7 @@ const MainNav = () => (
   <MainStack.Navigator>
     <MainStack.Screen
       name="Home"
-      component={HomeScreen}
+      component={HomeNav}
       options={{
         tabBarLabel: () => null,
         headerShown: false,

@@ -1,6 +1,15 @@
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import styles from './RecipeScreen.android.styles';
+import { Recipe } from '../../types/Recipe';
 
-export default function RecipeScreen() {
-  return <SafeAreaView></SafeAreaView>;
+interface RecipeScreenProps {
+  recipe?: Recipe;
+}
+
+export default function RecipeScreen({ recipe }: RecipeScreenProps) {
+  return (
+    <SafeAreaView>
+      <Text>RecipeScreeeen</Text>
+    </SafeAreaView>
+  );
 }
