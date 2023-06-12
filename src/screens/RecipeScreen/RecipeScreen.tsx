@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './RecipeScreen.android.styles';
 import { Recipe } from '../../types/Recipe';
 import { RouteProp } from '@react-navigation/native';
+import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 
 interface RecipeScreenProps {
   recipe?: Recipe;
@@ -10,7 +11,12 @@ interface RecipeScreenProps {
 }
 
 export default function RecipeScreen({ route }: RecipeScreenProps) {
-  console.log({ params: route.params });
+  const { recipeId } = route.params;
+  const { recipes, loading, refreshRecipes } = useRecipes(
+    UseRecipesType.BYID,
+    recipeId,
+  );
+  const recipe = recipes[0];
   return (
     <SafeAreaView>
       <Text>RecipeScreeeen</Text>
