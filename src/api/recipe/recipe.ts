@@ -26,3 +26,6 @@ export const getMyRecipes = (options: AxiosRequestConfig) =>
 
 export const getFavRecipes = (options: AxiosRequestConfig) =>
   axios.get(`${API_URL}/recipe/favs`, options);
+
+export const getRecipeById = (options: AxiosRequestConfig, recipeId?: string) =>
+  axios.get(`${API_URL}/recipe/${recipeId}`, options);
