@@ -45,5 +45,8 @@
   },
   "errors": {
     "generic": "Arazo bat gertatu da"
+  },
+  "recipeDetail": {
+    "saveFavourite": "Gorde gogokoen bezala"
   }
 }
