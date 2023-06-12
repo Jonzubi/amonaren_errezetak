@@ -1,9 +1,12 @@
-import { Text, View } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './RecipeScreen.android.styles';
 import { Recipe } from '../../types/Recipe';
 import { RouteProp } from '@react-navigation/native';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
+import { getImageUrlWithName } from '../../utils/functions/image';
+import colors from '../../constants/colors';
+import { RecipeDetails } from '../../components/RecipeDetails/RecipeDetails';
 
 interface RecipeScreenProps {
   recipe?: Recipe;
@@ -18,8 +21,12 @@ export default function RecipeScreen({ route }: RecipeScreenProps) {
   );
   const recipe = recipes[0];
   return (
-    <SafeAreaView>
-      <Text>RecipeScreeeen</Text>
+    <SafeAreaView style={loading && styles.center}>
+      {loading ? (
+        <ActivityIndicator size={'large'} color={colors.MAIN_GREEN} />
+      ) : (
+        <RecipeDetails recipe={recipe} />
+      )}
     </SafeAreaView>
   );
 }
