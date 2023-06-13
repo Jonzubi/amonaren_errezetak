@@ -40,6 +40,8 @@ export function useRecipes(type: UseRecipesType, recipeId?: string): any {
           image: d.recipeImageUrl,
           createdBy: d.createdBy,
           creationDate: d.creationDate,
+          steps: d.steps,
+          ingredients: d.ingredients,
           likeCount: d.likeCount,
           favCount: d.favCount,
           hasLiked: d.hasLiked,
