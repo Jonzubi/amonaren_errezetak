@@ -50,10 +50,6 @@ export default StyleSheet.create({
   divider: {
     marginVertical: 15,
   },
-  subdivider: {
-    marginVertical: 10,
-    borderStyle: 'dotted',
-  },
   subtitle: {
     fontSize: 20,
     fontWeight: 'bold',

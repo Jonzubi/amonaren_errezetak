@@ -6,6 +6,7 @@ import UserAvatar from '../UserAvatar/UserAvatar';
 import { useTranslation } from 'react-i18next';
 import { AntDesign } from '@expo/vector-icons';
 import RecipeDetailsStep from '../RecipeDetailsStep/RecipeDetailsStep';
+import RecipeDetailsIngredient from '../RecipeDetailsIngredient/RecipeDetailsIngredient';
 
 interface RecipeDetailsProps {
   recipe: any;
@@ -45,12 +46,10 @@ export function RecipeDetails({ recipe }: RecipeDetailsProps) {
         <Divider style={styles.divider} />
         <Text style={styles.subtitle}>{t('addRecipeScreen.ingredients')}</Text>
         {recipe.ingredients.map((ingr: string, i: number) => (
-          <>
-            <Text>{ingr}</Text>
-            {i < recipe.ingredients.length - 1 && (
-              <Divider style={styles.subdivider} />
-            )}
-          </>
+          <RecipeDetailsIngredient
+            bottomDivider={i < recipe.ingredients.length - 1}
+            ingredient={ingr}
+          />
         ))}
         <Divider style={styles.divider} />
         <Text style={styles.subtitle}>{t('addRecipeScreen.steps')}</Text>
