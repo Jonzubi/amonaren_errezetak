@@ -47,4 +47,16 @@ export default StyleSheet.create({
   favouriteText: {
     fontSize: 15,
   },
+  divider: {
+    marginVertical: 15,
+  },
+  subdivider: {
+    marginVertical: 10,
+    borderStyle: 'dotted',
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 15,
+  },
 });
