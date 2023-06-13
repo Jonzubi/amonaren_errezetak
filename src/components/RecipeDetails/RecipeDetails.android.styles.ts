@@ -20,8 +20,9 @@ export default StyleSheet.create({
   recipeImage: {
     width: width,
     height: height,
-    resizeMode: 'cover',
+    resizeMode: 'center',
     maxHeight: 400,
+    backgroundColor: colors.LIGHTGREY,
   },
   title: {
     fontWeight: 'bold',
