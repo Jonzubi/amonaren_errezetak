@@ -5,12 +5,14 @@ import { Divider, Text } from 'react-native-elements';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import { useTranslation } from 'react-i18next';
 import { AntDesign } from '@expo/vector-icons';
+import RecipeDetailsStep from '../RecipeDetailsStep/RecipeDetailsStep';
 
 interface RecipeDetailsProps {
   recipe: any;
 }
 export function RecipeDetails({ recipe }: RecipeDetailsProps) {
   console.log({ recipe });
+  console.log({ steps: recipe.steps });
   const { t } = useTranslation();
   return (
     <ScrollView style={styles.container}>
@@ -52,6 +54,13 @@ export function RecipeDetails({ recipe }: RecipeDetailsProps) {
         ))}
         <Divider style={styles.divider} />
         <Text style={styles.subtitle}>{t('addRecipeScreen.steps')}</Text>
+        {recipe.steps.map((step: any, index: number) => (
+          <RecipeDetailsStep
+            stepDescription={step.description}
+            stepNumber={index + 1}
+            stepImage={step.image}
+          />
+        ))}
       </View>
     </ScrollView>
   );
