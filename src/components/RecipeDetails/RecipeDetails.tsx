@@ -50,6 +50,8 @@ export function RecipeDetails({ recipe }: RecipeDetailsProps) {
             )}
           </>
         ))}
+        <Divider style={styles.divider} />
+        <Text style={styles.subtitle}>{t('addRecipeScreen.steps')}</Text>
       </View>
     </ScrollView>
   );
