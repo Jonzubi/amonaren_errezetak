@@ -1,7 +1,7 @@
 import { ScrollView, Image, View, TouchableOpacity } from 'react-native';
 import styles from './RecipeDetails.android.styles';
 import { getImageUrlWithName } from '../../utils/functions/image';
-import { Text } from 'react-native-elements';
+import { Divider, Text } from 'react-native-elements';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import { useTranslation } from 'react-i18next';
 import { AntDesign } from '@expo/vector-icons';
@@ -40,6 +40,16 @@ export function RecipeDetails({ recipe }: RecipeDetailsProps) {
             {t('recipeDetail.saveFavourite')}
           </Text>
         </TouchableOpacity>
+        <Divider style={styles.divider} />
+        <Text style={styles.subtitle}>{t('addRecipeScreen.ingredients')}</Text>
+        {recipe.ingredients.map((ingr: string, i: number) => (
+          <>
+            <Text>{ingr}</Text>
+            {i < recipe.ingredients.length - 1 && (
+              <Divider style={styles.subdivider} />
+            )}
+          </>
+        ))}
       </View>
     </ScrollView>
   );
