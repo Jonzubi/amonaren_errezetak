@@ -8,6 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import RecipeDetailsStep from '../RecipeDetailsStep/RecipeDetailsStep';
 import RecipeDetailsIngredient from '../RecipeDetailsIngredient/RecipeDetailsIngredient';
 import { getFromNowFromDate } from '../../utils/functions/date';
+import RateRecipeIcon from '../RateRecipeIcon/RateRecipeIcon';
 
 interface RecipeDetailsProps {
   recipe: any;
@@ -38,12 +39,22 @@ export function RecipeDetails({ recipe }: RecipeDetailsProps) {
           </View>
         </View>
         <Text style={styles.description}>{recipe.description}</Text>
-        <TouchableOpacity style={styles.favouriteButton}>
-          <AntDesign name="star" size={20} />
-          <Text style={styles.favouriteText}>
-            {t('recipeDetail.saveFavourite')}
-          </Text>
-        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+          <RateRecipeIcon
+            type="Like"
+            isRated={recipe.hasLiked}
+            rateText={t('recipeDetail.saveLike')}
+            containerStyle={styles.favouriteButton}
+            recipeId={recipe.recipeId}
+          />
+          <RateRecipeIcon
+            type="Fav"
+            isRated={recipe.hasFaved}
+            rateText={t('recipeDetail.saveFavourite')}
+            containerStyle={styles.favouriteButton}
+            recipeId={recipe.recipeId}
+          />
+        </View>
         <Divider style={styles.divider} />
         <Text style={styles.subtitle}>{t('addRecipeScreen.ingredients')}</Text>
         {recipe.ingredients.map((ingr: string, i: number) => (

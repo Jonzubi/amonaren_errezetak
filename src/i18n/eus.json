@@ -47,7 +47,8 @@
     "generic": "Arazo bat gertatu da"
   },
   "recipeDetail": {
-    "saveFavourite": "Gorde gogokoen bezala",
+    "saveFavourite": "Gogokoen gisa gorde!",
+    "saveLike": "Gustoko dut",
     "author": "Egilea"
   }
 }

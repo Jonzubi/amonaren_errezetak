@@ -39,11 +39,12 @@ export default StyleSheet.create({
     borderColor: colors.DARKGREY,
     borderRadius: 10,
     backgroundColor: colors.GREY,
-    height: 35,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     gap: 10,
+    padding: 10,
   },
   favouriteText: {
     fontSize: 15,

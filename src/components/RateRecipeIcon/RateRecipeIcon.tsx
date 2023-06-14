@@ -16,8 +16,9 @@ interface RateRecipeIconProps {
   containerStyle?: ViewStyle;
   isRated: boolean;
   type: 'Like' | 'Fav';
-  rateCount: number;
+  rateCount?: number;
   recipeId: string;
+  rateText?: string;
 }
 export default function RateRecipeIcon({
   containerStyle,
@@ -25,6 +26,7 @@ export default function RateRecipeIcon({
   type,
   rateCount,
   recipeId,
+  rateText,
 }: RateRecipeIconProps) {
   const token = useSelector((state: RootState) => state.user.access_token);
   const [auxIsRated, setAuxIsRated] = useState(isRated);
@@ -63,7 +65,7 @@ export default function RateRecipeIcon({
   return (
     <TouchableOpacity onPress={handlePress} style={containerStyle}>
       <AntDesign name={getIconName()} size={20} color={getColor()} />
-      <Text>{auxRateCount}</Text>
+      <Text>{rateText ?? auxRateCount}</Text>
     </TouchableOpacity>
   );
 }
