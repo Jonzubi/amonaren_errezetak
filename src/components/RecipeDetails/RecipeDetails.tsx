@@ -21,7 +21,7 @@ export function RecipeDetails({ recipe, editable }: RecipeDetailsProps) {
   const { t } = useTranslation();
   return (
     <ScrollView style={styles.container}>
-      {editable && <EditRecipeHeader />}
+      {editable && <EditRecipeHeader recipeId={recipe.recipeId} />}
       <Image
         style={styles.recipeImage}
         source={{ uri: getImageUrlWithName(recipe.image) }}

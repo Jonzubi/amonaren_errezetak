@@ -101,6 +101,13 @@ const UserNav = () => (
         headerShown: false,
       }}
     />
+    <UserStack.Screen
+      name="EditRecipe"
+      component={AddRecipeScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
   </UserStack.Navigator>
 );
 

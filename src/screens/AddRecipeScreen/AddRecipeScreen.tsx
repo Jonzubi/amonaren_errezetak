@@ -1,5 +1,5 @@
 import { ScrollView } from 'react-native';
-import { createRef } from 'react';
+import { createRef, useEffect } from 'react';
 import styles from './AddRecipeScreen.android.styles';
 import { Input, Button } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +21,11 @@ import { useErrorModal } from '../../hooks/useErrorModal';
 import { useNavigation } from '@react-navigation/native';
 import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
 
-export default function AddRecipeScreen() {
+interface AddRecipeScreenProps {
+  recipeId?: string;
+}
+
+export default function AddRecipeScreen({ recipeId }: AddRecipeScreenProps) {
   const token = useSelector((state: RootState) => state.user.access_token);
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -31,16 +35,17 @@ export default function AddRecipeScreen() {
   const { modalText, setModalText, setShowModal, showModal } = useErrorModal(
     t('errors.generic'),
   );
-
   const [recipeImage, setRecipeImage] = useState<string>();
   const [postingRecipe, setPostingRecipe] = useState(false);
   let scrollRef = createRef<ScrollView>();
   const titleRef = useRef<any>(null);
-
   const { ingredients, addIngredient, deleteIngredient, editIngredient } =
     useIngredients();
-
   const { steps, addStep, editStep, deleteStep } = useSteps();
+
+  useEffect(() => {
+    if (!recipeId) return;
+  }, []);
 
   const onImageChosen = async (base64: string) => {
     setRecipeImage(base64);
