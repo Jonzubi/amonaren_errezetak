@@ -7,5 +7,6 @@ export default StyleSheet.create({
   },
   safeArea: {
     minHeight: '100%',
+    flex: 1,
   },
 });
