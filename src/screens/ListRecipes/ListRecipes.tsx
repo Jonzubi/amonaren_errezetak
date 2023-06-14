@@ -1,7 +1,7 @@
 import {
   View,
   Text,
-  ScrollView,
+  TouchableOpacity,
   RefreshControl,
   FlatList,
   ListRenderItem,
@@ -18,6 +18,7 @@ import { AntDesign } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import { getFromNowFromDate } from '../../utils/functions/date';
 import RateRecipeIcon from '../../components/RateRecipeIcon/RateRecipeIcon';
+import { useNavigation } from '@react-navigation/native';
 
 interface ListRecipesProps {
   type: UseRecipesType;
@@ -25,6 +26,7 @@ interface ListRecipesProps {
 export default function ListRecipes({ type }: ListRecipesProps) {
   const { recipes, loading, refreshRecipes } = useRecipes(type);
   const [refreshing, setRefreshing] = useState(false);
+  const navigation = useNavigation();
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
     <Card wrapperStyle={styles.myRecipeContainer}>
@@ -32,7 +34,15 @@ export default function ListRecipes({ type }: ListRecipesProps) {
         source={{ uri: getImageUrlWithName(item.image) }}
         style={styles.myRecipeImage}
       />
-      <View style={styles.myRecipeInfoContainer}>
+      <TouchableOpacity
+        style={styles.myRecipeInfoContainer}
+        onPress={() =>
+          navigation.navigate('Recipe', {
+            recipeId: item.recipeId,
+            editable: true,
+          })
+        }
+      >
         <Text style={styles.myRecipeTitle}>{item.title}</Text>
         <View style={styles.myRecipeSubInfoContainer}>
           <View style={styles.myRecipesRatingContainer}>
@@ -55,7 +65,7 @@ export default function ListRecipes({ type }: ListRecipesProps) {
             {getFromNowFromDate(item.creationDate)}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </Card>
   );
 

@@ -4,21 +4,24 @@ import { getImageUrlWithName } from '../../utils/functions/image';
 import { Divider, Text } from 'react-native-elements';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import { useTranslation } from 'react-i18next';
-import { AntDesign } from '@expo/vector-icons';
 import RecipeDetailsStep from '../RecipeDetailsStep/RecipeDetailsStep';
 import RecipeDetailsIngredient from '../RecipeDetailsIngredient/RecipeDetailsIngredient';
 import { getFromNowFromDate } from '../../utils/functions/date';
 import RateRecipeIcon from '../RateRecipeIcon/RateRecipeIcon';
+import { EditRecipeHeader } from '../EditRecipeHeader/EditRecipeHeader';
 
 interface RecipeDetailsProps {
   recipe: any;
+  editable?: boolean;
 }
-export function RecipeDetails({ recipe }: RecipeDetailsProps) {
+export function RecipeDetails({ recipe, editable }: RecipeDetailsProps) {
   console.log({ recipe });
   console.log({ steps: recipe.steps });
+  console.log({ editable });
   const { t } = useTranslation();
   return (
     <ScrollView style={styles.container}>
+      {editable && <EditRecipeHeader />}
       <Image
         style={styles.recipeImage}
         source={{ uri: getImageUrlWithName(recipe.image) }}

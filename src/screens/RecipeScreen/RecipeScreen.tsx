@@ -14,7 +14,7 @@ interface RecipeScreenProps {
 }
 
 export default function RecipeScreen({ route }: RecipeScreenProps) {
-  const { recipeId } = route.params;
+  const { recipeId, editable } = route.params;
   const { recipes, loading, refreshRecipes } = useRecipes(
     UseRecipesType.BYID,
     recipeId,
@@ -25,7 +25,7 @@ export default function RecipeScreen({ route }: RecipeScreenProps) {
       {loading ? (
         <ActivityIndicator size={'large'} color={colors.MAIN_GREEN} />
       ) : (
-        <RecipeDetails recipe={recipe} />
+        <RecipeDetails recipe={recipe} editable={editable} />
       )}
     </SafeAreaView>
   );
