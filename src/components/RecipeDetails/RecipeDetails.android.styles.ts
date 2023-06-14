@@ -56,4 +56,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 15,
   },
+  userBottomContaine: {
+    alignItems: 'center',
+    marginTop: 10,
+    gap: 10,
+  },
+  authorText: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
 });

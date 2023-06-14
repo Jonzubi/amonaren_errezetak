@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { AntDesign } from '@expo/vector-icons';
 import RecipeDetailsStep from '../RecipeDetailsStep/RecipeDetailsStep';
 import RecipeDetailsIngredient from '../RecipeDetailsIngredient/RecipeDetailsIngredient';
+import { getFromNowFromDate } from '../../utils/functions/date';
 
 interface RecipeDetailsProps {
   recipe: any;
@@ -60,6 +61,23 @@ export function RecipeDetails({ recipe }: RecipeDetailsProps) {
             stepImage={step.image}
           />
         ))}
+        <Divider style={styles.divider} />
+        <View style={styles.userBottomContaine}>
+          <UserAvatar
+            size={100}
+            hardCodeUrl
+            hardCodedImageUrl={recipe.createdBy.imageUrl}
+          />
+          <Text style={styles.detailUserNameText}>
+            {`${t('recipeDetail.author')}:`}
+          </Text>
+          <Text style={styles.authorText}>
+            <Text>{recipe.createdBy.nameSurname}</Text>
+          </Text>
+          <Text style={styles.detailUserNameText}>
+            {getFromNowFromDate(recipe.creationDate)}
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );
