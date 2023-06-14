@@ -15,9 +15,6 @@ interface RecipeDetailsProps {
   editable?: boolean;
 }
 export function RecipeDetails({ recipe, editable }: RecipeDetailsProps) {
-  console.log({ recipe });
-  console.log({ steps: recipe.steps });
-  console.log({ editable });
   const { t } = useTranslation();
   return (
     <ScrollView style={styles.container}>
