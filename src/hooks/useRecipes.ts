@@ -20,7 +20,7 @@ export enum UseRecipesType {
 
 export function useRecipes(type: UseRecipesType, recipeId?: string): any {
   if (type === UseRecipesType.BYID && recipeId === undefined) {
-    throw new Error('recipeId is required when type is BYID');
+    return {};
   }
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);
