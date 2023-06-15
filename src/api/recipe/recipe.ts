@@ -6,6 +6,9 @@ import axios from '../axios';
 export const createRecipe = (recipe: Recipe, options: AxiosRequestConfig) =>
   axios.post(`${API_URL}/recipe`, recipe, options);
 
+export const editRecipe = (recipe: Recipe, options: AxiosRequestConfig) =>
+  axios.patch(`${API_URL}/recipe`, recipe, options);
+
 export const likeRecipe = (recipeId: string, options: AxiosRequestConfig) =>
   axios.post(`${API_URL}/recipe/like`, { recipeId }, options);
 
