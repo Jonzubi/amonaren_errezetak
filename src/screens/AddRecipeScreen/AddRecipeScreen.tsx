@@ -11,7 +11,7 @@ import { Divider, Text } from 'react-native-elements';
 import Ingredients from '../../components/Ingredients/Ingredients';
 import Steps from '../../components/Steps/Steps';
 import colors from '../../constants/colors';
-import { createRecipe } from '../../api/recipe/recipe';
+import { createRecipe, editRecipe } from '../../api/recipe/recipe';
 import { useIngredients } from '../../hooks/useIngredients';
 import { useSteps } from '../../hooks/useSteps';
 import { useSelector } from 'react-redux';
@@ -42,9 +42,14 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
   const [postingRecipe, setPostingRecipe] = useState(false);
   let scrollRef = createRef<ScrollView>();
   const titleRef = useRef<any>(null);
-  const { ingredients, addIngredient, deleteIngredient, editIngredient } =
-    useIngredients();
-  const { steps, addStep, editStep, deleteStep } = useSteps();
+  const {
+    ingredients,
+    addIngredient,
+    deleteIngredient,
+    editIngredient,
+    setIngredients,
+  } = useIngredients();
+  const { steps, addStep, editStep, deleteStep, setSteps } = useSteps();
   const { recipes, loading, refreshRecipes } = useRecipes(
     UseRecipesType.BYID,
     recipeId,
@@ -56,6 +61,10 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
     const recipe = recipes[0];
     console.log({ recipe });
     setEditRecipeImage(recipe.image);
+    setTitle(recipe.title);
+    setDescription(recipe.description);
+    setIngredients(recipe.ingredients);
+    setSteps(recipe.steps);
   }, [recipes]);
 
   const onImageChosen = async (base64: string) => {
@@ -80,7 +89,8 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
       return;
     }
     try {
-      await createRecipe(
+      const postFunction = !recipeId ? createRecipe : editRecipe;
+      await postFunction(
         {
           title,
           description,
@@ -117,6 +127,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
           style={styles.titleInput}
           placeholder={t('addRecipeScreen.inputTitle')}
           onChangeText={(value) => setTitle(value)}
+          value={title}
           ref={titleRef}
         />
         <Divider style={styles.verticalDivider} />
@@ -126,6 +137,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
         <Input
           placeholder={t('addRecipeScreen.inputDescription')}
           onChangeText={(value) => setDescription(value)}
+          value={description}
           multiline
           inputStyle={{
             height: 150,
@@ -146,7 +158,11 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
           deleteStep={deleteStep}
         />
         <Button
-          title={t('addRecipeScreen.postRecipe')}
+          title={
+            !recipeId
+              ? t('addRecipeScreen.postRecipe')
+              : t('addRecipeScreen.editRecipe')
+          }
           color={colors.MAIN_GREEN}
           buttonStyle={styles.postButton}
           onPress={postRecipe}

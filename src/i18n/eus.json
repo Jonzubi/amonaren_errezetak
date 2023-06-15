@@ -34,7 +34,8 @@
     "steps": "Pausoak",
     "step": "Pausoa",
     "add_step_placeholder": "Ura berotu",
-    "postRecipe": "Igo errezeta"
+    "postRecipe": "Igo errezeta",
+    "editRecipe": "Gorde aldaketa"
   },
   "userScreen": {
     "favRecipes": "Nire errezeta gogokoenak",
