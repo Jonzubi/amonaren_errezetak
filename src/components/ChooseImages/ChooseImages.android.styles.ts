@@ -11,8 +11,10 @@ export default StyleSheet.create({
   },
   containerWithImage: {},
   image: {
+    height: 500,
     maxHeight: 500,
     maxWidth: 500,
     borderRadius: 25,
+    resizeMode: 'center',
   },
 });

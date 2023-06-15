@@ -20,12 +20,14 @@ import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
 import { useNavigation } from '@react-navigation/native';
 import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
+import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 
 interface AddRecipeScreenProps {
-  recipeId?: string;
+  route?: any;
 }
 
-export default function AddRecipeScreen({ recipeId }: AddRecipeScreenProps) {
+export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
+  const recipeId = route?.params?.recipeId;
   const token = useSelector((state: RootState) => state.user.access_token);
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -36,16 +38,25 @@ export default function AddRecipeScreen({ recipeId }: AddRecipeScreenProps) {
     t('errors.generic'),
   );
   const [recipeImage, setRecipeImage] = useState<string>();
+  const [editRecipeImage, setEditRecipeImage] = useState<string>();
   const [postingRecipe, setPostingRecipe] = useState(false);
   let scrollRef = createRef<ScrollView>();
   const titleRef = useRef<any>(null);
   const { ingredients, addIngredient, deleteIngredient, editIngredient } =
     useIngredients();
   const { steps, addStep, editStep, deleteStep } = useSteps();
+  const { recipes, loading, refreshRecipes } = useRecipes(
+    UseRecipesType.BYID,
+    recipeId,
+  );
 
   useEffect(() => {
-    if (!recipeId) return;
-  }, []);
+    if (!recipes) return;
+    if (recipes?.length === 0) return;
+    const recipe = recipes[0];
+    console.log({ recipe });
+    setEditRecipeImage(recipe.image);
+  }, [recipes]);
 
   const onImageChosen = async (base64: string) => {
     setRecipeImage(base64);
@@ -92,6 +103,7 @@ export default function AddRecipeScreen({ recipeId }: AddRecipeScreenProps) {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView ref={scrollRef} style={styles.container}>
         <ChooseImages
+          initialImageUrl={editRecipeImage}
           containerStyle={styles.addImage}
           containerStyleWithImage={styles.addImageWithImage}
           onImageChosen={onImageChosen}

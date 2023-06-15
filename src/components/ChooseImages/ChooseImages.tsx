@@ -11,15 +11,23 @@ import { FontAwesome } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { ImagePickerOptions, MediaTypeOptions } from 'expo-image-picker';
 import { convertToBase64 } from '../../utils/functions/file';
+import { getImageUrlWithName } from '../../utils/functions/image';
 
 export interface ChooseImagesProps {
   onImageChosen(base64: string): void;
   containerStyle?: StyleProp<ViewStyle>;
   containerStyleWithImage?: StyleProp<ViewStyle>;
   imageStyleWithImage?: StyleProp<ImageStyle>;
+  initialImageUrl?: string;
 }
 
-export default function ChooseImages(props: ChooseImagesProps) {
+export default function ChooseImages({
+  containerStyle,
+  containerStyleWithImage,
+  initialImageUrl,
+  imageStyleWithImage,
+  ...props
+}: ChooseImagesProps) {
   const [image, setImage] = useState<ImagePicker.ImagePickerAsset>();
   const { onImageChosen } = props;
   const handleChooseImage = async () => {
@@ -41,28 +49,31 @@ export default function ChooseImages(props: ChooseImagesProps) {
     onImageChosen(uri);
     setImage(source[0]);
   };
+  console.log({ initialImageUrl });
+
+  const getUri = () => {
+    if (image?.uri) return image.uri;
+    if (initialImageUrl) return getImageUrlWithName(initialImageUrl);
+
+    return image?.uri;
+  };
   return (
     <TouchableOpacity
       onPress={handleChooseImage}
       style={[
-        !image && styles.addButtonContainer,
-        !image && props.containerStyle,
+        !initialImageUrl && !image && styles.addButtonContainer,
+        !initialImageUrl && !image && containerStyle,
         image && styles.containerWithImage,
-        image && props.containerStyleWithImage,
+        image && containerStyleWithImage,
       ]}
     >
-      {!image && <FontAwesome name="photo" size={50} />}
-      {image && (
+      {!initialImageUrl && !image && <FontAwesome name="photo" size={50} />}
+      {(initialImageUrl || image) && (
         <Image
-          source={{ uri: image.uri }}
-          style={[
-            {
-              height: image.height,
-              width: image.width,
-              ...styles.image,
-            },
-            props.imageStyleWithImage,
-          ]}
+          source={{
+            uri: getUri(),
+          }}
+          style={[styles.image, imageStyleWithImage]}
         />
       )}
     </TouchableOpacity>

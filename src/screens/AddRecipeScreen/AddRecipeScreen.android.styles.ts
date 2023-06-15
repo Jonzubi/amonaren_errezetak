@@ -15,12 +15,7 @@ export default StyleSheet.create({
     padding: 15,
     borderRadius: 20,
   },
-  addImageWithImage: {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center',
-    maxHeight: 500,
-  },
+  addImageWithImage: {},
   verticalDivider: {
     marginVertical: 50,
   },
