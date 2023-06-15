@@ -21,5 +21,11 @@ export function useIngredients() {
     setIngredients(newIgr);
   };
 
-  return { ingredients, addIngredient, deleteIngredient, editIngredient };
+  return {
+    ingredients,
+    addIngredient,
+    deleteIngredient,
+    editIngredient,
+    setIngredients,
+  };
 }

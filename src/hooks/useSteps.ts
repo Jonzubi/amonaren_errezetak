@@ -21,5 +21,5 @@ export function useSteps() {
     setSteps(newSteps);
   };
 
-  return { steps, addStep, deleteStep, editStep };
+  return { steps, addStep, deleteStep, editStep, setSteps };
 }
