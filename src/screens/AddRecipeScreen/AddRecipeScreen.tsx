@@ -21,7 +21,6 @@ import { useErrorModal } from '../../hooks/useErrorModal';
 import { useNavigation } from '@react-navigation/native';
 import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
-import { getImageUrlWithName } from '../../utils/functions/image';
 
 interface AddRecipeScreenProps {
   route?: any;
@@ -114,7 +113,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView ref={scrollRef} style={styles.container}>
         <ChooseImages
-          initialImageUrl={getImageUrlWithName(editRecipeImage)}
+          initialImageUrl={editRecipeImage}
           containerStyle={styles.addImage}
           containerStyleWithImage={styles.addImageWithImage}
           onImageChosen={onImageChosen}
