@@ -11,7 +11,6 @@ import { FontAwesome } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { ImagePickerOptions, MediaTypeOptions } from 'expo-image-picker';
 import { convertToBase64 } from '../../utils/functions/file';
-import { getImageUrlWithName } from '../../utils/functions/image';
 
 export interface ChooseImagesProps {
   onImageChosen(base64: string): void;
@@ -53,7 +52,7 @@ export default function ChooseImages({
 
   const getUri = () => {
     if (image?.uri) return image.uri;
-    if (initialImageUrl) return getImageUrlWithName(initialImageUrl);
+    if (initialImageUrl) return initialImageUrl;
 
     return image?.uri;
   };
