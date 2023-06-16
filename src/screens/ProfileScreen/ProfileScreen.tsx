@@ -11,10 +11,12 @@ import { useState } from 'react';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import { patchUsername } from '../../api/user/user';
 import { setUserData, setUserName } from '../../redux/user/userSlice';
+import colors from '../../constants/colors';
 
 export default function ProfileScreen() {
   const username = useSelector((state: RootState) => state.user.username);
   const nameSurname = useSelector((state: RootState) => state.user.nameSurname);
+  const email = useSelector((state: RootState) => state.user.email);
   const access_token = useSelector(
     (state: RootState) => state.user.access_token,
   );
@@ -53,6 +55,11 @@ export default function ProfileScreen() {
       </View>
       <Divider style={{ marginVertical: 15 }} />
       <View style={{ flex: 1 }}>
+        <Input
+          value={email}
+          editable={false}
+          style={{ color: colors.LIGHTGREY }}
+        />
         <Input
           value={newNameSurname}
           placeholder={t('forms.nameSurname_placeholder')}
