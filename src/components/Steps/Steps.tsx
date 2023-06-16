@@ -1,4 +1,3 @@
-import { ImagePickerAsset } from 'expo-image-picker';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { Text, Input } from 'react-native-elements';
@@ -41,6 +40,7 @@ export default function Steps({
             value={description}
           />
           <ChooseImages
+            initialImageUrl={step.image}
             onImageChosen={(image) => {
               let newStep = steps[index];
               newStep.image = image;

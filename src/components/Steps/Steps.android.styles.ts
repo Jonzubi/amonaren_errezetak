@@ -15,6 +15,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
   },
   stepImage: {
+    height: 100,
     maxHeight: 100,
     maxWidth: 100,
   },
