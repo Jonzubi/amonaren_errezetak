@@ -91,6 +91,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
       const postFunction = !recipeId ? createRecipe : editRecipe;
       await postFunction(
         {
+          recipeId,
           title,
           description,
           image: recipeImage,
