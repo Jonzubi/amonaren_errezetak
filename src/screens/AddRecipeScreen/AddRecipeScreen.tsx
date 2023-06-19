@@ -59,7 +59,6 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
     if (!recipes) return;
     if (recipes?.length === 0) return;
     const recipe = recipes[0];
-    console.log({ recipe });
     setEditRecipeImage(recipe.image);
     setTitle(recipe.title);
     setDescription(recipe.description);

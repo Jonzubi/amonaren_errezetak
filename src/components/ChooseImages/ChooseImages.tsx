@@ -49,7 +49,6 @@ export default function ChooseImages({
     onImageChosen(uri);
     setImage(source[0]);
   };
-  console.log({ initialImageUrl });
 
   const getUri = () => {
     if (image?.uri) return image.uri;
