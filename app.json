@@ -32,6 +32,13 @@
     },
     "scheme": "amonaren_errezetak",
     "expo": {
+      "android": {
+        "config": {
+          "googleSignIn": {
+            "certificateHash": "8E:C4:89:87:1E:28:4F:2E:83:2E:FD:FD:DE:51:B5:C6:DE:18:06:CE"
+          }
+        }
+      },
       "plugins": [
         "expo-image-picker",
         {
