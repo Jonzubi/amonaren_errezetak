@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -35,7 +37,7 @@
       "android": {
         "config": {
           "googleSignIn": {
-            "certificateHash": "8E:C4:89:87:1E:28:4F:2E:83:2E:FD:FD:DE:51:B5:C6:DE:18:06:CE"
+            "certificateHash": "53:4A:8A:E6:B4:98:DD:11:16:C1:AC:92:E7:FC:C2:9B:91:07:E7:36"
           }
         }
       },
