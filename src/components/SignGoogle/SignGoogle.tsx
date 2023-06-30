@@ -13,7 +13,6 @@ import { CommonActions, useNavigation } from '@react-navigation/native';
 import { loginGoogle } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../redux/user/userSlice';
-import { getRedirectUri } from '../../utils/functions/jest';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 WebBrowser.maybeCompleteAuthSession();
