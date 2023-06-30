@@ -25,9 +25,7 @@ export default function SignGoogle() {
   const [token, setToken] = useState('');
 
   const [request, response, promptAsync] = Google.useAuthRequest({
-    androidClientId: GOOGLE_ANDROID_CLIENT_ID,
-    iosClientId: GOOGLE_ANDROID_CLIENT_ID,
-    expoClientId: GOOGLE_WEB_CLIENT_ID,
+    clientId: GOOGLE_WEB_CLIENT_ID,
   });
 
   useEffect(() => {
