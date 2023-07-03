@@ -1,12 +1,10 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
-import * as AuthSession from 'expo-auth-session';
 import { Button } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import {
-  APP_PACKAGE_NAME,
   GOOGLE_ANDROID_CLIENT_ID,
   GOOGLE_EXPO_CLIENT_ID,
   GOOGLE_WEB_CLIENT_ID,
@@ -17,7 +15,6 @@ import { useDispatch } from 'react-redux';
 import { setUserData } from '../../redux/user/userSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const redirectUri = AuthSession.makeRedirectUri({ native: APP_PACKAGE_NAME });
 WebBrowser.maybeCompleteAuthSession();
 
 export default function SignGoogle() {
@@ -29,8 +26,6 @@ export default function SignGoogle() {
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     clientId: GOOGLE_WEB_CLIENT_ID,
-    androidClientId: GOOGLE_ANDROID_CLIENT_ID,
-    redirectUri,
   });
 
   useEffect(() => {
