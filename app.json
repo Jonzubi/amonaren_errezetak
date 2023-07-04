@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.amonaren_errezetak.amonaren_errezetak"
     },
     "android": {
       "package": "com.amonaren_errezetak.amonaren_errezetak",
