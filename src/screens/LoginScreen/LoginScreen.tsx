@@ -104,7 +104,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         handlePress={handleLogin}
       />
       <Divider style={styles.divider} />
-      <SignGoogle />
+      {/* <SignGoogle /> */}
       <View style={styles.registerView}>
         <Text>{t('loginScreen.you_new')}</Text>
         <Text onPress={onSignUp} style={styles.registerText}>

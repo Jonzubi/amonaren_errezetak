@@ -102,7 +102,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         />
       )}
       <Divider style={styles.divider} />
-      <SignGoogle />
+      {/* <SignGoogle /> */}
       <View style={styles.loginView}>
         <Text>{t('registerScreen.got_account')}</Text>
         <Text onPress={onGoLogin} style={styles.registerText}>
