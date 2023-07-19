@@ -32,7 +32,7 @@ export default function SplashScreen({ navigation }: { navigation: any }) {
             index: 1,
             routes: [
               {
-                name: 'Home',
+                name: 'Main',
               },
             ],
           }),

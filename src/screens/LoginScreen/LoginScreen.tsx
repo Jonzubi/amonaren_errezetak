@@ -45,7 +45,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   };
 
   const onSignUp = () => {
-    navigation.navigate('SignUp');
+    navigation.navigate('Auth_SignUp');
   };
 
   const handleLogin = async () => {
@@ -65,7 +65,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       );
       AsyncStorage.setItem('access_token', access_token);
       setIsLoading(false);
-      navigation.navigate('Home');
+      navigation.navigate('Main');
     } catch (error) {
       if ((error as AxiosError)?.response?.status === 401)
         setModalText(t('loginScreen.incorrectLogin'));

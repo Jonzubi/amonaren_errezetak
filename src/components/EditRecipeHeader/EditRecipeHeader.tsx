@@ -16,7 +16,7 @@ export function EditRecipeHeader({ recipeId }: EditRecipeHeaderProps) {
       <TouchableOpacity
         style={styles.buttonContainer}
         onPress={() => {
-          navigation.navigate('EditRecipe', {
+          navigation.navigate('Main_User_EditRecipe', {
             recipeId,
           });
         }}

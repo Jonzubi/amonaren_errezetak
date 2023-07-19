@@ -3,13 +3,13 @@ export type SplashStackParamList = {
 };
 
 export type AuthStackParamList = {
-  Login: {} | undefined;
-  SignUp: {} | undefined;
+  Auth_Login: {} | undefined;
+  Auth_SignUp: {} | undefined;
   Auth: {} | undefined;
 };
 
 export type MainStackParamList = {
-  Home: {} | undefined;
-  AddRecipe: {} | undefined;
-  User: {} | undefined;
+  Main_Home: {} | undefined;
+  Main_AddRecipe: {} | undefined;
+  Main_User: {} | undefined;
 };

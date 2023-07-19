@@ -18,7 +18,7 @@ import { AntDesign } from '@expo/vector-icons';
 import colors from '../../constants/colors';
 import { getFromNowFromDate } from '../../utils/functions/date';
 import RateRecipeIcon from '../../components/RateRecipeIcon/RateRecipeIcon';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 interface ListRecipesProps {
   type: UseRecipesType;
@@ -27,6 +27,7 @@ export default function ListRecipes({ type }: ListRecipesProps) {
   const { recipes, loading, refreshRecipes } = useRecipes(type);
   const [refreshing, setRefreshing] = useState(false);
   const navigation = useNavigation();
+  const route = useRoute();
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
     <Card wrapperStyle={styles.myRecipeContainer}>
@@ -36,12 +37,13 @@ export default function ListRecipes({ type }: ListRecipesProps) {
       />
       <TouchableOpacity
         style={styles.myRecipeInfoContainer}
-        onPress={() =>
-          navigation.navigate('Recipe', {
+        onPress={() => {
+          console.log(route.name);
+          navigation.navigate('Main_User_Recipe', {
             recipeId: item.recipeId,
-            editable: true,
-          })
-        }
+            editable: route.name === 'Main_User_MyRecipes',
+          });
+        }}
       >
         <Text style={styles.myRecipeTitle}>{item.title}</Text>
         <View style={styles.myRecipeSubInfoContainer}>

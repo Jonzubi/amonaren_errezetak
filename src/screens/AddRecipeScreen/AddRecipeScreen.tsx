@@ -100,7 +100,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
         },
         getHeaderWithAccessToken(token),
       );
-      navigation.navigate('Home');
+      navigation.navigate('Main_Home');
     } catch (error) {
       setModalText(t('errors.generic'));
       setShowModal(true);

@@ -53,12 +53,12 @@ const SplashStack = createStackNavigator<SplashStackParamList>();
 const HomeNav = () => (
   <HomeStack.Navigator>
     <HomeStack.Screen
-      name="Home"
+      name="Main_Home_Home"
       component={HomeScreen}
       options={{ headerShown: false }}
     />
     <HomeStack.Screen
-      name="Recipe"
+      name="Main_Home_Recipe"
       component={RecipeScreen}
       options={{ headerShown: false }}
     />
@@ -67,42 +67,42 @@ const HomeNav = () => (
 const UserNav = () => (
   <UserStack.Navigator>
     <UserStack.Screen
-      name="User"
+      name="Main_User_User"
       component={UserScreen}
       options={{
         headerShown: false,
       }}
     />
     <UserStack.Screen
-      name="Profile"
+      name="Main_User_Profile"
       component={ProfileScreen}
       options={{
         headerShown: false,
       }}
     />
     <UserStack.Screen
-      name="MyRecipes"
+      name="Main_User_MyRecipes"
       component={() => <ListRecipes type={UseRecipesType.MINE} />}
       options={{
         headerShown: false,
       }}
     />
     <UserStack.Screen
-      name="FavRecipes"
+      name="Main_User_FavRecipes"
       component={() => <ListRecipes type={UseRecipesType.FAVS} />}
       options={{
         headerShown: false,
       }}
     />
     <UserStack.Screen
-      name="Recipe"
+      name="Main_User_Recipe"
       component={RecipeScreen}
       options={{
         headerShown: false,
       }}
     />
     <UserStack.Screen
-      name="EditRecipe"
+      name="Main_User_EditRecipe"
       component={AddRecipeScreen}
       options={{
         headerShown: false,
@@ -114,7 +114,7 @@ const UserNav = () => (
 const MainNav = () => (
   <MainStack.Navigator>
     <MainStack.Screen
-      name="Home"
+      name="Main_Home"
       component={HomeNav}
       options={{
         tabBarLabel: () => null,
@@ -123,7 +123,7 @@ const MainNav = () => (
       }}
     />
     <MainStack.Screen
-      name="AddRecipe"
+      name="Main_AddRecipe"
       component={AddRecipeScreen}
       options={{
         tabBarLabel: () => null,
@@ -132,7 +132,7 @@ const MainNav = () => (
       }}
     />
     <MainStack.Screen
-      name="User"
+      name="Main_User"
       component={UserNav}
       options={{
         tabBarLabel: () => null,
@@ -146,14 +146,14 @@ const MainNav = () => (
 const AuthNav = () => (
   <AuthStack.Navigator>
     <AuthStack.Screen
-      name="Login"
+      name="Auth_Login"
       component={LoginScreen}
       options={{
         headerShown: false,
       }}
     />
     <AuthStack.Screen
-      name="SignUp"
+      name="Auth_SignUp"
       component={RegisterScreen}
       options={{
         headerShown: false,
@@ -172,7 +172,7 @@ export default function Router() {
           options={{ headerShown: false }}
         />
         <MainStack.Screen
-          name="Home"
+          name="Main"
           component={MainNav}
           options={{ headerShown: false }}
         />

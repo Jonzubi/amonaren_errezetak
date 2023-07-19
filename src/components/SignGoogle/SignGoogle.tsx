@@ -60,7 +60,7 @@ export default function SignGoogle() {
         index: 1,
         routes: [
           {
-            name: 'Home',
+            name: 'Main',
           },
         ],
       }),

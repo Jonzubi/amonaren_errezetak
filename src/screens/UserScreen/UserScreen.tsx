@@ -19,7 +19,7 @@ export default function UserScreen() {
   const nameSurname = useSelector((state: RootState) => state.user.nameSurname);
 
   const handleGoProfile = () => {
-    navigation.navigate('Profile');
+    navigation.navigate('Main_User_Profile');
   };
 
   return (
@@ -37,14 +37,20 @@ export default function UserScreen() {
         </TouchableOpacity>
         <LogOut />
       </View>
-      <ListItem bottomDivider onPress={() => navigation.navigate('MyRecipes')}>
+      <ListItem
+        bottomDivider
+        onPress={() => navigation.navigate('Main_User_MyRecipes')}
+      >
         <MaterialCommunityIcons name="chef-hat" size={30} />
         <ListItem.Content>
           <ListItem.Title>{t('userScreen.myRecipes')}</ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>
-      <ListItem bottomDivider onPress={() => navigation.navigate('FavRecipes')}>
+      <ListItem
+        bottomDivider
+        onPress={() => navigation.navigate('Main_User_FavRecipes')}
+      >
         <AntDesign name="star" size={30} />
         <ListItem.Content>
           <ListItem.Title>{t('userScreen.favRecipes')}</ListItem.Title>

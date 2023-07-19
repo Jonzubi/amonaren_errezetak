@@ -41,7 +41,7 @@ export default function Recipe({
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate('Recipe', {
+        navigation.navigate('Main_Home_Recipe', {
           recipeId,
         })
       }

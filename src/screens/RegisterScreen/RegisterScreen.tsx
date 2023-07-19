@@ -19,7 +19,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const onGoLogin = () => {
-    navigation.navigate('Login');
+    navigation.navigate('Auth_Login');
   };
 
   const [email, setEmail] = useState('');
@@ -73,7 +73,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
       );
       AsyncStorage.setItem('access_token', access_token);
       setIsLoading(false);
-      navigation.navigate('Home');
+      navigation.navigate('Main');
     } catch (error) {
       setShowModal(true);
     } finally {
