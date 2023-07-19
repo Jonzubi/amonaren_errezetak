@@ -38,7 +38,6 @@ export default function ListRecipes({ type }: ListRecipesProps) {
       <TouchableOpacity
         style={styles.myRecipeInfoContainer}
         onPress={() => {
-          console.log(route.name);
           navigation.navigate('Main_User_Recipe', {
             recipeId: item.recipeId,
             editable: route.name === 'Main_User_MyRecipes',
