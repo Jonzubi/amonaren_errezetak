@@ -1,6 +1,6 @@
 {
   "name": "amonaren_errezetak",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development expo start",
     "start:prod": "cross-env NODE_ENV=production expo start",
