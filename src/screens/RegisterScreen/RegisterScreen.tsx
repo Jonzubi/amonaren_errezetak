@@ -9,9 +9,15 @@ import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions/email';
 import { createUser } from '../../api/user/user';
+import CustomToast from '../../components/CustomToast/CustomToast';
+import { useErrorModal } from '../../hooks/useErrorModal';
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../redux/user/userSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function RegisterScreen({ navigation }: { navigation: any }) {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const onGoLogin = () => {
     navigation.navigate('Login');
   };
@@ -22,6 +28,9 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const { modalText, setModalText, setShowModal, showModal } = useErrorModal(
+    t('errors.generic'),
+  );
 
   const emailRef = useRef<any>(null);
   const passwordRef = useRef<any>(null);
@@ -49,8 +58,26 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
   const handleRegister = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
-    const data = await createUser({ email, password });
-    setIsLoading(false);
+    try {
+      const data = await createUser({ email, password });
+      const { access_token, username, nameSurname, imageUrl } = data.data;
+      dispatch(
+        setUserData({
+          access_token,
+          username,
+          nameSurname,
+          imageUrl,
+          email: data.data.email,
+        }),
+      );
+      AsyncStorage.setItem('access_token', access_token);
+      setIsLoading(false);
+      navigation.navigate('Home');
+    } catch (error) {
+      setShowModal(true);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -109,6 +136,11 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
           {t('registerScreen.go_login')}
         </Text>
       </View>
+      <CustomToast
+        closeModal={() => setShowModal(false)}
+        visible={showModal}
+        text={modalText}
+      />
     </View>
   );
 }
