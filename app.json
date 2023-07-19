@@ -24,6 +24,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "config": {
+        "googleSignIn": {
+          "certificateHash": "6C:A1:3C:BD:BA:2A:13:7E:66:7D:9A:97:13:FB:B5:C9:25:45:93:65"
+        }
       }
     },
     "web": {
@@ -34,29 +39,20 @@
         "projectId": "e185a627-c53e-48ac-a1fa-deb0f8266047"
       }
     },
-    "scheme": "amonaren_errezetak",
-    "expo": {
-      "android": {
-        "config": {
-          "googleSignIn": {
-            "certificateHash": "6C:A1:3C:BD:BA:2A:13:7E:66:7D:9A:97:13:FB:B5:C9:25:45:93:65"
-          }
+    "scheme": ["amonaren_errezetak"],
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
-      },
-      "plugins": [
-        [
-          "expo-image-picker",
-          {
-            "photosPermission": "The app accesses your photos to let you share them with your friends."
-          }
-        ],
-        [
-          "expo-camera",
-          {
-            "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-          }
-        ]
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
       ]
-    }
+    ]
   }
 }
