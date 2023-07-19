@@ -25,6 +25,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [nameSurname, setNameSurname] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -59,13 +60,13 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
     if (!validateForm()) return;
     setIsLoading(true);
     try {
-      const data = await createUser({ email, password });
-      const { access_token, username, nameSurname, imageUrl } = data.data;
+      const data = await createUser({ email, password, nameSurname });
+      const { access_token, username, imageUrl } = data.data;
       dispatch(
         setUserData({
           access_token,
           username,
-          nameSurname,
+          nameSurname: data.data.nameSurname,
           imageUrl,
           email: data.data.email,
         }),
@@ -112,6 +113,13 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         onChangeText={(value) => setConfirmPassword(value)}
         ref={confirmPasswordRef}
         errorMessage={errorPassword}
+      />
+      <Input
+        placeholder={t('forms.enter_nameSurname')}
+        leftIcon={
+          <AntDesign name={'user'} size={24} style={{ marginRight: 5 }} />
+        }
+        onChangeText={(value) => setNameSurname(value)}
       />
       {isLoading && (
         <ActivityIndicator
