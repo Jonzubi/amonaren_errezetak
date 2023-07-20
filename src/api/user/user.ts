@@ -1,4 +1,5 @@
 import { API_URL } from '../../constants/constants';
+import { PatchUser } from '../../interfaces/api/user/PatchUser';
 import { User } from '../../types/User';
 import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
 import axios from '../axios';
@@ -10,15 +11,16 @@ export const loginGoogle = ({ token }: { token: string }) =>
 export const getProfile = (token: string) =>
   axios.get(`${API_URL}/auth/profile`, getHeaderWithAccessToken(token));
 
-export const patchUsername = (
+export const patchUser = (
   token: string,
-  { username, nameSurname }: { username: string; nameSurname: string },
+  { username, nameSurname, newImage }: PatchUser,
 ) =>
   axios.patch(
-    `${API_URL}/user/username`,
+    `${API_URL}/user`,
     {
       username,
       nameSurname,
+      newImage,
     },
     {
       headers: {
