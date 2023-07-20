@@ -1,22 +1,26 @@
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import styles from './ProfileScreen.android.styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import UserAvatar from '../../components/UserAvatar/UserAvatar';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { Divider, Text } from 'react-native-elements';
+import { Avatar, Divider, Text } from 'react-native-elements';
 import { Input } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
-import { patchUsername } from '../../api/user/user';
-import { setUserData, setUserName } from '../../redux/user/userSlice';
+import { patchUser } from '../../api/user/user';
+import { ProfileData, setUserProfile } from '../../redux/user/userSlice';
 import colors from '../../constants/colors';
+import ChooseImageRefactor from '../../components/ChooseImageRefactor/ChooseImageRefactor';
+import { PatchUser } from '../../interfaces/api/user/PatchUser';
+import { isValidBase64 } from '../../utils/functions/image';
 
 export default function ProfileScreen() {
   const username = useSelector((state: RootState) => state.user.username);
   const nameSurname = useSelector((state: RootState) => state.user.nameSurname);
   const email = useSelector((state: RootState) => state.user.email);
+  const imageUrl = useSelector((state: RootState) => state.user.imageUrl);
   const access_token = useSelector(
     (state: RootState) => state.user.access_token,
   );
@@ -25,6 +29,7 @@ export default function ProfileScreen() {
 
   const [newUsername, setNewUsername] = useState(username || '');
   const [newNameSurname, setNewNameSurname] = useState(nameSurname || '');
+  const [newImage, setNewImage] = useState(imageUrl || '');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSave = async () => {
@@ -32,13 +37,21 @@ export default function ProfileScreen() {
 
     setIsLoading(true);
     try {
-      await patchUsername(access_token, {
+      const patchUserData: PatchUser = {
         username: newUsername,
         nameSurname: newNameSurname,
-      });
-      dispatch(
-        setUserData({ username: newUsername, nameSurname: newNameSurname }),
-      );
+      };
+      const hasNewImage = newImage !== '' && isValidBase64(newImage);
+      if (hasNewImage) patchUserData.newImage = newImage;
+
+      const newUserData = await patchUser(access_token, patchUserData);
+      const { username, nameSurname, imageUrl } = newUserData.data;
+      const profileData: ProfileData = {
+        nameSurname,
+        username,
+        imageUrl,
+      };
+      dispatch(setUserProfile(profileData));
     } catch (error) {
     } finally {
       setIsLoading(false);
@@ -47,7 +60,13 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.userMainContainer}>
-        <UserAvatar size={100} />
+        <ChooseImageRefactor onImageChosen={(base64) => setNewImage(base64)}>
+          <UserAvatar
+            size={100}
+            hardCodeUrl={newImage !== ''}
+            hardCodedImageUrl={newImage}
+          />
+        </ChooseImageRefactor>
         <View>
           <Text style={styles.nameSurnameText}>{nameSurname}</Text>
           <Text style={styles.usernameText}>{username}</Text>
