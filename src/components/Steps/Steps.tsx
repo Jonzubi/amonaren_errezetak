@@ -7,14 +7,15 @@ import DeleteStepIngredient from '../DeleteStepIngredient/DeleteStepIngredient';
 import AddStepIngredient from '../AddStepIngredient/AddStepIngredient';
 
 export interface Step {
+  id: string;
   description: string;
   image?: string;
 }
 export interface StepsProps {
   steps: Step[];
   addStep(): void;
-  editStep(index: number, newStep: Step): void;
-  deleteStep(index: number): void;
+  editStep(id: string, newStep: Step): void;
+  deleteStep(id: string): void;
 }
 
 export default function Steps({
@@ -25,16 +26,16 @@ export default function Steps({
 }: StepsProps) {
   const { t } = useTranslation();
 
-  const renderStep = (step: Step, index: number) => {
-    const { description } = step;
+  const renderStep = (step: Step) => {
+    const { description, id } = step;
     return (
-      <View style={styles.stepContainer} key={`step${index}`}>
+      <View style={styles.stepContainer} key={id}>
         <View style={styles.stepInputView}>
           <Input
             onChangeText={(newValue) => {
-              let newStep = steps[index];
-              newStep.description = newValue;
-              editStep(index, newStep);
+              let newStep = steps.find((s) => s.id === id);
+              newStep!.description = newValue;
+              editStep(id, newStep);
             }}
             placeholder={t('addRecipeScreen.add_step_placeholder')}
             value={description}
@@ -42,21 +43,21 @@ export default function Steps({
           <ChooseImages
             initialImageUrl={step.image}
             onImageChosen={(image) => {
-              let newStep = steps[index];
-              newStep.image = image;
-              editStep(index, newStep);
+              let newStep = steps.find((s) => s.id === id);
+              newStep!.image = image;
+              editStep(id, newStep);
             }}
             imageStyleWithImage={styles.stepImage}
           />
         </View>
-        <DeleteStepIngredient onClick={() => deleteStep(index)} />
+        <DeleteStepIngredient onClick={() => deleteStep(id)} />
       </View>
     );
   };
   return (
     <View style={styles.container}>
       <Text h4>{t('addRecipeScreen.steps')}</Text>
-      {steps.map((step, index) => renderStep(step, index))}
+      {steps.map((step) => renderStep(step))}
       <AddStepIngredient
         onClick={addStep}
         buttonText={t('addRecipeScreen.step')}
