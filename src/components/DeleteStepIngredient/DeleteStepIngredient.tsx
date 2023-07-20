@@ -10,7 +10,7 @@ export default function DeleteStepIngredient(props: DeleteStepIngredientProps) {
   const { onClick } = props;
   return (
     <TouchableOpacity style={styles.container} onPress={onClick}>
-      <MaterialIcons name="delete" color={colors.RED} size={40} />
+      <MaterialIcons name="delete-outline" size={30} />
     </TouchableOpacity>
   );
 }
