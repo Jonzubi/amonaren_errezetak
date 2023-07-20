@@ -7,10 +7,6 @@ export default StyleSheet.create({
   },
   addImage: {
     width: '100%',
-    backgroundColor: colors.LIGHTGREY,
-    borderWidth: 2,
-    borderStyle: 'dotted',
-    borderColor: colors.DARKGREY,
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
