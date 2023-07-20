@@ -119,7 +119,9 @@ const MainNav = () => (
       options={{
         tabBarLabel: () => null,
         headerShown: false,
-        tabBarIcon: () => <AntDesign name="home" size={25} />,
+        tabBarIcon: ({ focused }) => (
+          <Ionicons name={focused ? 'home' : 'home-outline'} size={25} />
+        ),
       }}
     />
     <MainStack.Screen
@@ -128,7 +130,12 @@ const MainNav = () => (
       options={{
         tabBarLabel: () => null,
         headerShown: false,
-        tabBarIcon: () => <Ionicons name="add-circle-outline" size={40} />,
+        tabBarIcon: ({ focused }) => (
+          <Ionicons
+            name={focused ? 'add-circle' : 'add-circle-outline'}
+            size={40}
+          />
+        ),
       }}
     />
     <MainStack.Screen
@@ -137,7 +144,7 @@ const MainNav = () => (
       options={{
         tabBarLabel: () => null,
         headerShown: false,
-        tabBarIcon: () => <UserAvatar />,
+        tabBarIcon: ({ focused }) => <UserAvatar focused={focused} />,
       }}
     />
   </MainStack.Navigator>
