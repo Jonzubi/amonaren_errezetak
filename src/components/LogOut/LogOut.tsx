@@ -6,16 +6,16 @@ import styles from './Logout.android.styles';
 import { useDispatch } from 'react-redux';
 import { resetUserData } from '../../redux/user/userSlice';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
 export default function LogOut() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const handlePress = () => {
+  const handlePress = async () => {
     dispatch(resetUserData());
-    AsyncStorage.setItem('access_token', '');
+    await SecureStore.setItemAsync('access_token', '');
     navigation.navigate('Auth');
   };
   return (

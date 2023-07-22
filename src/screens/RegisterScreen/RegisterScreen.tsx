@@ -13,7 +13,7 @@ import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../redux/user/userSlice';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
 export default function RegisterScreen({ navigation }: { navigation: any }) {
   const { t } = useTranslation();
@@ -71,7 +71,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
           email: data.data.email,
         }),
       );
-      AsyncStorage.setItem('access_token', access_token);
+      await SecureStore.setItemAsync('access_token', access_token);
       setIsLoading(false);
       navigation.navigate('Main');
     } catch (error) {

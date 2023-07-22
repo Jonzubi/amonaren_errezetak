@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Logo from '../../components/Logo/Logo';
 import { CommonActions } from '@react-navigation/native';
 import { getProfile } from '../../api/user/user';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../redux/user/userSlice';
 
@@ -13,7 +13,7 @@ export default function SplashScreen({ navigation }: { navigation: any }) {
   useEffect(() => {
     performTimeConsumingTask().then(async () => {
       try {
-        const access_token = await AsyncStorage.getItem('access_token');
+        const access_token = await SecureStore.getItemAsync('access_token');
         if (access_token === null) throw new Error();
         const data = await getProfile(access_token);
 
