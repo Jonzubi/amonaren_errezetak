@@ -13,7 +13,7 @@ import { CommonActions, useNavigation } from '@react-navigation/native';
 import { loginGoogle } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../redux/user/userSlice';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -45,7 +45,7 @@ export default function SignGoogle() {
     const loginData = await loginGoogle({ token });
     const { access_token, email, username, imageUrl, nameSurname } =
       loginData.data;
-    AsyncStorage.setItem('access_token', access_token);
+    await SecureStore.setItemAsync('access_token', access_token);
     dispatch(
       setUserData({
         access_token,

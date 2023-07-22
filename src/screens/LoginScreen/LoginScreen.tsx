@@ -13,7 +13,7 @@ import { setAccessToken, setUserData } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
 import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 
 interface LoginScreenProps {
@@ -63,7 +63,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
           email: userData.data.email,
         }),
       );
-      AsyncStorage.setItem('access_token', access_token);
+      await SecureStore.setItemAsync('access_token', access_token);
       setIsLoading(false);
       navigation.navigate('Main');
     } catch (error) {
