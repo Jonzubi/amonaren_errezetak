@@ -31,27 +31,9 @@ export const userSlice = createSlice({
       state.access_token = action.payload;
     },
     setUserData: (state: UserState, action: PayloadAction<UserState>) => {
-      const auxAction = { ...action };
-      if (
-        auxAction.payload.imageUrl !== undefined &&
-        auxAction.payload.imageUrl !== '' &&
-        !auxAction.payload.imageUrl.startsWith('http')
-      )
-        auxAction.payload.imageUrl = getImageUrlWithName(
-          auxAction.payload.imageUrl,
-        );
       return { ...state, ...action.payload };
     },
     setUserProfile: (state: UserState, action: PayloadAction<ProfileData>) => {
-      const auxAction = { ...action };
-      if (
-        auxAction.payload.imageUrl !== undefined &&
-        auxAction.payload.imageUrl !== '' &&
-        !auxAction.payload.imageUrl.startsWith('http')
-      )
-        auxAction.payload.imageUrl = getImageUrlWithName(
-          auxAction.payload.imageUrl,
-        );
       return { ...state, ...action.payload };
     },
     resetUserData: () => initialState,
