@@ -10,17 +10,11 @@ import Recipe from '../../components/Recipe/Recipe';
 import styles from './HomeScreen.android.styles';
 import { Recipe as TRecipe } from '../../types/Recipe';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import NoRecipes from '../../components/NoRecipes/NoRecipes';
 
 export default function HomeScreen() {
   const { recipes, loading, refreshRecipes } = useRecipes(UseRecipesType.ALL);
   const [refreshing, setRefreshing] = useState(false);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
-  }, []);
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
     <Recipe
@@ -42,6 +36,8 @@ export default function HomeScreen() {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={refreshRecipes} />
         }
+        ListEmptyComponent={<NoRecipes />}
+        contentContainerStyle={{ flexGrow: 1 }}
         style={styles.flatList}
         data={recipes}
         renderItem={handleRenderItem}

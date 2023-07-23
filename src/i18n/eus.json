@@ -53,5 +53,8 @@
     "saveLike": "Gustoko dut",
     "author": "Egilea",
     "edit": "Editatu"
+  },
+  "noRecipes": {
+    "mainText": "Ez dago errezetarik oraindik!"
   }
 }
