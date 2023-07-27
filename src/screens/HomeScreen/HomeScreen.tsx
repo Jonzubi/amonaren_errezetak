@@ -1,10 +1,5 @@
-import { useState, useCallback } from 'react';
-import {
-  FlatList,
-  ListRenderItem,
-  ScrollView,
-  RefreshControl,
-} from 'react-native';
+import { useState } from 'react';
+import { FlatList, ListRenderItem, RefreshControl } from 'react-native';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import Recipe from '../../components/Recipe/Recipe';
 import styles from './HomeScreen.android.styles';
@@ -32,17 +27,23 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <FlatList
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={refreshRecipes} />
-        }
-        ListEmptyComponent={<NoRecipes />}
-        contentContainerStyle={{ flexGrow: 1 }}
-        style={styles.flatList}
-        data={recipes}
-        renderItem={handleRenderItem}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      {!loading && recipes.length === 0 ? (
+        <NoRecipes />
+      ) : (
+        <FlatList
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={refreshRecipes}
+            />
+          }
+          contentContainerStyle={{ flexGrow: 1 }}
+          style={styles.flatList}
+          data={recipes}
+          renderItem={handleRenderItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      )}
     </SafeAreaView>
   );
 }
