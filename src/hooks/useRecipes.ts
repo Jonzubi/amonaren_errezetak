@@ -11,7 +11,7 @@ import {
   getRecipes,
 } from '../api/recipe/recipe';
 
-export enum UseRecipesType {
+export const enum UseRecipesType {
   ALL,
   MINE,
   FAVS,
