@@ -6,8 +6,8 @@ export default StyleSheet.create({
     height: 250,
   },
   text: {
+    marginTop: 200,
     alignSelf: 'center',
-    flexWrap: 'wrap',
     fontSize: 25,
     fontWeight: 'bold',
   },
