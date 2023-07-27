@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "amonaren_errezetak",
+    "name": "Amonaren Errezetak",
     "slug": "amonaren_errezetak",
-    "version": "1.0.1",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./src/assets/logo.png",
     "userInterfaceStyle": "light",
@@ -34,7 +34,9 @@
         "projectId": "e185a627-c53e-48ac-a1fa-deb0f8266047"
       }
     },
-    "scheme": ["amonaren_errezetak"],
+    "scheme": [
+      "amonaren_errezetak"
+    ],
     "plugins": [
       [
         "expo-image-picker",
