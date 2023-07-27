@@ -31,6 +31,7 @@ export function useRecipes(type: UseRecipesType, recipeId?: string): any {
 
   const fetchData = () => {
     setRecipes([]);
+    setLoading(true);
     fetchUrl(getHeaderWithAccessToken(token), recipeId).then((data) => {
       setRecipes(
         data.data.map((d: any) => ({
