@@ -19,6 +19,7 @@ import colors from '../../constants/colors';
 import { getFromNowFromDate } from '../../utils/functions/date';
 import RateRecipeIcon from '../../components/RateRecipeIcon/RateRecipeIcon';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import NoRecipes from '../../components/NoRecipes/NoRecipes';
 
 interface ListRecipesProps {
   type: UseRecipesType;
@@ -72,15 +73,22 @@ export default function ListRecipes({ type }: ListRecipesProps) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        contentContainerStyle={styles.container}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={refreshRecipes} />
-        }
-        data={recipes}
-        renderItem={handleRenderItem}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      {!loading && recipes.length === 0 ? (
+        <NoRecipes />
+      ) : (
+        <FlatList
+          contentContainerStyle={styles.container}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={refreshRecipes}
+            />
+          }
+          data={recipes}
+          renderItem={handleRenderItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      )}
     </SafeAreaView>
   );
 }
