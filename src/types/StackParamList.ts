@@ -9,6 +9,7 @@ export type AuthStackParamList = {
 };
 
 export type MainStackParamList = {
+  Main: {} | undefined;
   Main_Home: {} | undefined;
   Main_AddRecipe: {} | undefined;
   Main_User: {} | undefined;
