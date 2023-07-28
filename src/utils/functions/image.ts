@@ -1,7 +1,8 @@
 import { API_URL } from '../../constants/constants';
+import { esURL } from './url';
 
 const getImageUrlWithName = (name: string | undefined) =>
-  `${API_URL}/images/${name}`;
+  esURL(name) ? name : `${API_URL}/images/${name}`;
 
 const isValidBase64 = (base64: string): boolean => {
   const base64RegExp = /^data:image\/(jpeg|jpg|png|gif);base64,/;
