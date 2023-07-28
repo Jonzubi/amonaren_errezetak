@@ -9,9 +9,5 @@ export const esURL = (input: string | undefined): boolean => {
       '(\\#[-a-zA-Z0-9%_.~+=-]*)?$', // Fragmento
     'i',
   );
-  console.log({
-    name: input,
-    test: urlPattern.test(input),
-  });
   return urlPattern.test(input);
 };
