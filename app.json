@@ -14,7 +14,7 @@
       "bundleIdentifier": "com.amonaren_errezetak.amonaren_errezetak"
     },
     "android": {
-      "versionCode": 3,
+      "versionCode": 4,
       "package": "com.amonaren_errezetak.amonaren_errezetak",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/logo.png",
