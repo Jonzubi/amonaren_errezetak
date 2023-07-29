@@ -46,7 +46,8 @@
     "logout": "Itxi Saioa"
   },
   "errors": {
-    "generic": "Arazo bat gertatu da"
+    "generic": "Arazo bat gertatu da",
+    "emailNotVerified": "Emaila ez dago egiaztatuta"
   },
   "recipeDetail": {
     "saveFavourite": "Gogokoen gisa gorde!",

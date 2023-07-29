@@ -67,9 +67,16 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       setIsLoading(false);
       navigation.navigate('Main');
     } catch (error) {
-      if ((error as AxiosError)?.response?.status === 401)
-        setModalText(t('loginScreen.incorrectLogin'));
-      else setModalText(t('errors.generic'));
+      if ((error as AxiosError)?.response?.status === 401) {
+        const modalText = (error as AxiosError)?.response?.data?.message;
+        setModalText(
+          t(
+            modalText !== 'Unauthorized'
+              ? modalText
+              : 'loginScreen.incorrectLogin',
+          ),
+        );
+      } else setModalText(t('errors.generic'));
 
       setShowModal(true);
       setIsLoading(false);
