@@ -11,6 +11,7 @@ export default function NoRecipes() {
   useEffect(() => {
     animationRef.current?.play();
   }, []);
+
   return (
     <View style={styles.container}>
       <LottieView
