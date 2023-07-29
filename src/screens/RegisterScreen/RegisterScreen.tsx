@@ -12,7 +12,7 @@ import { createUser } from '../../api/user/user';
 import CustomToast from '../../components/CustomToast/CustomToast';
 import { useErrorModal } from '../../hooks/useErrorModal';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../../redux/user/userSlice';
+import { setUserEmail } from '../../redux/user/userSlice';
 import * as SecureStore from 'expo-secure-store';
 
 export default function RegisterScreen({ navigation }: { navigation: any }) {
@@ -60,18 +60,8 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
     if (!validateForm()) return;
     setIsLoading(true);
     try {
-      const data = await createUser({ email, password, nameSurname });
-      const { access_token, username, imageUrl } = data.data;
-      dispatch(
-        setUserData({
-          access_token,
-          username,
-          nameSurname: data.data.nameSurname,
-          imageUrl,
-          email: data.data.email,
-        }),
-      );
-      await SecureStore.setItemAsync('access_token', access_token);
+      await createUser({ email, password, nameSurname });
+      dispatch(setUserEmail(email));
       setIsLoading(false);
       navigation.navigate('Auth_VerifyMail');
     } catch (error) {
