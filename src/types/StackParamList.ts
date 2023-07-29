@@ -6,6 +6,7 @@ export type AuthStackParamList = {
   Auth_Login: {} | undefined;
   Auth_SignUp: {} | undefined;
   Auth: {} | undefined;
+  Auth_VerifyMail: {} | undefined;
 };
 
 export type MainStackParamList = {

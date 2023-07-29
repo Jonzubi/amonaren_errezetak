@@ -73,7 +73,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
       );
       await SecureStore.setItemAsync('access_token', access_token);
       setIsLoading(false);
-      navigation.navigate('Main');
+      navigation.navigate('Auth_VerifyMail');
     } catch (error) {
       setShowModal(true);
     } finally {

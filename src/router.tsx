@@ -22,6 +22,7 @@ import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import ListRecipes from './screens/ListRecipes/ListRecipes';
 import { UseRecipesType } from './hooks/useRecipes';
 import RecipeScreen from './screens/RecipeScreen/RecipeScreen';
+import VerifyMailSentScreen from './screens/VerifyMailSentScreen/VerifyMailSentScreen';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -162,6 +163,13 @@ const AuthNav = () => (
     <AuthStack.Screen
       name="Auth_SignUp"
       component={RegisterScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <AuthStack.Screen
+      name="Auth_VerifyMail"
+      component={VerifyMailSentScreen}
       options={{
         headerShown: false,
       }}
