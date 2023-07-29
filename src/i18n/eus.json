@@ -56,5 +56,8 @@
   },
   "noRecipes": {
     "mainText": "Ez dago errezetarik oraindik!"
+  },
+  "verifyMailSentScreen": {
+    "mainText": "Email bat bidali dugu {{email}} helbidera emaila egiaztatzeko"
   }
 }

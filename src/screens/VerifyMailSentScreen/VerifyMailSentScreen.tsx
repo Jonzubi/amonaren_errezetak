@@ -6,10 +6,12 @@ import styles from './VerifyMailSentScreen.android.styles';
 import { Text } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { useTranslation } from 'react-i18next';
 
 export default function VerifyMailSentScreen() {
   const animationRef = useRef<LottieView>(null);
   const email = useSelector((state: RootState) => state.user.email);
+  const { t } = useTranslation();
 
   useEffect(() => {
     animationRef.current?.play();
@@ -24,7 +26,7 @@ export default function VerifyMailSentScreen() {
         }}
       />
       <Text h4 style={{ flexWrap: 'wrap' }}>
-        Email bat bidali dugu {email} helbidera emaila egiaztatzeko
+        {t('verifyMailSentScreen.mainText', { email })}
       </Text>
       <LottieView
         style={{ width: 300, height: 300 }}
