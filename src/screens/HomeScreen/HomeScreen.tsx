@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FlatList, ListRenderItem, RefreshControl, View } from 'react-native';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import Recipe from '../../components/Recipe/Recipe';
@@ -9,11 +9,16 @@ import NoRecipes from '../../components/NoRecipes/NoRecipes';
 import LogoAvatar from '../../components/LogoAvatar/LogoAvatar';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@rneui/themed';
+import { use } from 'i18next';
 
 export default function HomeScreen() {
-  const { recipes, loading, refreshRecipes } = useRecipes(UseRecipesType.ALL);
   const [refreshing, setRefreshing] = useState(false);
   const [filterText, setFilterText] = useState('');
+  const { recipes, loading, refreshRecipes } = useRecipes(
+    UseRecipesType.FILTER,
+    undefined,
+    filterText,
+  );
   const { t } = useTranslation();
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
@@ -29,6 +34,24 @@ export default function HomeScreen() {
       hasFaved={item.hasFaved}
     />
   );
+
+  useEffect(() => {
+    let debounceTimeout: ReturnType<typeof setTimeout>;
+
+    const handleFilterChange = (newFilterText: string) => {
+      clearTimeout(debounceTimeout);
+
+      debounceTimeout = setTimeout(() => {
+        refreshRecipes(newFilterText);
+      }, 500);
+    };
+
+    handleFilterChange(filterText);
+
+    return () => {
+      clearTimeout(debounceTimeout);
+    };
+  }, [filterText]);
 
   return (
     <SafeAreaView style={styles.safeArea}>

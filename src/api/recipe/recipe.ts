@@ -21,8 +21,11 @@ export const favRecipe = (recipeId: string, options: AxiosRequestConfig) =>
 export const unfavRecipe = (recipeId: string, options: AxiosRequestConfig) =>
   axios.post(`${API_URL}/recipe/unfav`, { recipeId }, options);
 
-export const getRecipes = (options: AxiosRequestConfig) =>
-  axios.get(`${API_URL}/recipe`, options);
+export const getRecipes = (
+  options: AxiosRequestConfig,
+  recipeId?: string,
+  filterRecipe?: string,
+) => axios.get(`${API_URL}/recipe?filter=${filterRecipe}`, options);
 
 export const getMyRecipes = (options: AxiosRequestConfig) =>
   axios.get(`${API_URL}/recipe/myrecipes`, options);

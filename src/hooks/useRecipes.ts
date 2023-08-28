@@ -16,48 +16,77 @@ export const enum UseRecipesType {
   MINE,
   FAVS,
   BYID,
+  FILTER,
 }
 
-export function useRecipes(type: UseRecipesType, recipeId?: string): any {
+const emptyUseRecipesReturnType: UseRecipesReturnType = {
+  recipes: [],
+  loading: false,
+  refreshRecipes: () => {},
+};
+
+export function useRecipes(
+  type: UseRecipesType,
+  recipeId?: string,
+  filterText?: string,
+): UseRecipesReturnType {
   if (type === UseRecipesType.BYID && recipeId === undefined) {
-    return {};
+    return emptyUseRecipesReturnType;
+  }
+  if (type === UseRecipesType.FILTER && filterText === undefined) {
+    return emptyUseRecipesReturnType;
   }
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);
   const token = useSelector((state: RootState) => state.user.access_token);
 
-  const typeToFetch = [getRecipes, getMyRecipes, getFavRecipes, getRecipeById];
-  const fetchUrl = typeToFetch[type];
-
-  const fetchData = () => {
-    setRecipes([]);
-    setLoading(true);
-    fetchUrl(getHeaderWithAccessToken(token), recipeId).then((data) => {
-      setRecipes(
-        data.data.map((d: any) => ({
-          recipeId: d._id,
-          title: d.recipeTitle,
-          description: d.recipeDesc,
-          image: d.recipeImageUrl,
-          createdBy: d.createdBy,
-          creationDate: d.creationDate,
-          steps: d.steps,
-          ingredients: d.ingredients,
-          likeCount: d.likeCount,
-          favCount: d.favCount,
-          hasLiked: d.hasLiked,
-          hasFaved: d.hasFaved,
-        })),
-      );
-      setLoading(false);
-    });
+  const typeToFetchMap = {
+    [UseRecipesType.ALL]: getRecipes,
+    [UseRecipesType.MINE]: getMyRecipes,
+    [UseRecipesType.FAVS]: getFavRecipes,
+    [UseRecipesType.BYID]: getRecipeById,
+    [UseRecipesType.FILTER]: getRecipes,
   };
 
-  const refreshRecipes = () => fetchData();
+  const fetchUrl = typeToFetchMap[type];
+
+  const fetchData = (filterText: string = '') => {
+    setRecipes([]);
+    setLoading(true);
+    fetchUrl(getHeaderWithAccessToken(token), recipeId, filterText).then(
+      (data) => {
+        setRecipes(
+          data.data.map((d: any) => ({
+            recipeId: d._id,
+            title: d.recipeTitle,
+            description: d.recipeDesc,
+            image: d.recipeImageUrl,
+            createdBy: d.createdBy,
+            creationDate: d.creationDate,
+            steps: d.steps,
+            ingredients: d.ingredients,
+            likeCount: d.likeCount,
+            favCount: d.favCount,
+            hasLiked: d.hasLiked,
+            hasFaved: d.hasFaved,
+          })),
+        );
+        setLoading(false);
+      },
+    );
+  };
+
+  const refreshRecipes = (filterText: string = '') => fetchData(filterText);
 
   useEffect(() => {
     fetchData();
   }, []);
 
   return { recipes, loading, refreshRecipes };
+}
+
+interface UseRecipesReturnType {
+  recipes: Recipe[];
+  loading: boolean;
+  refreshRecipes: (filterText?: string) => void;
 }
