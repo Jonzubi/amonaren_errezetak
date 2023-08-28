@@ -63,6 +63,7 @@ export default function HomeScreen() {
             <Input
               leftIcon={<LogoAvatar />}
               placeholder={t('homeScreen.filterRecipes')}
+              value={filterText}
               onChangeText={setFilterText}
             />
           </View>
