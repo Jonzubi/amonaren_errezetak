@@ -82,12 +82,12 @@ export default function ProfileScreen() {
         <Input
           value={newNameSurname}
           placeholder={t('forms.nameSurname_placeholder')}
-          onChangeText={(value) => setNewNameSurname(value)}
+          onChangeText={setNewNameSurname}
         />
         <Input
           value={newUsername}
           placeholder={t('forms.username_placeholder')}
-          onChangeText={(value) => setNewUsername(value)}
+          onChangeText={setNewUsername}
         />
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <SubmitButton

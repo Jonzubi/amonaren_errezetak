@@ -92,7 +92,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         leftIcon={
           <AntDesign name={'mail'} size={24} style={{ marginRight: 5 }} />
         }
-        onChangeText={(value) => setEmail(value)}
+        onChangeText={setEmail}
         errorMessage={errorEmail}
         ref={emailRef}
       />
@@ -102,7 +102,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         leftIcon={
           <AntDesign name={'key'} size={24} style={{ marginRight: 5 }} />
         }
-        onChangeText={(value) => setPassword(value)}
+        onChangeText={setPassword}
       />
       <SubmitButton
         containerStyle={{ width: '100%' }}

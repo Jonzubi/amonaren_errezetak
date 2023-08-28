@@ -80,7 +80,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         leftIcon={
           <AntDesign name={'mail'} size={24} style={{ marginRight: 5 }} />
         }
-        onChangeText={(value) => setEmail(value)}
+        onChangeText={setEmail}
         errorMessage={errorEmail}
         ref={emailRef}
       />
@@ -90,7 +90,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         leftIcon={
           <AntDesign name={'key'} size={24} style={{ marginRight: 5 }} />
         }
-        onChangeText={(value) => setPassword(value)}
+        onChangeText={setPassword}
         ref={passwordRef}
         errorMessage={errorPassword}
       />
@@ -100,7 +100,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         leftIcon={
           <AntDesign name={'key'} size={24} style={{ marginRight: 5 }} />
         }
-        onChangeText={(value) => setConfirmPassword(value)}
+        onChangeText={setConfirmPassword}
         ref={confirmPasswordRef}
         errorMessage={errorPassword}
       />
@@ -109,7 +109,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         leftIcon={
           <AntDesign name={'user'} size={24} style={{ marginRight: 5 }} />
         }
-        onChangeText={(value) => setNameSurname(value)}
+        onChangeText={setNameSurname}
       />
       {isLoading && (
         <ActivityIndicator

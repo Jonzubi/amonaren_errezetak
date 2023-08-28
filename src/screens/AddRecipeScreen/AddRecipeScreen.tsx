@@ -126,7 +126,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
           errorMessage={errorTitle}
           style={styles.titleInput}
           placeholder={t('addRecipeScreen.inputTitle')}
-          onChangeText={(value) => setTitle(value)}
+          onChangeText={setTitle}
           value={title}
           ref={titleRef}
         />
@@ -136,7 +136,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
         </Text>
         <Input
           placeholder={t('addRecipeScreen.inputDescription')}
-          onChangeText={(value) => setDescription(value)}
+          onChangeText={setDescription}
           value={description}
           multiline
           inputStyle={{
