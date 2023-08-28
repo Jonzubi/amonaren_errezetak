@@ -60,5 +60,8 @@
   },
   "verifyMailSentScreen": {
     "mainText": "Email bat bidali dugu {{email}} helbidera emaila egiaztatzeko"
+  },
+  "homeScreen": {
+    "filterRecipes": "Zer sukaldatu nahi duzu gaur?"
   }
 }

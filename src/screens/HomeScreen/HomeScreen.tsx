@@ -1,15 +1,20 @@
 import { useState } from 'react';
-import { FlatList, ListRenderItem, RefreshControl } from 'react-native';
+import { FlatList, ListRenderItem, RefreshControl, View } from 'react-native';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import Recipe from '../../components/Recipe/Recipe';
 import styles from './HomeScreen.android.styles';
 import { Recipe as TRecipe } from '../../types/Recipe';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NoRecipes from '../../components/NoRecipes/NoRecipes';
+import LogoAvatar from '../../components/LogoAvatar/LogoAvatar';
+import { useTranslation } from 'react-i18next';
+import { Input } from '@rneui/themed';
 
 export default function HomeScreen() {
   const { recipes, loading, refreshRecipes } = useRecipes(UseRecipesType.ALL);
   const [refreshing, setRefreshing] = useState(false);
+  const [filterText, setFilterText] = useState('');
+  const { t } = useTranslation();
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
     <Recipe
@@ -30,19 +35,35 @@ export default function HomeScreen() {
       {!loading && recipes.length === 0 ? (
         <NoRecipes />
       ) : (
-        <FlatList
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={refreshRecipes}
+        <>
+          <View
+            style={{
+              marginHorizontal: 15,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <Input
+              leftIcon={<LogoAvatar />}
+              placeholder={t('homeScreen.filterRecipes')}
+              onChangeText={setFilterText}
             />
-          }
-          contentContainerStyle={{ flexGrow: 1 }}
-          style={styles.flatList}
-          data={recipes}
-          renderItem={handleRenderItem}
-          keyExtractor={(item, index) => index.toString()}
-        />
+          </View>
+          <FlatList
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={refreshRecipes}
+              />
+            }
+            contentContainerStyle={{ flexGrow: 1 }}
+            style={styles.flatList}
+            data={recipes}
+            renderItem={handleRenderItem}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </>
       )}
     </SafeAreaView>
   );
