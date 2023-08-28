@@ -36,14 +36,7 @@ export default function HomeScreen() {
         <NoRecipes />
       ) : (
         <>
-          <View
-            style={{
-              marginHorizontal: 15,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
+          <View style={styles.filterContainer}>
             <Input
               leftIcon={<LogoAvatar />}
               placeholder={t('homeScreen.filterRecipes')}
