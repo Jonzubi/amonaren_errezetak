@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function useErrorModal(initialText: string) {
+export function useModal(initialText: string) {
   const [modalText, setModalText] = useState(initialText);
   const [showModal, setShowModal] = useState(false);
 
