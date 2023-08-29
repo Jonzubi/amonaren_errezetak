@@ -81,6 +81,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
   };
 
   const resetStates = () => {
+    if (!recipeId) return;
     setTitle('');
     setDescription('');
     setRecipeImage(undefined);
