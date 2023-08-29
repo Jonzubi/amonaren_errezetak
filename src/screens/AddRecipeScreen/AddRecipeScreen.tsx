@@ -80,6 +80,15 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
     return isValid;
   };
 
+  const resetStates = () => {
+    setTitle('');
+    setDescription('');
+    setRecipeImage(undefined);
+    setEditRecipeImage(undefined);
+    setIngredients([]);
+    setSteps([]);
+  };
+
   const postRecipe = async () => {
     setPostingRecipe(true);
     if (!validateForm()) {
@@ -105,6 +114,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
       setShowModal(true);
     } finally {
       setPostingRecipe(false);
+      resetStates();
     }
   };
 
