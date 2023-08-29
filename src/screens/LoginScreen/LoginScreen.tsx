@@ -11,8 +11,10 @@ import { login } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
 import { setAccessToken, setUserData } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
-import CustomToast from '../../components/CustomToast/CustomToast';
-import { useErrorModal } from '../../hooks/useErrorModal';
+import CustomToast, {
+  ToastType,
+} from '../../components/CustomToast/CustomToast';
+import { useModal } from '../../hooks/useModal';
 import * as SecureStore from 'expo-secure-store';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 
@@ -27,7 +29,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   const [password, setPassword] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { modalText, setModalText, setShowModal, showModal } = useErrorModal(
+  const { modalText, setModalText, setShowModal, showModal } = useModal(
     t('loginScreen.incorrectLogin'),
   );
   const emailRef = useRef<any>(null);
@@ -119,6 +121,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         </Text>
       </View>
       <CustomToast
+        type={ToastType.ERROR}
         closeModal={() => setShowModal(false)}
         visible={showModal}
         text={modalText}

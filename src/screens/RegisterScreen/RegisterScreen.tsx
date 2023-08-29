@@ -9,8 +9,10 @@ import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions/email';
 import { createUser } from '../../api/user/user';
-import CustomToast from '../../components/CustomToast/CustomToast';
-import { useErrorModal } from '../../hooks/useErrorModal';
+import CustomToast, {
+  ToastType,
+} from '../../components/CustomToast/CustomToast';
+import { useModal } from '../../hooks/useModal';
 import { useDispatch } from 'react-redux';
 import { setUserEmail } from '../../redux/user/userSlice';
 import * as SecureStore from 'expo-secure-store';
@@ -29,7 +31,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { modalText, setModalText, setShowModal, showModal } = useErrorModal(
+  const { modalText, setModalText, setShowModal, showModal } = useModal(
     t('errors.generic'),
   );
 
@@ -135,6 +137,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         </Text>
       </View>
       <CustomToast
+        type={ToastType.ERROR}
         closeModal={() => setShowModal(false)}
         visible={showModal}
         text={modalText}
