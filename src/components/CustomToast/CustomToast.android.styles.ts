@@ -22,5 +22,12 @@ export default StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     borderRadius: 15,
+    borderLeftWidth: 5,
+  },
+  containerError: {
+    borderLeftColor: colors.RED,
+  },
+  containerSuccess: {
+    borderLeftColor: colors.MAIN_GREEN,
   },
 });

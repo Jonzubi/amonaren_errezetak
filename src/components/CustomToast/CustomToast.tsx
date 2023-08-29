@@ -4,15 +4,22 @@ import styles from './CustomToast.android.styles';
 import colors from '../../constants/colors';
 import { Text } from 'react-native-elements';
 
+export enum ToastType {
+  ERROR,
+  SUCCESS,
+}
+
 interface CustomToast {
   visible: boolean;
   text: string;
   closeModal(): void;
+  type: ToastType;
 }
 export default function CustomToast({
   visible,
   text,
   closeModal,
+  type,
 }: CustomToast) {
   useEffect(() => {
     if (!visible) return;
@@ -26,7 +33,8 @@ export default function CustomToast({
         <View
           style={[
             styles.container,
-            { borderLeftColor: colors.RED, borderLeftWidth: 5 },
+            type === ToastType.ERROR && styles.containerError,
+            type === ToastType.SUCCESS && styles.containerSuccess,
           ]}
         >
           <Text>{text}</Text>
