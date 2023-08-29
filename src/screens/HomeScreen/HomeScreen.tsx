@@ -63,23 +63,23 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <View style={styles.filterContainer}>
+        <Input
+          leftIcon={<LogoAvatar />}
+          rightIcon={
+            <TouchableOpacity onPress={() => setFilterText('')}>
+              <Entypo name="cross" size={24} color={colors.BLACK} />
+            </TouchableOpacity>
+          }
+          placeholder={t('homeScreen.filterRecipes')}
+          value={filterText}
+          onChangeText={setFilterText}
+        />
+      </View>
       {!loading && recipes.length === 0 ? (
         <NoRecipes />
       ) : (
         <>
-          <View style={styles.filterContainer}>
-            <Input
-              leftIcon={<LogoAvatar />}
-              rightIcon={
-                <TouchableOpacity onPress={() => setFilterText('')}>
-                  <Entypo name="cross" size={24} color={colors.BLACK} />
-                </TouchableOpacity>
-              }
-              placeholder={t('homeScreen.filterRecipes')}
-              value={filterText}
-              onChangeText={setFilterText}
-            />
-          </View>
           <FlatList
             refreshControl={
               <RefreshControl
