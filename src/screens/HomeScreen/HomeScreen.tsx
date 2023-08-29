@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FlatList, ListRenderItem, RefreshControl, View } from 'react-native';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import Recipe from '../../components/Recipe/Recipe';
@@ -21,6 +21,7 @@ export default function HomeScreen() {
     undefined,
     filterText,
   );
+  const isInitialMount = useRef(true);
   const { t } = useTranslation();
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
@@ -38,6 +39,11 @@ export default function HomeScreen() {
   );
 
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
     let debounceTimeout: ReturnType<typeof setTimeout>;
 
     const handleFilterChange = (newFilterText: string) => {
