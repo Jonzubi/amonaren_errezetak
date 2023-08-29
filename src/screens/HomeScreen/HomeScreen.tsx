@@ -9,7 +9,9 @@ import NoRecipes from '../../components/NoRecipes/NoRecipes';
 import LogoAvatar from '../../components/LogoAvatar/LogoAvatar';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@rneui/themed';
-import { use } from 'i18next';
+import { Entypo } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import colors from '../../constants/colors';
 
 export default function HomeScreen() {
   const [refreshing, setRefreshing] = useState(false);
@@ -62,6 +64,11 @@ export default function HomeScreen() {
           <View style={styles.filterContainer}>
             <Input
               leftIcon={<LogoAvatar />}
+              rightIcon={
+                <TouchableOpacity onPress={() => setFilterText('')}>
+                  <Entypo name="cross" size={24} color={colors.BLACK} />
+                </TouchableOpacity>
+              }
               placeholder={t('homeScreen.filterRecipes')}
               value={filterText}
               onChangeText={setFilterText}
