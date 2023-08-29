@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
 import ChooseImages from '../../components/ChooseImages/ChooseImages';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ImagePickerAsset } from 'expo-image-picker';
 import { Divider, Text } from 'react-native-elements';
 import Ingredients from '../../components/Ingredients/Ingredients';
 import Steps from '../../components/Steps/Steps';
