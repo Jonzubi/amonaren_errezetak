@@ -18,6 +18,6 @@ export default StyleSheet.create({
     maxHeight: 500,
     maxWidth: 500,
     borderRadius: 25,
-    resizeMode: 'center',
+    resizeMode: 'cover',
   },
 });
