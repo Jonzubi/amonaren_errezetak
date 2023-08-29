@@ -15,8 +15,10 @@ import { useIngredients } from '../../hooks/useIngredients';
 import { useSteps } from '../../hooks/useSteps';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import CustomToast from '../../components/CustomToast/CustomToast';
-import { useErrorModal } from '../../hooks/useErrorModal';
+import CustomToast, {
+  ToastType,
+} from '../../components/CustomToast/CustomToast';
+import { useModal } from '../../hooks/useModal';
 import { useNavigation } from '@react-navigation/native';
 import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
@@ -33,9 +35,19 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
   const [title, setTitle] = useState('');
   const [errorTitle, setErrorTitle] = useState('');
   const [description, setDescription] = useState('');
-  const { modalText, setModalText, setShowModal, showModal } = useErrorModal(
-    t('errors.generic'),
-  );
+  const {
+    modalText: errorModalText,
+    setModalText: setErrorModalText,
+    setShowModal: setErrorShowModal,
+    showModal: errorShowModal,
+  } = useModal(t('errors.generic'));
+
+  const {
+    modalText: successModalText,
+    setModalText: setSuccessModalText,
+    setShowModal: setSuccessShowModal,
+    showModal: successShowModal,
+  } = useModal(t('addRecipeScreen.postSuccess'));
   const [recipeImage, setRecipeImage] = useState<string>();
   const [editRecipeImage, setEditRecipeImage] = useState<string>();
   const [postingRecipe, setPostingRecipe] = useState(false);
@@ -81,7 +93,7 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
   };
 
   const resetStates = () => {
-    if (!recipeId) return;
+    if (recipeId) return;
     setTitle('');
     setDescription('');
     setRecipeImage(undefined);
@@ -109,10 +121,10 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
         },
         getHeaderWithAccessToken(token),
       );
-      navigation.navigate('Main_Home');
+      setSuccessShowModal(true);
     } catch (error) {
-      setModalText(t('errors.generic'));
-      setShowModal(true);
+      setErrorModalText(t('errors.generic'));
+      setErrorShowModal(true);
     } finally {
       setPostingRecipe(false);
       resetStates();
@@ -179,9 +191,16 @@ export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
           loading={postingRecipe}
         />
         <CustomToast
-          closeModal={() => setShowModal(false)}
-          visible={showModal}
-          text={modalText}
+          type={ToastType.ERROR}
+          closeModal={() => setErrorShowModal(false)}
+          visible={errorShowModal}
+          text={errorModalText}
+        />
+        <CustomToast
+          type={ToastType.SUCCESS}
+          closeModal={() => setSuccessShowModal(false)}
+          visible={successShowModal}
+          text={successModalText}
         />
       </ScrollView>
     </SafeAreaView>
