@@ -1,8 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import SplashScreen from './screens/SplashScreen/SplashScreen';
-import LoginScreen from './screens/LoginScreen/LoginScreen';
+import SplashScreen from '@screens/SplashScreen/SplashScreen';
+import LoginScreen from '@screens/LoginScreen/LoginScreen';
 import {
   AuthStackParamList,
   MainStackParamList,
@@ -12,17 +12,17 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import eus_json from './i18n/eus.json';
 import 'i18next';
-import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
-import HomeScreen from './screens/HomeScreen/HomeScreen';
-import AddRecipeScreen from './screens/AddRecipeScreen/AddRecipeScreen';
-import { AntDesign, Ionicons } from '@expo/vector-icons';
+import RegisterScreen from '@screens/RegisterScreen/RegisterScreen';
+import HomeScreen from '@screens/HomeScreen/HomeScreen';
+import AddRecipeScreen from '@screens/AddRecipeScreen/AddRecipeScreen';
+import { Ionicons } from '@expo/vector-icons';
 import UserAvatar from './components/UserAvatar/UserAvatar';
-import UserScreen from './screens/UserScreen/UserScreen';
-import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
-import ListRecipes from './screens/ListRecipes/ListRecipes';
+import UserScreen from '@screens/UserScreen/UserScreen';
+import ProfileScreen from '@screens/ProfileScreen/ProfileScreen';
+import ListRecipes from '@screens/ListRecipes/ListRecipes';
 import { UseRecipesType } from './hooks/useRecipes';
-import RecipeScreen from './screens/RecipeScreen/RecipeScreen';
-import VerifyMailSentScreen from './screens/VerifyMailSentScreen/VerifyMailSentScreen';
+import RecipeScreen from '@screens/RecipeScreen/RecipeScreen';
+import VerifyMailSentScreen from '@screens/VerifyMailSentScreen/VerifyMailSentScreen';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
