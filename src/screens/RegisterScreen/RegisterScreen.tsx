@@ -17,7 +17,7 @@ import { useDispatch } from 'react-redux';
 import { setUserEmail } from '../../redux/user/userSlice';
 import * as SecureStore from 'expo-secure-store';
 
-export default function RegisterScreen({ navigation }: { navigation: any }) {
+export default function RegisterScreen({ navigation }: { navigation?: any }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const onGoLogin = () => {

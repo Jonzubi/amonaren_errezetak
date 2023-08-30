@@ -14,11 +14,9 @@ import styles from './ListRecipes.android.styles';
 import { Image } from 'react-native-elements';
 import { getImageUrlWithName } from '../../utils/functions/image';
 import { Card } from '@rneui/themed';
-import { AntDesign } from '@expo/vector-icons';
-import colors from '../../constants/colors';
 import { getFromNowFromDate } from '../../utils/functions/date';
 import RateRecipeIcon from '../../components/RateRecipeIcon/RateRecipeIcon';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import NoRecipes from '../../components/NoRecipes/NoRecipes';
 
 interface ListRecipesProps {
@@ -27,8 +25,7 @@ interface ListRecipesProps {
 export default function ListRecipes({ type }: ListRecipesProps) {
   const { recipes, loading, refreshRecipes } = useRecipes(type);
   const [refreshing, setRefreshing] = useState(false);
-  const navigation = useNavigation();
-  const route = useRoute();
+  const router = useRouter();
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
     <Card wrapperStyle={styles.myRecipeContainer}>
@@ -39,9 +36,9 @@ export default function ListRecipes({ type }: ListRecipesProps) {
       <TouchableOpacity
         style={styles.myRecipeInfoContainer}
         onPress={() => {
-          navigation.navigate('Main_User_Recipe', {
-            recipeId: item.recipeId,
-            editable: route.name === 'Main_User_MyRecipes',
+          router.push({
+            pathname: `/main/recipe/${item.recipeId}`,
+            params: { editable: type === UseRecipesType.MINE },
           });
         }}
       >
@@ -49,22 +46,22 @@ export default function ListRecipes({ type }: ListRecipesProps) {
         <View style={styles.myRecipeSubInfoContainer}>
           <View style={styles.myRecipesRatingContainer}>
             <RateRecipeIcon
-              recipeId={item.recipeId}
+              recipeId={item.recipeId!}
               containerStyle={styles.myRecipesRatingSubContainer}
-              isRated={item.hasLiked}
+              isRated={item.hasLiked!}
               rateCount={item.likeCount}
               type="Like"
             />
             <RateRecipeIcon
-              recipeId={item.recipeId}
+              recipeId={item.recipeId!}
               containerStyle={styles.myRecipesRatingSubContainer}
-              isRated={item.hasFaved}
+              isRated={item.hasFaved!}
               rateCount={item.favCount}
               type="Fav"
             />
           </View>
           <Text style={styles.myRecipesDate}>
-            {getFromNowFromDate(item.creationDate)}
+            {getFromNowFromDate(item.creationDate!)}
           </Text>
         </View>
       </TouchableOpacity>

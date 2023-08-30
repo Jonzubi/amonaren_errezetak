@@ -46,7 +46,7 @@
       ]
     ],
     "experiments": {
-      "tsConfigPaths": true
+      "tsconfigPaths": true
     }
   }
 }

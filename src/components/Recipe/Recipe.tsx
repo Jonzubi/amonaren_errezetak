@@ -1,13 +1,10 @@
 import { TouchableOpacity, View } from 'react-native';
 import { Card, Text } from '@rneui/themed';
 import styles from './Recipe.android.styles';
-import { API_URL } from '../../constants/constants';
 import UserAvatar from '../UserAvatar/UserAvatar';
-import { AntDesign } from '@expo/vector-icons';
-import colors from '../../constants/colors';
 import { getImageUrlWithName } from '../../utils/functions/image';
 import RateRecipeIcon from '../RateRecipeIcon/RateRecipeIcon';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 
 interface Props {
   recipeId: string;
@@ -36,16 +33,10 @@ export default function Recipe({
   hasLiked,
   hasFaved,
 }: Props) {
-  const navigation = useNavigation();
+  const router = useRouter();
 
   return (
-    <TouchableOpacity
-      onPress={() =>
-        navigation.navigate('Main_Home_Recipe', {
-          recipeId,
-        })
-      }
-    >
+    <TouchableOpacity onPress={() => router.push(`recipe/${recipeId}`)}>
       <Card containerStyle={styles.container}>
         <Card.Title>
           <Text h4>{title}</Text>

@@ -7,9 +7,12 @@ import { getProfile } from '../../api/user/user';
 import * as SecureStore from 'expo-secure-store';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../redux/user/userSlice';
+import { useRouter } from 'expo-router';
 
-export default function SplashScreen({ navigation }: { navigation: any }) {
+export default function SplashScreen() {
   const dispatch = useDispatch();
+  const router = useRouter();
+
   useEffect(() => {
     performTimeConsumingTask().then(async () => {
       try {
@@ -27,27 +30,9 @@ export default function SplashScreen({ navigation }: { navigation: any }) {
             nameSurname,
           }),
         );
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 1,
-            routes: [
-              {
-                name: 'Main',
-              },
-            ],
-          }),
-        );
+        router.push('main');
       } catch (error) {
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 1,
-            routes: [
-              {
-                name: 'Auth',
-              },
-            ],
-          }),
-        );
+        router.push('auth');
       }
     });
   }, []);
