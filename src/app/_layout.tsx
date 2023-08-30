@@ -29,7 +29,11 @@ i18n.use(initReactI18next).init({
 export default function App() {
   return (
     <Provider store={store}>
-      <Stack />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
     </Provider>
   );
 }
