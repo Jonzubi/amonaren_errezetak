@@ -74,7 +74,7 @@ export default function ListRecipes({ type }: ListRecipesProps) {
         <NoRecipes />
       ) : (
         <FlatList
-          contentContainerStyle={styles.container}
+          contentContainerStyle={styles.flatListContainer}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
