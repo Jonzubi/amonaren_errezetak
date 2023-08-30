@@ -30,9 +30,9 @@ export default function SplashScreen() {
             nameSurname,
           }),
         );
-        router.push('main');
+        router.replace('main');
       } catch (error) {
-        router.push('auth');
+        router.replace('auth');
       }
     });
   }, []);
