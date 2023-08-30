@@ -1,15 +1,14 @@
 import { View, Text } from 'react-native';
 import styles from './LoginScreen.android.styles';
 import Logo from '../../components/Logo/Logo';
-import { Input, Button, Divider } from '@rneui/themed';
+import { Input, Divider } from '@rneui/themed';
 import { AntDesign } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import SignGoogle from '../../components/SignGoogle/SignGoogle';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions/email';
 import { login } from '../../api/user/user';
 import { useDispatch } from 'react-redux';
-import { setAccessToken, setUserData } from '../../redux/user/userSlice';
+import { setUserData } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
 import CustomToast, {
   ToastType,
@@ -17,13 +16,12 @@ import CustomToast, {
 import { useModal } from '../../hooks/useModal';
 import * as SecureStore from 'expo-secure-store';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
+import { Link, useRouter } from 'expo-router';
 
-interface LoginScreenProps {
-  navigation?: any;
-}
-export default function LoginScreen({ navigation }: LoginScreenProps) {
+export default function LoginScreen() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -46,10 +44,6 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
     return isValid;
   };
 
-  const onSignUp = () => {
-    navigation.navigate('Auth_SignUp');
-  };
-
   const handleLogin = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
@@ -67,7 +61,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       );
       await SecureStore.setItemAsync('access_token', access_token);
       setIsLoading(false);
-      navigation.navigate('Main');
+      router.push('main');
     } catch (error) {
       if ((error as AxiosError)?.response?.status === 401) {
         const modalText = (error as AxiosError)?.response?.data?.message;
@@ -116,9 +110,9 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       {/* <SignGoogle /> */}
       <View style={styles.registerView}>
         <Text>{t('loginScreen.you_new')}</Text>
-        <Text onPress={onSignUp} style={styles.registerText}>
-          {t('loginScreen.go_register')}
-        </Text>
+        <Link href={'auth/register'} style={styles.registerText}>
+          <Text>{t('loginScreen.go_register')}</Text>
+        </Link>
       </View>
       <CustomToast
         type={ToastType.ERROR}
