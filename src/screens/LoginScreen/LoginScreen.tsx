@@ -61,7 +61,7 @@ export default function LoginScreen() {
       );
       await SecureStore.setItemAsync('access_token', access_token);
       setIsLoading(false);
-      router.push('main');
+      router.push('home');
     } catch (error) {
       if ((error as AxiosError)?.response?.status === 401) {
         const modalText = (error as AxiosError)?.response?.data?.message;
@@ -110,7 +110,7 @@ export default function LoginScreen() {
       {/* <SignGoogle /> */}
       <View style={styles.registerView}>
         <Text>{t('loginScreen.you_new')}</Text>
-        <Link href={'auth/register'} style={styles.registerText}>
+        <Link href={'register'} style={styles.registerText}>
           <Text>{t('loginScreen.go_register')}</Text>
         </Link>
       </View>

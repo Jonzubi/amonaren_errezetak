@@ -3,23 +3,21 @@ import styles from './UserScreen.android.styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import UserAvatar from '../../components/UserAvatar/UserAvatar';
 import LogOut from '../../components/LogOut/LogOut';
-import { Divider } from '@rneui/base';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { useNavigation } from '@react-navigation/native';
 import { ListItem } from '@rneui/themed';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import colors from '../../constants/colors';
+import { useRouter } from 'expo-router';
 
 export default function UserScreen() {
-  const navigation = useNavigation();
+  const router = useRouter();
   const { t } = useTranslation();
   const username = useSelector((state: RootState) => state.user.username);
   const nameSurname = useSelector((state: RootState) => state.user.nameSurname);
 
   const handleGoProfile = () => {
-    navigation.navigate('Main_User_Profile');
+    router.push('profile');
   };
 
   return (
@@ -37,20 +35,14 @@ export default function UserScreen() {
         </TouchableOpacity>
         <LogOut />
       </View>
-      <ListItem
-        bottomDivider
-        onPress={() => navigation.navigate('Main_User_MyRecipes')}
-      >
+      <ListItem bottomDivider onPress={() => router.push('my-recipes')}>
         <MaterialCommunityIcons name="chef-hat" size={30} />
         <ListItem.Content>
           <ListItem.Title>{t('userScreen.myRecipes')}</ListItem.Title>
         </ListItem.Content>
         <ListItem.Chevron />
       </ListItem>
-      <ListItem
-        bottomDivider
-        onPress={() => navigation.navigate('Main_User_FavRecipes')}
-      >
+      <ListItem bottomDivider onPress={() => router.push('fav-recipes')}>
         <AntDesign name="star" size={30} />
         <ListItem.Content>
           <ListItem.Title>{t('userScreen.favRecipes')}</ListItem.Title>

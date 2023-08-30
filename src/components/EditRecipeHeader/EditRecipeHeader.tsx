@@ -16,7 +16,12 @@ export function EditRecipeHeader({ recipeId }: EditRecipeHeaderProps) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.buttonContainer}
-        onPress={() => router.push(`recipe/${recipeId}`)}
+        onPress={() => {
+          router.push({
+            pathname: `edit-recipe`,
+            params: { recipeId },
+          });
+        }}
       >
         <AntDesign name="edit" />
         <Text>{t('recipeDetail.edit')}</Text>

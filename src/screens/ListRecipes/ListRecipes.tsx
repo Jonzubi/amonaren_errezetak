@@ -37,7 +37,7 @@ export default function ListRecipes({ type }: ListRecipesProps) {
         style={styles.myRecipeInfoContainer}
         onPress={() => {
           router.push({
-            pathname: `/main/recipe/${item.recipeId}`,
+            pathname: `/recipe/${item.recipeId}`,
             params: { editable: type === UseRecipesType.MINE },
           });
         }}

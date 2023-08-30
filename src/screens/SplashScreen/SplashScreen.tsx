@@ -2,7 +2,6 @@ import { View } from 'react-native';
 import styles from './SplashScreen.android.styles';
 import { useEffect } from 'react';
 import Logo from '../../components/Logo/Logo';
-import { CommonActions } from '@react-navigation/native';
 import { getProfile } from '../../api/user/user';
 import * as SecureStore from 'expo-secure-store';
 import { useDispatch } from 'react-redux';
@@ -30,9 +29,9 @@ export default function SplashScreen() {
             nameSurname,
           }),
         );
-        router.replace('main');
+        router.replace('home');
       } catch (error) {
-        router.replace('auth');
+        router.replace('login');
       }
     });
   }, []);
