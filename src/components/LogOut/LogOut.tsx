@@ -16,7 +16,7 @@ export default function LogOut() {
   const handlePress = async () => {
     dispatch(resetUserData());
     await SecureStore.setItemAsync('access_token', '');
-    router.push('login');
+    router.replace('login');
   };
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>
