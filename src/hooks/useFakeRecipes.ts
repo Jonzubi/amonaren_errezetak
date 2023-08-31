@@ -1,16 +1,6 @@
 import { useEffect, useState } from 'react';
-import { API_URL } from '../constants/constants';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { Recipe } from '../types/Recipe';
-import { getHeaderWithAccessToken } from '../utils/functions/axiosOptions';
-import {
-  getFavRecipes,
-  getMyRecipes,
-  getRecipeById,
-  getRecipes,
-} from '../api/recipe/recipe';
 import { faker } from '@faker-js/faker';
+import { Recipe } from 'src/types/Recipe';
 
 export const enum UseRecipesType {
   ALL,

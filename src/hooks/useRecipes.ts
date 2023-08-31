@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react';
-import { API_URL } from '../constants/constants';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
 import { Recipe } from '../types/Recipe';
 import { getHeaderWithAccessToken } from '../utils/functions/axiosOptions';
 import {
@@ -10,6 +7,7 @@ import {
   getRecipeById,
   getRecipes,
 } from '../api/recipe/recipe';
+import { useUserStore } from 'src/zustand/userStore';
 
 export const enum UseRecipesType {
   ALL,
@@ -38,7 +36,7 @@ export function useRecipes(
   }
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);
-  const token = useSelector((state: RootState) => state.user.access_token);
+  const { access_token } = useUserStore();
 
   const typeToFetchMap = {
     [UseRecipesType.ALL]: getRecipes,
@@ -53,7 +51,7 @@ export function useRecipes(
   const fetchData = (filterText: string = '') => {
     setRecipes([]);
     setLoading(true);
-    fetchUrl(getHeaderWithAccessToken(token), recipeId, filterText).then(
+    fetchUrl(getHeaderWithAccessToken(access_token), recipeId, filterText).then(
       (data) => {
         setRecipes(
           data.data.map((d: any) => ({

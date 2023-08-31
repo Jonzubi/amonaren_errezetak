@@ -1,8 +1,6 @@
 import { Avatar } from 'react-native-elements';
-import { RootState } from '../../redux/store';
-import styles from './UserAvatar.android.styles';
-import { useSelector } from 'react-redux';
 import colors from '../../constants/colors';
+import { useUserStore } from 'src/zustand/userStore';
 
 interface UserAvatarProps {
   size?: number;
@@ -16,7 +14,7 @@ export default function UserAvatar({
   hardCodedImageUrl,
   focused,
 }: UserAvatarProps) {
-  const imageUrl = useSelector((state: RootState) => state.user.imageUrl);
+  const { imageUrl } = useUserStore();
 
   const getUrl = (): { uri: string } | undefined => {
     if (hardCodeUrl)

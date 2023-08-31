@@ -3,18 +3,16 @@ import styles from './UserScreen.android.styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import UserAvatar from '../../components/UserAvatar/UserAvatar';
 import LogOut from '../../components/LogOut/LogOut';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 import { ListItem } from '@rneui/themed';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
+import { useUserStore } from 'src/zustand/userStore';
 
 export default function UserScreen() {
   const router = useRouter();
   const { t } = useTranslation();
-  const username = useSelector((state: RootState) => state.user.username);
-  const nameSurname = useSelector((state: RootState) => state.user.nameSurname);
+  const { username, nameSurname } = useUserStore();
 
   const handleGoProfile = () => {
     router.push('profile');

@@ -11,16 +11,15 @@ import {
 } from '../../constants/constants';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { loginGoogle } from '../../api/user/user';
-import { useDispatch } from 'react-redux';
-import { setUserData } from '../../redux/user/userSlice';
 import * as SecureStore from 'expo-secure-store';
+import { useUserStore } from 'src/zustand/userStore';
 
 WebBrowser.maybeCompleteAuthSession();
 
 export default function SignGoogle() {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const dispatch = useDispatch();
+  const { setUserData } = useUserStore();
 
   const [token, setToken] = useState('');
 
@@ -46,15 +45,13 @@ export default function SignGoogle() {
     const { access_token, email, username, imageUrl, nameSurname } =
       loginData.data;
     await SecureStore.setItemAsync('access_token', access_token);
-    dispatch(
-      setUserData({
-        access_token,
-        email,
-        nameSurname,
-        username,
-        imageUrl,
-      }),
-    );
+    setUserData({
+      access_token,
+      email,
+      nameSurname,
+      username,
+      imageUrl,
+    });
     navigation.dispatch(
       CommonActions.reset({
         index: 1,

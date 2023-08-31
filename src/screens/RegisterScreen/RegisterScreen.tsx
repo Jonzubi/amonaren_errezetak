@@ -12,15 +12,13 @@ import CustomToast, {
   ToastType,
 } from '../../components/CustomToast/CustomToast';
 import { useModal } from '../../hooks/useModal';
-import { useDispatch } from 'react-redux';
-import { setUserEmail } from '../../redux/user/userSlice';
 import { useRouter } from 'expo-router';
+import { useUserStore } from 'src/zustand/userStore';
 
 export default function RegisterScreen() {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const router = useRouter();
-
+  const { setUserEmail } = useUserStore();
   const onGoLogin = () => {
     router.back();
   };
@@ -64,7 +62,7 @@ export default function RegisterScreen() {
     setIsLoading(true);
     try {
       await createUser({ email, password, nameSurname });
-      dispatch(setUserEmail(email));
+      setUserEmail(email);
       setIsLoading(false);
       router.replace('verify-mail');
     } catch (error) {

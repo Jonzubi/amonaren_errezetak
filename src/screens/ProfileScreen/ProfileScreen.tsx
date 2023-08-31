@@ -1,31 +1,29 @@
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import styles from './ProfileScreen.android.styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import UserAvatar from '../../components/UserAvatar/UserAvatar';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { Avatar, Divider, Text } from 'react-native-elements';
+import { Divider, Text } from 'react-native-elements';
 import { Input } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import { patchUser } from '../../api/user/user';
-import { ProfileData, setUserProfile } from '../../redux/user/userSlice';
 import colors from '../../constants/colors';
 import ChooseImageRefactor from '../../components/ChooseImageRefactor/ChooseImageRefactor';
 import { PatchUser } from '../../interfaces/api/user/PatchUser';
 import { isValidBase64 } from '../../utils/functions/image';
+import { ProfileData, useUserStore } from 'src/zustand/userStore';
 
 export default function ProfileScreen() {
-  const username = useSelector((state: RootState) => state.user.username);
-  const nameSurname = useSelector((state: RootState) => state.user.nameSurname);
-  const email = useSelector((state: RootState) => state.user.email);
-  const imageUrl = useSelector((state: RootState) => state.user.imageUrl);
-  const access_token = useSelector(
-    (state: RootState) => state.user.access_token,
-  );
+  const {
+    username,
+    nameSurname,
+    email,
+    imageUrl,
+    access_token,
+    setUserProfile,
+  } = useUserStore();
   const { t } = useTranslation();
-  const dispatch = useDispatch();
 
   const [newUsername, setNewUsername] = useState(username || '');
   const [newNameSurname, setNewNameSurname] = useState(nameSurname || '');
@@ -51,7 +49,7 @@ export default function ProfileScreen() {
         username,
         imageUrl,
       };
-      dispatch(setUserProfile(profileData));
+      setUserProfile(profileData);
     } catch (error) {
     } finally {
       setIsLoading(false);

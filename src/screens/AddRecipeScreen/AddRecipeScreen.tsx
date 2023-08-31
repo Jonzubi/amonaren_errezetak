@@ -13,8 +13,6 @@ import colors from '../../constants/colors';
 import { createRecipe, editRecipe } from '../../api/recipe/recipe';
 import { useIngredients } from '../../hooks/useIngredients';
 import { useSteps } from '../../hooks/useSteps';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 import CustomToast, {
   ToastType,
 } from '../../components/CustomToast/CustomToast';
@@ -22,13 +20,14 @@ import { useModal } from '../../hooks/useModal';
 import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import ChooseImageRefactor from '@components/ChooseImageRefactor/ChooseImageRefactor';
+import { useUserStore } from 'src/zustand/userStore';
 
 interface AddRecipeScreenProps {
   recipeId?: string;
 }
 
 export default function AddRecipeScreen({ recipeId }: AddRecipeScreenProps) {
-  const token = useSelector((state: RootState) => state.user.access_token);
+  const { access_token } = useUserStore();
   const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [errorTitle, setErrorTitle] = useState('');
@@ -117,7 +116,7 @@ export default function AddRecipeScreen({ recipeId }: AddRecipeScreenProps) {
           ingredients,
           steps,
         },
-        getHeaderWithAccessToken(token),
+        getHeaderWithAccessToken(access_token),
       );
       setSuccessShowModal(true);
     } catch (error) {

@@ -7,8 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions/email';
 import { login } from '../../api/user/user';
-import { useDispatch } from 'react-redux';
-import { setUserData } from '../../redux/user/userSlice';
 import { AxiosError } from 'axios';
 import CustomToast, {
   ToastType,
@@ -17,10 +15,11 @@ import { useModal } from '../../hooks/useModal';
 import * as SecureStore from 'expo-secure-store';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import { Link, useRouter } from 'expo-router';
+import { useUserStore } from 'src/zustand/userStore';
 
 export default function LoginScreen() {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const { setUserData } = useUserStore();
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -50,15 +49,13 @@ export default function LoginScreen() {
     try {
       const userData = await login({ email, password });
       const { access_token, username, nameSurname, imageUrl } = userData.data;
-      dispatch(
-        setUserData({
-          access_token,
-          username,
-          nameSurname,
-          imageUrl,
-          email: userData.data.email,
-        }),
-      );
+      setUserData({
+        access_token,
+        username,
+        nameSurname,
+        imageUrl,
+        email: userData.data.email,
+      });
       await SecureStore.setItemAsync('access_token', access_token);
       setIsLoading(false);
       router.replace('home');
