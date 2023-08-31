@@ -57,6 +57,13 @@ export default function App() {
           }}
         />
         <Stack.Screen
+          name="(user)/edit-recipe"
+          options={{
+            headerShown: true,
+            headerTitle: t('headerTitles.editRecipe'),
+          }}
+        />
+        <Stack.Screen
           name="recipe/[recipeId]"
           options={{
             headerShown: true,
