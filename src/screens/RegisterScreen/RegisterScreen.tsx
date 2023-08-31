@@ -1,10 +1,9 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, ScrollView } from 'react-native';
 import styles from './RegisterScreen.android.styles';
 import Logo from '../../components/Logo/Logo';
 import { Input, Button, Divider } from '@rneui/themed';
 import { AntDesign } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import SignGoogle from '../../components/SignGoogle/SignGoogle';
 import colors from '../../constants/colors';
 import { useRef, useState } from 'react';
 import { isEmail } from '../../utils/functions/email';
@@ -15,13 +14,15 @@ import CustomToast, {
 import { useModal } from '../../hooks/useModal';
 import { useDispatch } from 'react-redux';
 import { setUserEmail } from '../../redux/user/userSlice';
-import * as SecureStore from 'expo-secure-store';
+import { useRouter } from 'expo-router';
 
-export default function RegisterScreen({ navigation }: { navigation: any }) {
+export default function RegisterScreen() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const router = useRouter();
+
   const onGoLogin = () => {
-    navigation.navigate('Auth_Login');
+    router.back();
   };
 
   const [email, setEmail] = useState('');
@@ -65,7 +66,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
       await createUser({ email, password, nameSurname });
       dispatch(setUserEmail(email));
       setIsLoading(false);
-      navigation.navigate('Auth_VerifyMail');
+      router.replace('verify-mail');
     } catch (error) {
       setShowModal(true);
     } finally {
@@ -74,7 +75,7 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Logo imageStyle={styles.logo} />
 
       <Input
@@ -142,6 +143,6 @@ export default function RegisterScreen({ navigation }: { navigation: any }) {
         visible={showModal}
         text={modalText}
       />
-    </View>
+    </ScrollView>
   );
 }

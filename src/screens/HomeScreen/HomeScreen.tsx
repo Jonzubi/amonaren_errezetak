@@ -26,15 +26,15 @@ export default function HomeScreen() {
 
   const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
     <Recipe
-      recipeId={item.recipeId}
+      recipeId={item.recipeId!}
       title={item.title}
       description={item.description}
       image={item.image}
       createdBy={item.createdBy}
-      likeCount={item.likeCount}
-      favCount={item.favCount}
-      hasLiked={item.hasLiked}
-      hasFaved={item.hasFaved}
+      likeCount={item.likeCount!}
+      favCount={item.favCount!}
+      hasLiked={item.hasLiked!}
+      hasFaved={item.hasFaved!}
     />
   );
 

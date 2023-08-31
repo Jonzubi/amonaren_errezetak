@@ -19,19 +19,16 @@ import CustomToast, {
   ToastType,
 } from '../../components/CustomToast/CustomToast';
 import { useModal } from '../../hooks/useModal';
-import { useNavigation } from '@react-navigation/native';
 import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 
 interface AddRecipeScreenProps {
-  route?: any;
+  recipeId?: string;
 }
 
-export default function AddRecipeScreen({ route }: AddRecipeScreenProps) {
-  const recipeId = route?.params?.recipeId;
+export default function AddRecipeScreen({ recipeId }: AddRecipeScreenProps) {
   const token = useSelector((state: RootState) => state.user.access_token);
   const { t } = useTranslation();
-  const navigation = useNavigation();
   const [title, setTitle] = useState('');
   const [errorTitle, setErrorTitle] = useState('');
   const [description, setDescription] = useState('');

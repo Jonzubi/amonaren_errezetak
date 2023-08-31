@@ -5,18 +5,18 @@ import { Text } from 'react-native-elements';
 import styles from './Logout.android.styles';
 import { useDispatch } from 'react-redux';
 import { resetUserData } from '../../redux/user/userSlice';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 
 export default function LogOut() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  const router = useRouter();
 
   const handlePress = async () => {
     dispatch(resetUserData());
     await SecureStore.setItemAsync('access_token', '');
-    navigation.navigate('Auth');
+    router.replace('login');
   };
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>

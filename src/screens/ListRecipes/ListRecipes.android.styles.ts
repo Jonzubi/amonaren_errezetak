@@ -4,6 +4,9 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
+  flatListContainer: {
+    flexGrow: 1,
+  },
   myRecipeContainer: {
     flexDirection: 'row',
     gap: 20,
