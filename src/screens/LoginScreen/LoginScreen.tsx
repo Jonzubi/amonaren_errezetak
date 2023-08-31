@@ -61,7 +61,7 @@ export default function LoginScreen() {
       );
       await SecureStore.setItemAsync('access_token', access_token);
       setIsLoading(false);
-      router.push('home');
+      router.replace('home');
     } catch (error) {
       if ((error as AxiosError)?.response?.status === 401) {
         const modalText = (error as AxiosError)?.response?.data?.message;
