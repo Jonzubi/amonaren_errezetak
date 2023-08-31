@@ -2,19 +2,15 @@
   "expo": {
     "name": "Amonaren Errezetak",
     "slug": "amonaren_errezetak",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./src/assets/logo.png",
     "userInterfaceStyle": "light",
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.amonaren_errezetak.amonaren_errezetak"
-    },
     "android": {
-      "versionCode": 6,
+      "versionCode": 7,
       "package": "com.amonaren_errezetak.amonaren_errezetak",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/logo.png",
@@ -25,9 +21,6 @@
           "certificateHash": "6C:A1:3C:BD:BA:2A:13:7E:66:7D:9A:97:13:FB:B5:C9:25:45:93:65"
         }
       }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
