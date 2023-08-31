@@ -1,7 +1,7 @@
 {
   "main": "expo-router/entry",
   "name": "amonaren_errezetak",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "scripts": {
     "start:dev": "npx expo start",
     "android": "expo run:android",

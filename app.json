@@ -2,7 +2,7 @@
   "expo": {
     "name": "Amonaren Errezetak",
     "slug": "amonaren_errezetak",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "orientation": "portrait",
     "icon": "./src/assets/logo.png",
     "userInterfaceStyle": "light",
@@ -10,7 +10,7 @@
       "**/*"
     ],
     "android": {
-      "versionCode": 8,
+      "versionCode": 9,
       "package": "com.amonaren_errezetak.amonaren_errezetak",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/logo.png",
