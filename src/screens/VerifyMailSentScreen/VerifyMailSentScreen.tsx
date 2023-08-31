@@ -4,13 +4,12 @@ import LottieView from 'lottie-react-native';
 import { useEffect, useRef } from 'react';
 import styles from './VerifyMailSentScreen.android.styles';
 import { Text } from 'react-native-elements';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 import { useTranslation } from 'react-i18next';
+import { useUserStore } from 'src/zustand/userStore';
 
 export default function VerifyMailSentScreen() {
   const animationRef = useRef<LottieView>(null);
-  const email = useSelector((state: RootState) => state.user.email);
+  const { email } = useUserStore();
   const { t } = useTranslation();
 
   useEffect(() => {

@@ -9,8 +9,7 @@ import {
   unfavRecipe,
 } from '../../api/recipe/recipe';
 import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useUserStore } from 'src/zustand/userStore';
 
 interface RateRecipeIconProps {
   containerStyle?: ViewStyle;
@@ -28,9 +27,9 @@ export default function RateRecipeIcon({
   recipeId,
   rateText,
 }: RateRecipeIconProps) {
-  const token = useSelector((state: RootState) => state.user.access_token);
+  const { access_token } = useUserStore();
   const [auxIsRated, setAuxIsRated] = useState(isRated);
-  const [auxRateCount, setAuxRateCount] = useState(rateCount);
+  const [auxRateCount, setAuxRateCount] = useState(rateCount || 0);
   const isInitialMount = useRef(true);
 
   const getIconName = () => {
@@ -47,7 +46,7 @@ export default function RateRecipeIcon({
     const action = getAction();
 
     try {
-      action(recipeId, getHeaderWithAccessToken(token));
+      action(recipeId, getHeaderWithAccessToken(access_token));
       setAuxIsRated(!auxIsRated);
     } catch (error) {
       console.log({ error });

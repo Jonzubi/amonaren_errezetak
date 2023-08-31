@@ -4,12 +4,11 @@ import { useEffect } from 'react';
 import Logo from '../../components/Logo/Logo';
 import { getProfile } from '../../api/user/user';
 import * as SecureStore from 'expo-secure-store';
-import { useDispatch } from 'react-redux';
-import { setUserData } from '../../redux/user/userSlice';
 import { useRouter } from 'expo-router';
+import { useUserStore } from 'src/zustand/userStore';
 
 export default function SplashScreen() {
-  const dispatch = useDispatch();
+  const { setUserData } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -20,15 +19,13 @@ export default function SplashScreen() {
         const data = await getProfile(access_token);
 
         const { email, username, imageUrl, nameSurname } = data.data;
-        dispatch(
-          setUserData({
-            access_token,
-            email,
-            username,
-            imageUrl,
-            nameSurname,
-          }),
-        );
+        setUserData({
+          access_token,
+          email,
+          username,
+          imageUrl,
+          nameSurname,
+        });
         router.replace('home');
       } catch (error) {
         router.replace('login');
