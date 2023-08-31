@@ -1,12 +1,12 @@
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { createRef, useEffect } from 'react';
 import styles from './AddRecipeScreen.android.styles';
 import { Input, Button } from '@rneui/themed';
 import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
-import ChooseImages from '../../components/ChooseImages/ChooseImages';
+import { FontAwesome } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Divider, Text } from 'react-native-elements';
+import { Divider, Image, Text } from 'react-native-elements';
 import Ingredients from '../../components/Ingredients/Ingredients';
 import Steps from '../../components/Steps/Steps';
 import colors from '../../constants/colors';
@@ -21,6 +21,7 @@ import CustomToast, {
 import { useModal } from '../../hooks/useModal';
 import { getHeaderWithAccessToken } from '../../utils/functions/axiosOptions';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
+import ChooseImageRefactor from '@components/ChooseImageRefactor/ChooseImageRefactor';
 
 interface AddRecipeScreenProps {
   recipeId?: string;
@@ -131,12 +132,23 @@ export default function AddRecipeScreen({ recipeId }: AddRecipeScreenProps) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView ref={scrollRef} style={styles.container}>
-        <ChooseImages
-          initialImageUrl={editRecipeImage}
-          containerStyle={styles.addImage}
-          containerStyleWithImage={styles.addImageWithImage}
-          onImageChosen={onImageChosen}
-        />
+        {(editRecipeImage || recipeImage) && (
+          <ChooseImageRefactor onImageChosen={onImageChosen}>
+            <Image
+              source={{
+                uri: recipeImage ? recipeImage : editRecipeImage,
+              }}
+              style={styles.addImageWithImage}
+            />
+          </ChooseImageRefactor>
+        )}
+        {!(editRecipeImage || recipeImage) && (
+          <ChooseImageRefactor onImageChosen={onImageChosen}>
+            <View style={styles.addImage}>
+              <FontAwesome name="photo" size={50} />
+            </View>
+          </ChooseImageRefactor>
+        )}
         <Divider style={styles.verticalDivider} />
         <Text h4 style={{ marginBottom: 25 }}>
           {t('addRecipeScreen.title')}
