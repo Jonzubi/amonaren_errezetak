@@ -64,5 +64,11 @@
   },
   "homeScreen": {
     "filterRecipes": "Zer sukaldatu nahi duzu gaur?"
+  },
+  "headerTitles": {
+    "profile": "Profila",
+    "myRecipes": "Nire errezetak",
+    "favRecipes": "Nire errezeta gogokoenak",
+    "recipeDetail": "Errezeta"
   }
 }

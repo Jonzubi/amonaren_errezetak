@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import { Stack } from 'expo-router';
 import { store } from '../redux/store';
 import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import { initReactI18next, useTranslation } from 'react-i18next';
 import 'i18next';
 import eus_json from '../i18n/eus.json';
 
@@ -27,13 +27,43 @@ i18n.use(initReactI18next).init({
 });
 
 export default function App() {
+  const { t } = useTranslation();
   return (
     <Provider store={store}>
       <Stack
         screenOptions={{
           headerShown: false,
         }}
-      />
+      >
+        <Stack.Screen
+          name="(user)/profile"
+          options={{
+            headerShown: true,
+            headerTitle: t('headerTitles.profile'),
+          }}
+        />
+        <Stack.Screen
+          name="(user)/fav-recipes"
+          options={{
+            headerShown: true,
+            headerTitle: t('headerTitles.favRecipes'),
+          }}
+        />
+        <Stack.Screen
+          name="(user)/my-recipes"
+          options={{
+            headerShown: true,
+            headerTitle: t('headerTitles.myRecipes'),
+          }}
+        />
+        <Stack.Screen
+          name="recipe/[recipeId]"
+          options={{
+            headerShown: true,
+            headerTitle: t('headerTitles.recipeDetail'),
+          }}
+        />
+      </Stack>
     </Provider>
   );
 }
