@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { FlatList, ListRenderItem, RefreshControl, View } from 'react-native';
+import { RefreshControl, View } from 'react-native';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import Recipe from '../../components/Recipe/Recipe';
 import styles from './HomeScreen.android.styles';
@@ -12,6 +12,7 @@ import { Input } from '@rneui/themed';
 import { Entypo } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import colors from '../../constants/colors';
+import { FlashList } from '@shopify/flash-list';
 
 export default function HomeScreen() {
   const [refreshing, setRefreshing] = useState(false);
@@ -24,7 +25,7 @@ export default function HomeScreen() {
   const isInitialMount = useRef(true);
   const { t } = useTranslation();
 
-  const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
+  const handleRenderItem = ({ item }: { item: TRecipe }) => (
     <Recipe
       recipeId={item.recipeId!}
       title={item.title}
@@ -80,18 +81,17 @@ export default function HomeScreen() {
         <NoRecipes />
       ) : (
         <>
-          <FlatList
+          <FlashList
             refreshControl={
               <RefreshControl
                 refreshing={refreshing}
                 onRefresh={refreshRecipes}
               />
             }
-            contentContainerStyle={{ flexGrow: 1 }}
-            style={styles.flatList}
+            estimatedItemSize={283}
             data={recipes}
             renderItem={handleRenderItem}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(item, index) => item.recipeId!}
           />
         </>
       )}

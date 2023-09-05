@@ -1,14 +1,6 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  RefreshControl,
-  FlatList,
-  ListRenderItem,
-} from 'react-native';
+import { View, Text, TouchableOpacity, RefreshControl } from 'react-native';
 import { UseRecipesType, useRecipes } from '../../hooks/useRecipes';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Recipe as TRecipe } from '../../types/Recipe';
 import { useState } from 'react';
 import styles from './ListRecipes.android.styles';
 import { Image } from 'react-native-elements';
@@ -18,6 +10,8 @@ import { getFromNowFromDate } from '../../utils/functions/date';
 import RateRecipeIcon from '../../components/RateRecipeIcon/RateRecipeIcon';
 import { useRouter } from 'expo-router';
 import NoRecipes from '../../components/NoRecipes/NoRecipes';
+import { FlashList } from '@shopify/flash-list';
+import { Recipe } from 'src/types/Recipe';
 
 interface ListRecipesProps {
   type: UseRecipesType;
@@ -27,7 +21,7 @@ export default function ListRecipes({ type }: ListRecipesProps) {
   const [refreshing, setRefreshing] = useState(false);
   const router = useRouter();
 
-  const handleRenderItem: ListRenderItem<TRecipe> = ({ item }) => (
+  const handleRenderItem = ({ item }: { item: Recipe }) => (
     <Card wrapperStyle={styles.myRecipeContainer}>
       <Image
         source={{ uri: getImageUrlWithName(item.image) }}
@@ -73,8 +67,8 @@ export default function ListRecipes({ type }: ListRecipesProps) {
       {!loading && recipes.length === 0 ? (
         <NoRecipes />
       ) : (
-        <FlatList
-          contentContainerStyle={styles.flatListContainer}
+        <FlashList
+          style={styles.flatListContainer}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
@@ -83,7 +77,7 @@ export default function ListRecipes({ type }: ListRecipesProps) {
           }
           data={recipes}
           renderItem={handleRenderItem}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item, index) => item.recipeId!}
         />
       )}
     </SafeAreaView>
