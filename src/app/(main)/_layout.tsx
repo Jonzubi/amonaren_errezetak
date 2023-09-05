@@ -18,14 +18,14 @@ export default function Layout() {
       <Tabs.Screen
         name="add-recipe"
         options={{
-          tabBarLabel: () => null,
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
+          tabBarLabel: ({ focused }) => (
             <Ionicons
               name={focused ? 'add-circle' : 'add-circle-outline'}
               size={40}
             />
           ),
+          headerShown: false,
+          tabBarIcon: () => null,
         }}
       />
       <Tabs.Screen
