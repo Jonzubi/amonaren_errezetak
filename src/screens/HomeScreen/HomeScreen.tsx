@@ -88,7 +88,7 @@ export default function HomeScreen() {
                 onRefresh={refreshRecipes}
               />
             }
-            estimatedItemSize={283}
+            estimatedItemSize={300}
             data={recipes}
             renderItem={handleRenderItem}
             keyExtractor={(item, index) => item.recipeId!}

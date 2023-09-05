@@ -68,7 +68,6 @@ export default function ListRecipes({ type }: ListRecipesProps) {
         <NoRecipes />
       ) : (
         <FlashList
-          style={styles.flatListContainer}
           refreshControl={
             <RefreshControl
               refreshing={refreshing}
@@ -78,6 +77,7 @@ export default function ListRecipes({ type }: ListRecipesProps) {
           data={recipes}
           renderItem={handleRenderItem}
           keyExtractor={(item, index) => item.recipeId!}
+          estimatedItemSize={300}
         />
       )}
     </SafeAreaView>
