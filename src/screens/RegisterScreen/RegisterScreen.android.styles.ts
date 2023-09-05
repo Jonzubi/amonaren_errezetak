@@ -7,6 +7,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     padding: 15,
+    flex: 1,
   },
   logo: {
     height: 300,
