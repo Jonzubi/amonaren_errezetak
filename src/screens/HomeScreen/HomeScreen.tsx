@@ -32,6 +32,7 @@ export default function HomeScreen() {
       description={item.description}
       image={item.image}
       createdBy={item.createdBy}
+      creationDate={item.creationDate!.toString()}
       likeCount={item.likeCount!}
       favCount={item.favCount!}
       hasLiked={item.hasLiked!}

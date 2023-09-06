@@ -1,10 +1,10 @@
-import { TouchableOpacity, View } from 'react-native';
-import { Card, Text } from '@rneui/themed';
+import { ImageBackground, TouchableOpacity, View, Text } from 'react-native';
 import styles from './Recipe.android.styles';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import { getImageUrlWithName } from '../../utils/functions/image';
 import RateRecipeIcon from '../RateRecipeIcon/RateRecipeIcon';
-import { useRouter } from 'expo-router';
+import { Link } from 'expo-router';
+import moment from 'moment';
 
 interface Props {
   recipeId: string;
@@ -12,6 +12,7 @@ interface Props {
   description: string;
   image?: string;
   createdBy: createdByProp;
+  creationDate: string;
   likeCount: number;
   favCount: number;
   hasLiked: boolean;
@@ -28,45 +29,62 @@ export default function Recipe({
   title,
   image,
   createdBy,
+  creationDate,
   likeCount,
   favCount,
   hasLiked,
   hasFaved,
 }: Props) {
-  const router = useRouter();
-
   return (
-    <TouchableOpacity onPress={() => router.push(`recipe/${recipeId}`)}>
-      <Card containerStyle={styles.container}>
-        <Card.Title>
-          <Text h4>{title}</Text>
-        </Card.Title>
-        <Card.Image source={{ uri: getImageUrlWithName(image) }} />
-        <View style={styles.cardFooter}>
-          <View style={styles.cardFooterUser}>
-            <UserAvatar hardCodedImageUrl={createdBy?.imageUrl} hardCodeUrl />
-            <Text style={styles.cardFooterUsernameText}>
-              {createdBy?.username}
-            </Text>
-          </View>
-          <View style={styles.cardFooterRating}>
-            <RateRecipeIcon
-              recipeId={recipeId}
-              containerStyle={styles.cardFooterRate}
-              isRated={hasLiked}
-              rateCount={likeCount}
-              type="Like"
-            />
-            <RateRecipeIcon
-              recipeId={recipeId}
-              containerStyle={styles.cardFooterRate}
-              isRated={hasFaved}
-              rateCount={favCount}
-              type="Fav"
-            />
-          </View>
+    <View style={styles.container}>
+      <Link href={`recipe/${recipeId}`} asChild>
+        <TouchableOpacity style={styles.clickableContainer}>
+          <ImageBackground
+            source={{
+              uri: getImageUrlWithName(image),
+            }}
+            imageStyle={{
+              borderRadius: 10,
+            }}
+            resizeMode="cover"
+            style={styles.image}
+          >
+            <View style={styles.fromNow}>
+              <Text style={styles.fromNowText}>
+                {moment(creationDate).fromNow()}
+              </Text>
+            </View>
+            <View style={styles.footerContainer}>
+              <View style={styles.footerUser}>
+                <UserAvatar
+                  hardCodedImageUrl={createdBy?.imageUrl}
+                  hardCodeUrl
+                />
+                <Text style={styles.usernameText}>{createdBy?.username}</Text>
+              </View>
+              <Text style={styles.title}>{title}</Text>
+            </View>
+          </ImageBackground>
+        </TouchableOpacity>
+      </Link>
+      <View style={styles.footerRating}>
+        <View style={styles.footerRating}>
+          <RateRecipeIcon
+            recipeId={recipeId}
+            containerStyle={styles.footerRate}
+            isRated={hasLiked}
+            rateCount={likeCount}
+            type="Like"
+          />
+          <RateRecipeIcon
+            recipeId={recipeId}
+            containerStyle={styles.footerRate}
+            isRated={hasFaved}
+            rateCount={favCount}
+            type="Fav"
+          />
         </View>
-      </Card>
-    </TouchableOpacity>
+      </View>
+    </View>
   );
 }
