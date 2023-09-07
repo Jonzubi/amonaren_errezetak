@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../constants/colors';
+
+const width = Dimensions.get('window').width;
 
 export default StyleSheet.create({
   container: {
@@ -17,7 +19,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: 250,
+    height: (300 * width) / 500,
   },
   fromNow: {
     backgroundColor: 'rgba(0, 0, 0, 0.8)',

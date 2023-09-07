@@ -44,7 +44,8 @@ export default function Recipe({
               uri: getImageUrlWithName(image),
             }}
             imageStyle={{
-              borderRadius: 10,
+              borderTopLeftRadius: 10,
+              borderTopRightRadius: 10,
             }}
             resizeMode="cover"
             style={styles.image}
