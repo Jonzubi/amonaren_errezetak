@@ -71,6 +71,7 @@ export default function Recipe({
       <View style={styles.footerRating}>
         <View style={styles.footerRating}>
           <RateRecipeIcon
+            key={`like-${recipeId}`}
             recipeId={recipeId}
             containerStyle={styles.footerRate}
             isRated={hasLiked}
@@ -78,6 +79,7 @@ export default function Recipe({
             type="Like"
           />
           <RateRecipeIcon
+            key={`unlike-${recipeId}`}
             recipeId={recipeId}
             containerStyle={styles.footerRate}
             isRated={hasFaved}
