@@ -1,75 +1,75 @@
 {
+  "addRecipeScreen": {
+    "add_ingredient_placeholder": "100ml ur",
+    "add_step_placeholder": "Ura berotu",
+    "description": "Deskripzioa",
+    "editRecipe": "Gorde aldaketa",
+    "errorDescription": "Deskripzioa falta da",
+    "errorTitle": "Izenburua falta da",
+    "ingredient": "Osagaia",
+    "ingredients": "Osagaiak",
+    "inputDescription": "Errezetaren deskripzioa",
+    "inputTitle": "Nire amonaren errezeta sekretua",
+    "postRecipe": "Igo errezeta",
+    "postSuccess": "Errezeta igo da!",
+    "step": "Pausoa",
+    "steps": "Pausoak",
+    "title": "Izenburua"
+  },
+  "errors": {
+    "emailNotVerified": "Emaila ez dago egiaztatuta",
+    "generic": "Arazo bat gertatu da"
+  },
   "forms": {
     "enter_email_placeholder": "Sartu zure emaila",
-    "enter_pass_placeholder": "Sartu zure pasahitza",
-    "enter_pass_again_placeholder": "Sartu pasahitza berriro",
     "enter_nameSurname": "Sartu zure izen-abizenak",
-    "login_button": "Sartu",
-    "signup_button": "Izena eman",
+    "enter_pass_again_placeholder": "Sartu pasahitza berriro",
+    "enter_pass_placeholder": "Sartu zure pasahitza",
     "google_sign": "Sartu Google bidez",
-    "username_placeholder": "Sartu zure erabiltzaile izena",
+    "login_button": "Sartu",
     "nameSurname_placeholder": "Sartu zure izen-abizenak",
-    "save": "Gorde"
+    "save": "Gorde",
+    "signup_button": "Izena eman",
+    "username_placeholder": "Sartu zure erabiltzaile izena"
+  },
+  "headerTitles": {
+    "editRecipe": "Errezeta editatu",
+    "favRecipes": "Nire errezeta gogokoenak",
+    "myRecipes": "Nire errezetak",
+    "profile": "Profila",
+    "recipeDetail": "Errezeta"
+  },
+  "homeScreen": {
+    "filterRecipes": "Zer sukaldatu nahi duzu gaur?"
   },
   "loginScreen": {
-    "you_new": "Berria zara?",
     "go_register": "Erregistratu!",
-    "incorrectLogin": "Email edo pasahitzak ez dira zuzenak"
+    "incorrectLogin": "Email edo pasahitzak ez dira zuzenak",
+    "you_new": "Berria zara?"
+  },
+  "logOut": {
+    "logout": "Itxi Saioa"
+  },
+  "noRecipes": {
+    "mainText": "Ez dago errezetarik oraindik!"
+  },
+  "recipeDetail": {
+    "author": "Egilea",
+    "edit": "Editatu",
+    "saveFavourite": "Gogokoen gisa gorde!",
+    "saveLike": "Gustoko dut"
   },
   "registerScreen": {
-    "got_account": "Kontua baduzu jada?",
     "go_login": "Hasi saioa!",
-    "same_password": "Pasahitzek berdinak izan behar dute",
-    "not_email": "Emailaren formatua oker dago"
-  },
-  "addRecipeScreen": {
-    "title": "Izenburua",
-    "errorTitle": "Izenburua falta da",
-    "description": "Deskripzioa",
-    "errorDescription": "Deskripzioa falta da",
-    "inputTitle": "Nire amonaren errezeta sekretua",
-    "inputDescription": "Errezetaren deskripzioa",
-    "ingredients": "Osagaiak",
-    "ingredient": "Osagaia",
-    "add_ingredient_placeholder": "100ml ur",
-    "steps": "Pausoak",
-    "step": "Pausoa",
-    "add_step_placeholder": "Ura berotu",
-    "postRecipe": "Igo errezeta",
-    "editRecipe": "Gorde aldaketa",
-    "postSuccess": "Errezeta igo da!"
+    "got_account": "Kontua baduzu jada?",
+    "not_email": "Emailaren formatua oker dago",
+    "same_password": "Pasahitzek berdinak izan behar dute"
   },
   "userScreen": {
     "favRecipes": "Nire errezeta gogokoenak",
     "myRecipes": "Nire errezetak"
   },
-  "logOut": {
-    "logout": "Itxi Saioa"
-  },
-  "errors": {
-    "generic": "Arazo bat gertatu da",
-    "emailNotVerified": "Emaila ez dago egiaztatuta"
-  },
-  "recipeDetail": {
-    "saveFavourite": "Gogokoen gisa gorde!",
-    "saveLike": "Gustoko dut",
-    "author": "Egilea",
-    "edit": "Editatu"
-  },
-  "noRecipes": {
-    "mainText": "Ez dago errezetarik oraindik!"
-  },
   "verifyMailSentScreen": {
     "mainText": "Email bat bidali dugu {{email}} helbidera emaila egiaztatzeko"
-  },
-  "homeScreen": {
-    "filterRecipes": "Zer sukaldatu nahi duzu gaur?"
-  },
-  "headerTitles": {
-    "profile": "Profila",
-    "myRecipes": "Nire errezetak",
-    "favRecipes": "Nire errezeta gogokoenak",
-    "editRecipe": "Errezeta editatu",
-    "recipeDetail": "Errezeta"
   }
 }
