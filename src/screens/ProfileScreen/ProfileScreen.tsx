@@ -13,6 +13,8 @@ import ChooseImageRefactor from '../../components/ChooseImageRefactor/ChooseImag
 import { PatchUser } from '../../interfaces/api/user/PatchUser';
 import { isValidBase64 } from '../../utils/functions/image';
 import { ProfileData, useUserStore } from 'src/zustand/userStore';
+import { useModal } from 'src/hooks/useModal';
+import CustomToast, { ToastType } from '@components/CustomToast/CustomToast';
 
 export default function ProfileScreen() {
   const {
@@ -29,6 +31,9 @@ export default function ProfileScreen() {
   const [newNameSurname, setNewNameSurname] = useState(nameSurname || '');
   const [newImage, setNewImage] = useState(imageUrl || '');
   const [isLoading, setIsLoading] = useState(false);
+  const { modalText, setShowModal, showModal } = useModal(
+    t('generic.savedSuccesfully'),
+  );
 
   const handleSave = async () => {
     if (newUsername === '') return; // TODO handle error
@@ -50,6 +55,7 @@ export default function ProfileScreen() {
         imageUrl,
       };
       setUserProfile(profileData);
+      setShowModal(true);
     } catch (error) {
     } finally {
       setIsLoading(false);
@@ -94,6 +100,12 @@ export default function ProfileScreen() {
             handlePress={handleSave}
           />
         </View>
+        <CustomToast
+          type={ToastType.SUCCESS}
+          closeModal={() => setShowModal(false)}
+          visible={showModal}
+          text={modalText}
+        />
       </View>
     </SafeAreaView>
   );

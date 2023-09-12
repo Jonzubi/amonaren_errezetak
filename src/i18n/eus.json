@@ -32,6 +32,9 @@
     "signup_button": "Izena eman",
     "username_placeholder": "Sartu zure erabiltzaile izena"
   },
+  "generic": {
+    "savedSuccesfully": "Aldaketak gordeta!"
+  },
   "headerTitles": {
     "editRecipe": "Errezeta editatu",
     "favRecipes": "Nire errezeta gogokoenak",
