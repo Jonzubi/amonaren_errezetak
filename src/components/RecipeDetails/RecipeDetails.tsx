@@ -39,19 +39,19 @@ export function RecipeDetails({ recipe, editable }: RecipeDetailsProps) {
           </View>
         </View>
         <Text style={styles.description}>{recipe.description}</Text>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+        <View style={{ flexDirection: 'row', gap: 15 }}>
           <RateRecipeIcon
             type="Like"
             isRated={recipe.hasLiked}
-            rateText={t('recipeDetail.saveLike')}
-            containerStyle={styles.favouriteButton}
+            hideText
+            containerStyle={styles.rateButton}
             recipeId={recipe.recipeId}
           />
           <RateRecipeIcon
             type="Fav"
             isRated={recipe.hasFaved}
-            rateText={t('recipeDetail.saveFavourite')}
-            containerStyle={styles.favouriteButton}
+            hideText
+            containerStyle={styles.rateButton}
             recipeId={recipe.recipeId}
           />
         </View>

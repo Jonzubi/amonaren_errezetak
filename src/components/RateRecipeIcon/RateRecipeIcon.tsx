@@ -18,6 +18,7 @@ interface RateRecipeIconProps {
   rateCount?: number;
   recipeId: string;
   rateText?: string;
+  hideText?: boolean;
 }
 export default function RateRecipeIcon({
   containerStyle,
@@ -26,6 +27,7 @@ export default function RateRecipeIcon({
   rateCount,
   recipeId,
   rateText,
+  hideText,
 }: RateRecipeIconProps) {
   const { access_token } = useUserStore();
   const [auxIsRated, setAuxIsRated] = useState(isRated);
@@ -40,7 +42,7 @@ export default function RateRecipeIcon({
     if (type === 'Like') return auxIsRated ? unlikeRecipe : likeRecipe;
     return auxIsRated ? unfavRecipe : favRecipe;
   };
-  const getColor = () => (type === 'Like' ? colors.RED : colors.BLACK);
+  const getColor = () => (type === 'Like' ? colors.RED : colors.YELLOW);
 
   const handlePress = () => {
     const action = getAction();
@@ -64,7 +66,7 @@ export default function RateRecipeIcon({
   return (
     <TouchableOpacity onPress={handlePress} style={containerStyle}>
       <AntDesign name={getIconName()} size={20} color={getColor()} />
-      <Text>{rateText ?? auxRateCount}</Text>
+      {!hideText && <Text>{rateText ?? auxRateCount}</Text>}
     </TouchableOpacity>
   );
 }

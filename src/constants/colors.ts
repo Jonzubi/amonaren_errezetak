@@ -6,5 +6,6 @@ export default {
   RED: '#F44336',
   BLACK: '#000',
   DARKGREY: '#AAA',
-  YELLOW: 'yellow',
+  YELLOW: '#FFC107',
+  CREME: '#F5F5F5',
 };

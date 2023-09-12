@@ -22,7 +22,7 @@ export default StyleSheet.create({
     height: height,
     resizeMode: 'center',
     maxHeight: 400,
-    backgroundColor: colors.LIGHTGREY,
+    backgroundColor: colors.CREME,
   },
   title: {
     fontWeight: 'bold',
@@ -32,19 +32,20 @@ export default StyleSheet.create({
   description: {
     marginVertical: 15,
   },
-  favouriteButton: {
+  rateButton: {
     marginVertical: 15,
     border: 1,
     borderWidth: 1,
-    borderColor: colors.DARKGREY,
     borderRadius: 10,
-    backgroundColor: colors.GREY,
-    height: 50,
+    borderColor: colors.GREY,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     gap: 10,
     padding: 10,
+    height: 50,
+    flex: 1,
+    backgroundColor: colors.CREME,
   },
   favouriteText: {
     fontSize: 15,
