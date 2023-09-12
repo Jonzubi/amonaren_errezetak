@@ -1,33 +1,32 @@
 {
   "expo": {
-    "name": "Amonaren Errezetak",
-    "slug": "amonaren_errezetak",
-    "version": "1.0.10",
-    "orientation": "portrait",
-    "icon": "./src/assets/logo.png",
-    "userInterfaceStyle": "light",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "android": {
-      "versionCode": 12,
-      "package": "com.amonaren_errezetak.amonaren_errezetak",
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/logo.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "foregroundImage": "./src/assets/logo.png"
       },
       "config": {
         "googleSignIn": {
           "certificateHash": "6C:A1:3C:BD:BA:2A:13:7E:66:7D:9A:97:13:FB:B5:C9:25:45:93:65"
         }
-      }
+      },
+      "package": "com.amonaren_errezetak.amonaren_errezetak",
+      "versionCode": 13
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "experiments": {
+      "tsconfigPaths": true
     },
     "extra": {
       "eas": {
         "projectId": "e185a627-c53e-48ac-a1fa-deb0f8266047"
       }
     },
-    "scheme": "amonaren_errezetak",
+    "icon": "./src/assets/logo.png",
+    "name": "Amonaren Errezetak",
+    "orientation": "portrait",
     "plugins": [
       [
         "expo-image-picker",
@@ -37,8 +36,9 @@
       ],
       "expo-router"
     ],
-    "experiments": {
-      "tsconfigPaths": true
-    }
+    "scheme": "amonaren_errezetak",
+    "slug": "amonaren_errezetak",
+    "userInterfaceStyle": "light",
+    "version": "1.0.11"
   }
 }
