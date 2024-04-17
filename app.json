@@ -11,11 +11,9 @@
         }
       },
       "package": "com.amonaren_errezetak.amonaren_errezetak",
-      "versionCode": 13
+      "versionCode": 14
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "experiments": {
       "tsconfigPaths": true
     },
@@ -39,6 +37,6 @@
     "scheme": "amonaren_errezetak",
     "slug": "amonaren_errezetak",
     "userInterfaceStyle": "light",
-    "version": "1.0.11"
+    "version": "1.0.12"
   }
 }
