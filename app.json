@@ -11,7 +11,7 @@
         }
       },
       "package": "com.amonaren_errezetak.amonaren_errezetak",
-      "versionCode": 14
+      "versionCode": 15
     },
     "assetBundlePatterns": ["**/*"],
     "experiments": {
@@ -37,6 +37,6 @@
     "scheme": "amonaren_errezetak",
     "slug": "amonaren_errezetak",
     "userInterfaceStyle": "light",
-    "version": "1.0.12"
+    "version": "1.0.13"
   }
 }
